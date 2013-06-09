@@ -1,0 +1,38 @@
+{
+  "name": "初学者",
+  "data": [
+    {
+      "name": "障碍层",
+      "perX": 20,
+      "perY": 20,
+      
+      "abX":300,
+      "abY":300,
+      "maxPerX":30, 
+      "maxPerY":30,
+      "type":"background",
+      "data": {
+        "2_2": {
+          "type": 1,
+          "x": 2,
+          "y": 2,
+          "initFrame":"attack1_0.png",
+          "action": [
+            {
+              "name": "attack",
+              "rule": "attack1_%NUM%.png",
+              "from": 0,
+              "to": 19
+            },
+            {
+              "name":"stand",
+              "rule":"stand_%NUM%.png",
+              "from":0,
+              "to":65
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
