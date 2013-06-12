@@ -78,13 +78,14 @@ void HelloWorld::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     float ty=powf((p2.y-p1.y),2);
     
     int dis=int(ceil(sqrt(tx+ty)));
-    float raduis=atan2f(p2.y-p1.y, p2.x-p1.x);
+    radius=atan2f(p2.y-p1.y, p2.x-p1.x);
     
-    dis=sin(raduis)*dis;
+    dis=sin(radius)*dis;
     if(dis<0)dir=-1;
     power+=dis/10;
-    role->runAction(CCRepeatForever::create(CCRotateBy::create(raduis*180/3.14f,power*600)));
-    CCLog("%d__%f",dis,raduis*180/3.14);
+    role->stopAllActions();
+    role->runAction(CCRepeatForever::create(CCRotateBy::create(abs(int(radius*180/3.14f)),power*600)));
+    CCLog("%d__%f",dis,radius*180/3.14);
 }
 void HelloWorld::ccTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 {
@@ -218,9 +219,10 @@ void HelloWorld::update(float dt)
     //radius=atan2f(1,1);
     if(bingo||role->getPositionY()<0)
     {
-        
+        role->stopAllActions();
         role->setPositionY(0);
         t=0;
+        dir=1;
         power/=1.2;
         startY=0;
         if(power<.01)power=0;
