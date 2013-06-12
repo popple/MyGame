@@ -275,6 +275,10 @@
 		B1C271A717649122003E3DEF /* SlotData.c in Sources */ = {isa = PBXBuildFile; fileRef = B1C2719217649122003E3DEF /* SlotData.c */; };
 		B1C271A817649122003E3DEF /* spine-cocos2dx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1C2719317649122003E3DEF /* spine-cocos2dx.cpp */; };
 		B1C271C1176491FC003E3DEF /* ExampleLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1C271BF176491FC003E3DEF /* ExampleLayer.cpp */; };
+		CD706B971764F70D0099F009 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD706B961764F70D0099F009 /* Default-Portrait@2x~ipad.png */; };
+		CD706B991764F7330099F009 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD706B981764F7330099F009 /* Default-Landscape@2x~ipad.png */; };
+		CD706B9B1764F77C0099F009 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD706B9A1764F77C0099F009 /* Default-568h@2x.png */; };
+		CD706B9D1764F7800099F009 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD706B9C1764F7800099F009 /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -839,6 +843,10 @@
 		B1C271BE1764919E003E3DEF /* spine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spine.h; sourceTree = "<group>"; };
 		B1C271BF176491FC003E3DEF /* ExampleLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ExampleLayer.cpp; path = Classes/ExampleLayer.cpp; sourceTree = "<group>"; };
 		B1C271C0176491FC003E3DEF /* ExampleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExampleLayer.h; path = Classes/ExampleLayer.h; sourceTree = "<group>"; };
+		CD706B961764F70D0099F009 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
+		CD706B981764F7330099F009 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
+		CD706B9A1764F77C0099F009 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		CD706B9C1764F7800099F009 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -865,6 +873,10 @@
 		B1C26CE51764719A003E3DEF = {
 			isa = PBXGroup;
 			children = (
+				CD706B9C1764F7800099F009 /* Default@2x.png */,
+				CD706B9A1764F77C0099F009 /* Default-568h@2x.png */,
+				CD706B981764F7330099F009 /* Default-Landscape@2x~ipad.png */,
+				CD706B961764F70D0099F009 /* Default-Portrait@2x~ipad.png */,
 				B1C26D011764719A003E3DEF /* MyGame */,
 				B1C26CF01764719A003E3DEF /* Frameworks */,
 				B1C26CEF1764719A003E3DEF /* Products */,
@@ -2117,6 +2129,10 @@
 				B1C270D117647290003E3DEF /* skill0001.png in Resources */,
 				B1C270D217647290003E3DEF /* SmallSun.plist in Resources */,
 				B1C270D317647290003E3DEF /* test.txt in Resources */,
+				CD706B971764F70D0099F009 /* Default-Portrait@2x~ipad.png in Resources */,
+				CD706B991764F7330099F009 /* Default-Landscape@2x~ipad.png in Resources */,
+				CD706B9B1764F77C0099F009 /* Default-568h@2x.png in Resources */,
+				CD706B9D1764F7800099F009 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2496,6 +2512,7 @@
 				B1C2706E1764719E003E3DEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

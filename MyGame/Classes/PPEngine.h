@@ -20,7 +20,9 @@ typedef float roleY;
 #include "writer.h"
 #include "PPUnitPool.h"
 #include "global.h"
+#include "spine-cocos2dx.h"
 #include "NewMap.h"
+using namespace spine;
 class PPEngine:public CCObject
 {
 protected:
@@ -188,7 +190,7 @@ public:
         {
             role=(CCRoleView*)(obj);
             //如果是自己不处理
-            if(role->type==1000)
+            if(role->getTag()==1000)
             {
                 continue;
             };

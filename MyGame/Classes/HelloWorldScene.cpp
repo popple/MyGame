@@ -17,7 +17,7 @@ USING_NS_CC;
 #include "spine-cocos2dx.h"
 using namespace spine;
 CCLayerColor *HelloWorld::bg=NULL;
-HelloWorld::HelloWorld():t(0),tDa(1),radius(45*3.14/180),power(20)
+HelloWorld::HelloWorld():t(0),tDa(1),radius(45*3.14/180),power(20),dir(1)
 {
 	
 }
@@ -52,41 +52,84 @@ CCScene* HelloWorld::scene()
     // return the scene
     return scene;
 };
+void HelloWorld::onEnter()
+{
+    CCLayer::onEnter();
+    CCDirector::sharedDirector()->getTouchDispatcher()->addStandardDelegate(this, 0);
+    CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
+};
+void HelloWorld::onExit()
+{
+    CCLayer::onExit();
+};
 
-bool HelloWorld::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
+void HelloWorld::ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent)
 {
     
-    power+=10;
+   // power+=10;
+    
+};
+void HelloWorld::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
+{
+    p2=pTouch->getLocation();
+    t=0;
+    startY=role->getPositionY();
+    float tx=powf((p2.x-p1.x),2);
+    float ty=powf((p2.y-p1.y),2);
+    
+    int dis=int(ceil(sqrt(tx+ty)));
+    float raduis=atan2f(p2.y-p1.y, p2.x-p1.x);
+    
+    dis=sin(raduis)*dis;
+    if(dis<0)dir=-1;
+    power+=dis/10;
+    role->runAction(CCRepeatForever::create(CCRotateBy::create(raduis*180/3.14f,power*600)));
+    CCLog("%d__%f",dis,raduis*180/3.14);
+}
+void HelloWorld::ccTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
+{
+    
+};
+bool HelloWorld::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
+{
+    p1=pTouch->getLocation();
+   // power+=10;
     return true;
+   
 };
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
-    CCSkeletonAnimation *skeletonNode;
-    skeletonNode = new CCSkeletonAnimation("spineboy.json", "spineboy.atlas");
-	skeletonNode->setMix("walk", "jump", 0.2f);
-	skeletonNode->setMix("jump", "walk", 0.4f);
+    //this->setTouchEnabled(true);
     
-	skeletonNode->setAnimation("walk", true);
+    
+    
+    role = CCSkeletonAnimation::createWithFile("spineboy.json", "spineboy.atlas");
+   
+	role->setMix("walk", "jump", 0.2f);
+	role->setMix("jump", "walk", 0.4f);
+    
+	role->setAnimation("walk", true);
+    role->setTag(1000);
 	// This shows how to setup animations to play back to back.
 	//skeletonNode->addAnimation("jump", true);
 	//skeletonNode->addAnimation("walk", true);
 	//skeletonNode->addAnimation("jump", true);
     
-	skeletonNode->timeScale = 0.3f;
-	skeletonNode->debugBones = true;
-    
-	skeletonNode->runAction(CCRepeatForever::create(CCSequence::create(CCFadeOut::create(1),
-                                                                       CCFadeIn::create(1),
-                                                                       CCDelayTime::create(5),
-                                                                       NULL)));
+	role->timeScale = 1.0f;
+	role->debugBones = true;
+    startY=role->getPositionY();
+//	skeletonNode->runAction(CCRepeatForever::create(CCSequence::create(CCFadeOut::create(1),
+//                                                                       CCFadeIn::create(1),
+//                                                                       CCDelayTime::create(5),
+//                                                                       NULL)));
     
 	CCSize windowSize = CCDirector::sharedDirector()->getWinSize();
-	skeletonNode->setPosition(ccp(windowSize.width / 2, 20));
-	addChild(skeletonNode);
+	role->setPosition(ccp(windowSize.width / 2, 20));
+    role->setScale(.6f);
+	//addChild(role);
 
-    
-    
+    role->retain();
     
     
     fenshu=CCTextFieldTTF::create();
@@ -96,10 +139,10 @@ bool HelloWorld::init()
     fenshu->setFontSize(100);
     fenshu->setOpacity(40);
     this->addChild(fenshu,1000);
-    CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this,0,true);
     
     
-    this->setTouchEnabled(true);
+    
+    
     engine=PPEngine::create();
     engine->retain();
     engine->initWithMapFile("newMap.txt", this);
@@ -111,9 +154,9 @@ bool HelloWorld::init()
     CCSpriteFrame * initFrame=getSpriteFrameByName("attack1_0.png");
     
     
-    role=CCRoleView::create();
-    role->type=1000;
-    role->initWithSpriteFrame(initFrame);
+    //role=CCRoleView::create();
+    //role->type=1000;
+    //role->initWithSpriteFrame(initFrame);
     role->setAnchorPoint(CCPointMake(.5f,.258f));
     
     
@@ -179,23 +222,23 @@ void HelloWorld::update(float dt)
         role->setPositionY(0);
         t=0;
         power/=1.2;
-        
+        startY=0;
         if(power<.01)power=0;
        // CCRepeatForever::create(CCRotateBy::create(1,30));
         role->runAction(CCRepeatForever::create(CCRotateBy::create(radius*180/3.14f,power*800)));
-        
+       // skeletonNode->runAction(CCRepeatForever::create(CCRotateBy::create(radius*180/3.14f,power*800)));
         this->schedule(schedule_selector(HelloWorld::update),500/1000);
         //CCDirector::sharedDirector()->getScheduler()->setTimeScale(.2f);
         //if(power<0)power=0;
         //radius=45*3.14/180;
     }
     
-    float ty=power*t*sin(radius)-.098*t*t/2;
+    float ty=dir*power*t*sin(radius)-.098*t*t/2;
     float tx=role->getPositionX()+power*cos(radius);
     role->setPositionX(tx);
-    role->setPositionY(ty);
+    role->setPositionY(ty+startY);
     
-     
+   // skeletonNode->setPosition(ccp(tx,ty));
     
     CCString *tr=CCString::createWithFormat("%d米",int(role->getPositionY()/100));
     fenshu->setString(tr->getCString());

@@ -6,7 +6,7 @@
 #include "PPEngine.h"
 #include <spine/spine-cocos2dx.h>
 #include "SimpleAudioEngine.h"
-
+#include "spine-cocos2dx.h"
 struct BgColor
 {
     ccColor3B color1=ccc3(3,20,0);
@@ -21,6 +21,10 @@ public:
     float t;
     float tDa;
     float radius;
+    CCPoint p1;
+    CCPoint p2;
+    int dir;
+    float startY;
     int power;
     BgColor bgColor;
     CCLabelTTF *fenshu;
@@ -33,10 +37,18 @@ public:
     // there's no 'id' in cpp, so we recommand to return the exactly class pointer
     static cocos2d::CCScene* scene();
     PPEngine *engine;
+    virtual void onEnter();
+    virtual void onExit();
     
-    // default implements are used to call script callback if exist
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
-//    virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
+    // optional
+    virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
+    //virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
+    //virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
+    // default implements are used to call script callback if exist
+    virtual void ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent);
+    //    virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
 //    virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
 //    virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
     
@@ -47,6 +59,7 @@ public:
     // implement the "static node()" method manually
     CREATE_FUNC(HelloWorld);
 protected:
-    CCRoleView* role;
+    CCSkeletonAnimation* role;
+    CCSkeletonAnimation* skeletonNode;
 };
 #endif
