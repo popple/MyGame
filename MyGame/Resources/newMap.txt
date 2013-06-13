@@ -10,8 +10,27 @@
             "interactive":0,
             "power":0,
             "collision":50,
-            "initFrame":"14327330_24.png",
-            "AnchorPoint":""
+            "initFrame":"tree1_0.png",
+            "anchorPoint":{"x":".5","y":"0"},
+            "randomZ":0,
+            "resource":[
+                {
+                    "name":"sdf",
+                    "rule":"",
+                    "from":0,
+                    "to":10
+                }
+            ]
+        },
+{
+            "name":"cloud",
+            "rule":"x1==0",
+            "interactive":0,
+            "power":0,
+            "collision":50,
+            "initFrame":"tree2_0.png",
+            "anchorPoint":{"x":".5","y":"0"},
+            "randomZ":0,
             "resource":[
                 {
                     "name":"sdf",

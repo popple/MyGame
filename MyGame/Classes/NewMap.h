@@ -26,6 +26,7 @@ struct PPitem
     float power;
     int collision;
     CCPoint *anchorPoint;
+    int randomZ;
     string initFrame;
     vector<PPMovies *> *resource;
 };

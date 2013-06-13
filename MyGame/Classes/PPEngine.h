@@ -96,7 +96,7 @@ public:
             
             JsonCPP::Value p=tmp["anchorPoint"];
             
-            
+            item->randomZ=tmp["randomZ"].asInt();
             item->anchorPoint=new CCPoint(atof(p["x"].asString().c_str()),atof(p["y"].asString().c_str()));
             
             item->initFrame=tmp["initFrame"].asString();
@@ -303,8 +303,11 @@ private:
                     
                     
                     int rnd=rand()%300-rand()%100;
-                    role->setVertexZ(rnd);
-                    role->setZOrder(rnd);
+                    if(item->randomZ==1)
+                    {
+                         role->setVertexZ(rnd);
+                         role->setZOrder(rnd);
+                    }
                     if(item->interactive==1)
                     {
                         role->playMovie("stand");
