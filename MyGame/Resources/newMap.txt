@@ -6,7 +6,7 @@
     "items":[
         {
             "name":"cloud",
-            "rule":"y==0&&x%2=0",
+            "rule":"x1==0&&x0%2==0",
             "interactive":0,
             "power":0,
             "collision":50,

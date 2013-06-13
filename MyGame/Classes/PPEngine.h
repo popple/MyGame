@@ -24,7 +24,9 @@ typedef float roleY;
 #include "NewMap.h"
 #include "calc_expr.h"
 using namespace spine;
-extern bool CalcExpr(item->rule, 10, 100, result);
+
+//extern bool CalcExpr(const std::string & expr, int a1, int a2, Token & result);
+
 class PPEngine:public CCObject
 {
 protected:
@@ -283,10 +285,10 @@ private:
         {
             
             PPitem* item= (*m_mapData->items)[a];
-            TokenVector result;
-            bool re=CalcExpr(item->rule, 10, 100, result);
+            Token result;
+            bool re=CalcExpr(item->rule, x, y, result);
             if(!re)return;
-            if(result[0].value.b)
+            if(result.value.b)
             {
                 string key=CCString::createWithFormat("%d_%d",x,y)->getCString();
                 
