@@ -22,7 +22,9 @@ typedef float roleY;
 #include "global.h"
 #include "spine-cocos2dx.h"
 #include "NewMap.h"
+#include "calc_expr.h"
 using namespace spine;
+extern bool CalcExpr(item->rule, 10, 100, result);
 class PPEngine:public CCObject
 {
 protected:
@@ -281,9 +283,10 @@ private:
         {
             
             PPitem* item= (*m_mapData->items)[a];
-            
-            int rnd=rand()%100;
-            if((x%3==rnd)&&(y%3==rnd))
+            TokenVector result;
+            bool re=CalcExpr(item->rule, 10, 100, result);
+            if(!re)return;
+            if(result[0].value.b)
             {
                 string key=CCString::createWithFormat("%d_%d",x,y)->getCString();
                 

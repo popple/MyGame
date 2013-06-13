@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1AC71EB1769D35B00914006 /* calc_expr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1AC71E81769D35A00914006 /* calc_expr.cpp */; };
+		B1AC71EE1769DBA400914006 /* test_calc_expr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1AC71ED1769DBA400914006 /* test_calc_expr.cpp */; };
 		B1C26CF21764719A003E3DEF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C26CF11764719A003E3DEF /* QuartzCore.framework */; };
 		B1C26CF41764719A003E3DEF /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C26CF31764719A003E3DEF /* OpenGLES.framework */; };
 		B1C26CF61764719A003E3DEF /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C26CF51764719A003E3DEF /* OpenAL.framework */; };
@@ -282,6 +284,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B1AC71E81769D35A00914006 /* calc_expr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = calc_expr.cpp; path = Classes/calc_expr.cpp; sourceTree = "<group>"; };
+		B1AC71E91769D35A00914006 /* calc_expr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = calc_expr.h; path = Classes/calc_expr.h; sourceTree = "<group>"; };
+		B1AC71ED1769DBA400914006 /* test_calc_expr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test_calc_expr.cpp; path = Classes/test_calc_expr.cpp; sourceTree = "<group>"; };
 		B1C26CEE1764719A003E3DEF /* MyGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1C26CF11764719A003E3DEF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B1C26CF31764719A003E3DEF /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -1848,6 +1853,9 @@
 		B1C270631764719E003E3DEF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B1AC71ED1769DBA400914006 /* test_calc_expr.cpp */,
+				B1AC71E81769D35A00914006 /* calc_expr.cpp */,
+				B1AC71E91769D35A00914006 /* calc_expr.h */,
 				B1C271BF176491FC003E3DEF /* ExampleLayer.cpp */,
 				B1C271C0176491FC003E3DEF /* ExampleLayer.h */,
 				B1C2717D17649122003E3DEF /* spine */,
@@ -2355,6 +2363,8 @@
 				B1C271A717649122003E3DEF /* SlotData.c in Sources */,
 				B1C271A817649122003E3DEF /* spine-cocos2dx.cpp in Sources */,
 				B1C271C1176491FC003E3DEF /* ExampleLayer.cpp in Sources */,
+				B1AC71EB1769D35B00914006 /* calc_expr.cpp in Sources */,
+				B1AC71EE1769DBA400914006 /* test_calc_expr.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -82,7 +82,7 @@ void HelloWorld::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     
     dis=sin(radius)*dis;
     if(dis<0)dir=-1;
-    power+=dis/10;
+    power=dis/5;
     role->stopAllActions();
     role->runAction(CCRepeatForever::create(CCRotateBy::create(abs(int(radius*180/3.14f)),power*600)));
     CCLog("%d__%f",dis,radius*180/3.14);
@@ -193,7 +193,7 @@ void HelloWorld::update(float dt)
     bool bingo=false;
     this->sortAllChildren();
     
-    float p=1-role->getPositionY()/10000.0;
+    float p=1-role->getPositionY()/100000.0;
     
     
     ccColor3B tc=ccc3(255,0,0);
@@ -225,7 +225,9 @@ void HelloWorld::update(float dt)
         dir=1;
         power/=1.2;
         startY=0;
-        if(power<.01)power=0;
+        power=-power;
+        
+        if(radius<0)radius=-radius;
        // CCRepeatForever::create(CCRotateBy::create(1,30));
         role->runAction(CCRepeatForever::create(CCRotateBy::create(radius*180/3.14f,power*800)));
        // skeletonNode->runAction(CCRepeatForever::create(CCRotateBy::create(radius*180/3.14f,power*800)));
@@ -236,7 +238,7 @@ void HelloWorld::update(float dt)
     }
     
     float ty=dir*power*t*sin(radius)-.098*t*t/2;
-    float tx=role->getPositionX()+power*cos(radius);
+    float tx=role->getPositionX()+abs(int(power*cos(radius)));
     role->setPositionX(tx);
     role->setPositionY(ty+startY);
     
