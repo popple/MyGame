@@ -27,6 +27,9 @@ struct PPitem
     int collision;
     CCPoint *anchorPoint;
     int randomZ;
+    int depth;
+    string x;
+    string y;
     string initFrame;
     vector<PPMovies *> *resource;
 };

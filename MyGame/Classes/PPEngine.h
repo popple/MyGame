@@ -93,9 +93,10 @@ public:
             item->interactive=tmp["interactive"].asInt();
             item->collision=tmp["collision"].asInt();
             item->power=tmp["power"].asInt();
-            
+            item->depth=tmp["depth"].asInt();
             JsonCPP::Value p=tmp["anchorPoint"];
-            
+            item->x=tmp["x"].asString();
+            item->y=tmp["y"].asString();
             item->randomZ=tmp["randomZ"].asInt();
             item->anchorPoint=new CCPoint(atof(p["x"].asString().c_str()),atof(p["y"].asString().c_str()));
             
@@ -258,25 +259,27 @@ private:
         
         int a;
                 //取上方横条
-        for(a=startX;a<=stopX;a++)
-        {
-            getPosition(a,stopY);
-            //CCLog("%d___%d____%s_____坐标扫瞄",a,stopY,name.c_str());
-            
-        }
-        //取右边竖条
-        for(a=startY;a<stopY;a++)
-        {
-            getPosition(stopX,a);
-            //CCLog("%d___%d____%s_____坐标扫瞄",a,stopY,name.c_str());
-            
-        }
-        //取下方横条
-        for(a=startX;a<stopX;a++)
-        {
-            getPosition(a,startY);
-            
-        }
+//        for(a=startX;a<=stopX;a++)
+//        {
+//            getPosition(a,stopY);
+//            //CCLog("%d___%d____%s_____坐标扫瞄",a,stopY,name.c_str());
+//            
+//        }
+//        //取右边竖条
+//        for(a=startY;a<stopY;a++)
+//        {
+//            getPosition(stopX,a);
+//            //CCLog("%d___%d____%s_____坐标扫瞄",a,stopY,name.c_str());
+//            
+//        }
+//        //取下方横条
+//        for(a=startX;a<stopX;a++)
+//        {
+//            getPosition(a,startY);
+//            
+//        }
+        
+        getPosition(px,py);
     };
     void getPosition(int x,int y)
     {
@@ -285,10 +288,14 @@ private:
         {
             
             PPitem* item= (*m_mapData->items)[a];
-            Token result;
-            bool re=CalcExpr(item->rule, x, y, result);
-            if(!re)return;
-            if(result.value.b)
+            Token resultX;
+            Token resultY;
+            int rex=CalcExpr(item->x, x, y, resultX);
+            int rey=CalcExpr(item->y, x,y, resultY);
+            if(!rex||!rey)return;
+            
+            
+            if(true)
             {
                 string key=CCString::createWithFormat("%d_%d",x,y)->getCString();
                 
@@ -306,8 +313,9 @@ private:
                     if(item->randomZ==1)
                     {
                          role->setVertexZ(rnd);
-                         role->setZOrder(rnd);
+                         
                     }
+                    role->setZOrder(item->depth);
                     if(item->interactive==1)
                     {
                         role->playMovie("stand");

@@ -6,31 +6,15 @@
     "items":[
         {
             "name":"cloud",
-            "rule":"x1==0&&x0%2==0",
+            "x":"x0+2",
+            "y":"x1+2",
             "interactive":0,
             "power":0,
             "collision":50,
-            "initFrame":"tree1_0.png",
+            "initFrame":"14327330_13.png",
             "anchorPoint":{"x":".5","y":"0"},
             "randomZ":0,
-            "resource":[
-                {
-                    "name":"sdf",
-                    "rule":"",
-                    "from":0,
-                    "to":10
-                }
-            ]
-        },
-{
-            "name":"cloud",
-            "rule":"x1==0",
-            "interactive":0,
-            "power":0,
-            "collision":50,
-            "initFrame":"tree2_0.png",
-            "anchorPoint":{"x":".5","y":"0"},
-            "randomZ":0,
+            "depth":0,
             "resource":[
                 {
                     "name":"sdf",
@@ -40,5 +24,5 @@
                 }
             ]
         }
-    ]
+            ]
 }
