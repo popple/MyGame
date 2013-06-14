@@ -30,6 +30,8 @@ struct PPitem
     int depth;
     string x;
     string y;
+    int width;
+    int height;
     string initFrame;
     vector<PPMovies *> *resource;
 };

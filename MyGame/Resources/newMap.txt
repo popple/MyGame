@@ -11,6 +11,8 @@
             "interactive":0,
             "power":0,
             "collision":50,
+            "width":23,
+            "height":20,
             "initFrame":"14327330_13.png",
             "anchorPoint":{"x":".5","y":"0"},
             "randomZ":0,

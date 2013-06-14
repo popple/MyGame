@@ -97,6 +97,8 @@ public:
             JsonCPP::Value p=tmp["anchorPoint"];
             item->x=tmp["x"].asString();
             item->y=tmp["y"].asString();
+            item->width=tmp["width"].asInt();
+            item->height=tmp["height"].asInt();
             item->randomZ=tmp["randomZ"].asInt();
             item->anchorPoint=new CCPoint(atof(p["x"].asString().c_str()),atof(p["y"].asString().c_str()));
             
@@ -279,9 +281,9 @@ private:
 //            
 //        }
         
-        getPosition(px,py);
+        getPosition(personX,personY);
     };
-    void getPosition(int x,int y)
+    void getPosition(float x,float y)
     {
         int a,len=m_mapData->items->size();
         for(a=0;a<len;a++)
@@ -294,17 +296,22 @@ private:
             int rey=CalcExpr(item->y, x,y, resultY);
             if(!rex||!rey)return;
             
+           
             
-            if(true)
-            {
-                string key=CCString::createWithFormat("%d_%d",x,y)->getCString();
+            int w=item->width;
+            int h=item->height;
+            
+            rex=int(rex/w);
+            rey=int(rex/h);
+            
+                string key=CCString::createWithFormat("%d_%d_%d_%d",w,h,rex,rey)->getCString();
                 
                 CCRoleView* role=pool->getUnitByKey(key);
                 if(role)
                 {
                     initView(item,role);
-                    role->setPositionX(x*m_mapData->width);
-                    role->setPositionY(y*m_mapData->height);
+                    role->setPositionX(rex*w);
+                    role->setPositionY(rey*h);
                     role->interactive=item->interactive;
                     role->setAnchorPoint(ccp(item->anchorPoint->x,item->anchorPoint->y));
                     
@@ -327,8 +334,7 @@ private:
                     role->setVisible(true);
                 }
             }
-            
-        }
+         
 //        bool conditions=false;
 //        
 //        conditions=(y==0);
