@@ -3,7 +3,7 @@
 
 CCRoleCache* CCRoleCache::_instance = NULL;
 
-CCRoleView::CCRoleView():ani(NULL),m_speed(30.0f/1000),m_isIdle(true),collision(50),type(0),uid(0)
+CCRoleView::CCRoleView():ani(NULL),m_speed(30.0f/1000),m_isIdle(true),collision(50),type(0),uid(0),dis(0)
 {
 	m_cache=CCSpriteFrameCache::sharedSpriteFrameCache();
 	m_rep=CCRepeatForever::create(CCActionInterval::create(.1f));

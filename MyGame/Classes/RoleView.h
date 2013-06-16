@@ -15,6 +15,7 @@ public:
     bool isActive;
     int type;
     int uid;
+    int dis;
     bool collision;
     int  interactive;
 	void addMovie(std::string name,CCArray* spriteFrames);

@@ -25,15 +25,18 @@ struct PPitem
     //power 0 直接静止 ＋增加力量 －减少力量
     float power;
     int collision;
-    CCPoint *anchorPoint;
+    CCPoint anchorPoint;
     int randomZ;
     int depth;
     string x;
     string y;
     int width;
     int height;
+    int layoutWidth;
+    int layoutHeight;
+    string condition;
     string initFrame;
-    vector<PPMovies *> *resource;
+    vector<PPMovies> resource;
 };
 struct PPMap
 {
@@ -41,7 +44,7 @@ struct PPMap
     string desctript;
     int width;
     int height;
-    vector<PPitem *> *items;
+    vector<PPitem> items;
 };
 
 #endif

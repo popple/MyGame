@@ -28,9 +28,9 @@ public:
         int a;
         CCRoleView* tmp;
         
-        //如果目标坐标存在则直接返回.
+        //如果对象已经存在于字典，则直接返回...
         
-        if(m_map[key]==0)
+        if(m_map->objectForKey(key))
         {
             return NULL;
         }
@@ -38,9 +38,29 @@ public:
         //清除字典中已经死去的对象--------------.
         CCDictElement* oe;
         CCRoleView*rv;
-
         
-       
+        
+        //        int m=0;
+        //        for(a=0;a<total;a++)
+        //        {
+        //            tmp=(CCRoleView*)(m_objects->objectAtIndex(a));
+        //            if(tmp&&tmp->isIdle==false)
+        //            {
+        //                m++;
+        //
+        //            }
+        //        }
+        //CCLog("%f__%d",m/total,m);
+        
+        CCDICT_FOREACH(m_map,oe)
+        {
+            rv=(CCRoleView*)(oe->getObject());
+            if(rv->isIdle)
+            {
+                m_map->removeObjectForKey(oe->getStrKey());
+            }
+            
+        }
         
         //寻找对象池中处于闲散状态的对象，并初始化输出。。
         
@@ -50,18 +70,20 @@ public:
             if(tmp&&tmp->isIdle)
             {
                 
-                
+                m_map->setObject(tmp,key);
                 tmp->isIdle=false;
                 return tmp;
             }
         }
-    
         
-    
+        
+        
         return NULL;
     };
     bool init()
     {
+        m_map=CCDictionary::create();
+        m_map->retain();
         m_objects=CCArray::createWithCapacity(total);
         m_objects->retain();
         
@@ -78,8 +100,8 @@ public:
     }
     CREATE_FUNC(PPUnitPool);
 protected:
-        map<string,int>  m_map;
-        CCArray* m_objects;
+    CCDictionary * m_map;
+    CCArray* m_objects;
     
 };
 

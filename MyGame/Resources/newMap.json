@@ -1,0 +1,176 @@
+{
+  "name": "新地图",
+  "descript": "这是新大陆",
+  "width": 0,
+  "height": 0,
+  "items": [
+    {
+      "type": 0,
+      "layoutHeight": 359,
+      "layoutWidth": 146,
+      "rule": "r%500==1&&x1>10",
+      "name": "cloud1",
+      "condition": "1=1",
+      "initFrame": "14327330_13.png",
+      "width": 100,
+      "height": 100,
+      "interactive": 0,
+      "collision": 50,
+      "power": 0,
+      "randomZ": 1,
+      "depth": 2,
+      "anchorPoint": {
+        "x": ".5",
+        "y": "0"
+      },
+      "resource": [
+        {
+          "to": 0,
+          "from": 0,
+          "rule": "",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "layoutHeight": 359,
+      "layoutWidth": 146,
+      "rule": "r%500==1&&x1>10",
+      "name": "cloud1",
+      "condition": "1=1",
+      "initFrame": "14327330_24.png",
+      "width": 100,
+      "height": 100,
+      "interactive": 0,
+      "collision": 50,
+      "power": 0,
+      "randomZ": 1,
+      "depth": 2,
+      "anchorPoint": {
+        "x": ".5",
+        "y": "0"
+      },
+      "resource": [
+        {
+          "to": 0,
+          "from": 0,
+          "rule": "",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "layoutHeight": 359,
+      "layoutWidth": 146,
+      "rule": "r%500==1&&x1>10",
+      "name": "cloud1",
+      "condition": "1=1",
+      "initFrame": "14327330_28.png",
+      "width": 100,
+      "height": 100,
+      "interactive": 0,
+      "collision": 50,
+      "power": 0,
+      "randomZ": 1,
+      "depth": 2,
+      "anchorPoint": {
+        "x": ".5",
+        "y": "0"
+      },
+      "resource": [
+        {
+          "to": 0,
+          "from": 0,
+          "rule": "",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": 0,
+      "layoutHeight": 359,
+      "layoutWidth": 146,
+      "rule": "r%500==1&&x1>10",
+      "name": "cloud1",
+      "condition": "1=1",
+      "initFrame": "14327330_9.png",
+      "width": 100,
+      "height": 100,
+      "interactive": 0,
+      "collision": 50,
+      "power": 0,
+      "randomZ": 1,
+      "depth": 2,
+      "anchorPoint": {
+        "x": ".5",
+        "y": "0"
+      },
+      "resource": [
+        {
+          "to": 0,
+          "from": 0,
+          "rule": "",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "layoutWidth": 710,
+      "layoutHeight": 300,
+      "rule": "x1==0",
+      "name": "cloud1",
+      "condition": "1=1",
+      "initFrame": "image1.png",
+      "width": 710,
+      "height": 300,
+      "interactive": 0,
+      "collision": 50,
+      "power": 0,
+      "randomZ": 0,
+      "depth": -2,
+      "anchorPoint": {
+        "x": ".5",
+        "y": "0"
+      },
+      "resource": [
+        {
+          "to": 0,
+          "from": 0,
+          "rule": "",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "layoutWidth": 710,
+      "layoutHeight": 50,
+      "rule": "x1==0",
+      "name": "cloud1",
+      "condition": "1=1",
+      "initFrame": "image3.png",
+      "width": 710,
+      "height": 112,
+      "interactive": 0,
+      "collision": 50,
+      "power": 0,
+      "randomZ": 0,
+      "depth": 5,
+      "anchorPoint": {
+        "x": ".5",
+        "y": "0"
+      },
+      "resource": [
+        {
+          "to": 0,
+          "from": 0,
+          "rule": "",
+          "name": ""
+        }
+      ]
+    }
+  ]
+}

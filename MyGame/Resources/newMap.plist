@@ -7,14 +7,17 @@
         {
             "name":"cloud",
             "x":"x0+2",
-            "y":"x1+2",
+            "y":"x1+r%5",
             "interactive":0,
             "power":0,
             "collision":50,
-            "width":23,
-            "height":20,
+            "width":359,
+            "height":146,
             "initFrame":"14327330_13.png",
-            "anchorPoint":{"x":".5","y":"0"},
+            "anchorPoint":{
+                "x":".5",
+                "y":"0"
+            },
             "randomZ":0,
             "depth":0,
             "resource":[
@@ -26,5 +29,5 @@
                 }
             ]
         }
-            ]
+    ]
 }
