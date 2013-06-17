@@ -108,7 +108,10 @@ bool HelloWorld::init()
 
     
     role = CCSkeletonAnimation::createWithFile("spineboy.json", "spineboy.atlas");
-   
+    
+    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("role.plist");
+    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("items.plist");
+
 	role->setMix("walk", "jump", 0.2f);
 	role->setMix("jump", "walk", 0.4f);
     
@@ -137,9 +140,6 @@ bool HelloWorld::init()
     this->addChild(fenshu,1000);
     
     
-    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("role.plist");
-    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("items.plist");
-
     
     engine=PPEngine::create();
     engine->retain();
@@ -204,7 +204,7 @@ void HelloWorld::update(float dt)
        
         role->runAction(CCRepeatForever::create(CCRotateBy::create(radius*180/3.14f,power*800)));
        
-        this->schedule(schedule_selector(HelloWorld::update),500/1000);
+        //this->schedule(schedule_selector(HelloWorld::update),500/1000);
        
     }
     

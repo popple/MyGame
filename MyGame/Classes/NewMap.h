@@ -28,6 +28,7 @@ struct PPitem
     CCPoint anchorPoint;
     int randomZ;
     int depth;
+    bool isGround;
     string x;
     string y;
     int width;

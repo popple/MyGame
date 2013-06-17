@@ -5,10 +5,10 @@
   "height": 0,
   "items": [
     {
-      "type": 0,
+      "isGround": false,
       "layoutHeight": 359,
       "layoutWidth": 146,
-      "rule": "r%500==1&&x1>10",
+      "rule": "r%5==1&&x1>10",
       "name": "cloud1",
       "condition": "1=1",
       "initFrame": "14327330_13.png",
@@ -34,9 +34,10 @@
     },
     {
       "type": 0,
+      "isGround": false,
       "layoutHeight": 359,
       "layoutWidth": 146,
-      "rule": "r%500==1&&x1>10",
+      "rule": "r%5==1&&x1>10",
       "name": "cloud1",
       "condition": "1=1",
       "initFrame": "14327330_24.png",
@@ -62,9 +63,10 @@
     },
     {
       "type": 0,
+      "isGround": false,
       "layoutHeight": 359,
       "layoutWidth": 146,
-      "rule": "r%500==1&&x1>10",
+      "rule": "r%5==1&&x1>10",
       "name": "cloud1",
       "condition": "1=1",
       "initFrame": "14327330_28.png",
@@ -91,8 +93,9 @@
     {
       "type": 0,
       "layoutHeight": 359,
+      "isGround": false,
       "layoutWidth": 146,
-      "rule": "r%500==1&&x1>10",
+      "rule": "r%5==1&&x1>10",
       "name": "cloud1",
       "condition": "1=1",
       "initFrame": "14327330_9.png",
@@ -118,6 +121,7 @@
     },
     {
       "type": 1,
+      "isGround": true,
       "layoutWidth": 710,
       "layoutHeight": 300,
       "rule": "x1==0",
@@ -148,6 +152,7 @@
       "type": 1,
       "layoutWidth": 710,
       "layoutHeight": 50,
+      "isGround": true,
       "rule": "x1==0",
       "name": "cloud1",
       "condition": "1=1",
@@ -172,5 +177,7 @@
         }
       ]
     }
+  ],
+  "background": [
   ]
 }

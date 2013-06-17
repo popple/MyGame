@@ -100,6 +100,7 @@ public:
             item.condition=tmp["condition"].asString();
             JsonCPP::Value p=tmp["anchorPoint"];
             item.x=tmp["x"].asString();
+            item.isGround=tmp["isGround"].asBool();
             item.y=tmp["y"].asString();
             item.width=tmp["width"].asInt();
             item.height=tmp["height"].asInt();
@@ -220,44 +221,68 @@ private:
                 {
                     for(b=startY;b<=stopY;b++)
                     {
-                        getPosition(a,b,&item);
-                        CCLOG("%d__%d",a,b);
+                        getPosition(a,b,px,py,&item);
+                        //CCLOG("%d__%d",a,b);
                     }
                 }
             }
-            else
+            else 
             {
-                //取上方横条
-                for(a=startX;a<=stopX;a++)
+                if(item.isGround)
                 {
-                    getPosition(a,stopY,&item);
-                    //CCLog("%d___%d____%s_____坐标扫瞄",a,stopY,name.c_str());
-                    
+                    for(a=startY;a<stopY;a++)
+                    {
+                        getPosition(stopX,a,px,py,&item);
+                        //CCLog("%d___%d____%s_____坐标扫瞄",a,stopY,name.c_str());
+                    }
+                    for(a=startX;a<=stopX;a++)
+                    {
+                        getPosition(a,startY,px,py,&item);
+    
+                    }
+
                 }
-                //取右边竖条
-                for(a=startY;a<stopY;a++)
+                else
                 {
-                    getPosition(stopX,a,&item);
-                    //CCLog("%d___%d____%s_____坐标扫瞄",a,stopY,name.c_str());
-                }
-                //取下方横条
-                for(a=startX;a<stopX;a++)
-                {
-                    getPosition(a,startY,&item);
-                    
+                    a=rand()%(stopX-startX)+startX;
+                    getPosition(a,stopY,px,py,&item);
+                    //                //取上方横条
+                    //                for(a=startX;a<=stopX;a++)
+                    //                {
+                    //                    getPosition(a,stopY,&item);
+                    //                    //CCLog("%d___%d____%s_____坐标扫瞄",a,stopY,name.c_str());
+                    //
+                    //                }
+                    //取右边竖条
+                    a=rand()%(stopY-startY)+startY;
+                    getPosition(stopX,a,px,py,&item);
+                    //                for(a=startY;a<stopY;a++)
+                    //                {
+                    //                    getPosition(stopX,a,&item);
+                    //                    //CCLog("%d___%d____%s_____坐标扫瞄",a,stopY,name.c_str());
+                    //                }
+                    //取下方横条
+                    a=rand()%(stopX-startX)+startX;
+                    getPosition(a,startY,px,py,&item);
+                    //                for(a=startX;a<=stopX;a++)
+                    //                {
+                    //                    getPosition(a,startY,&item);
+                    //                    
+                    //                }
+
                 }
             }
         }
     };
-    void getPosition(int x,int y,PPitem *item)
+    void getPosition(int x,int y,int bx,int by,PPitem *item)
     {
 
         Token result;
 
-        bool rex=CalcExpr(item->rule, x, y, result);
-        if(rex&&result.value.b)
+        bool rex=CalcExpr(item->rule, x, y, result)&&result.value.b;
+        if(rex)
         {
-            string key=CCString::createWithFormat("%d_%d_%d_%d",item->width,item->height,x,y)->getCString();
+            string key=CCString::createWithFormat("%d_%d_%d_%d_%d_%d",item->width,item->height,bx,by,x,y)->getCString();
             //CCLog("%s",key.c_str());
             CCRoleView* role=pool->getUnitByKey(key);
             if(role)

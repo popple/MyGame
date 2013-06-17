@@ -1,9 +1,9 @@
 #include "calc_expr.h"
 #include <iostream>
 #include <math.h>
-
+#include "map"
 using namespace std;
-
+map<string,TokenVector> cache;
 // 操作符优先级
 int OPPriority(OPType op)
 {
@@ -532,6 +532,7 @@ bool CalcExpr(const TokenVector & input, const TokenVector & expr, Token & resul
 {
 	TokenStack stack;
 
+    
 	TokenVector::const_iterator it = expr.begin();
 	for (; it != expr.end(); ++it)
 	{
@@ -591,14 +592,25 @@ bool CalcExpr(const TokenVector & input, const TokenVector & expr, Token & resul
 
 bool CalcExpr(const string & expr, int a1, int a2, Token & result)
 {
-	TokenVector a;
-	bool r = ParseExpr(expr, a);
-	if (!r) return false;
+    map<string,TokenVector>::iterator its=cache.find(expr);
+    
+    if(its==cache.end())
+    {
+        TokenVector a;
+        bool r = ParseExpr(expr, a);
+        if (!r) return false;
+        
+        TokenVector b;
+        r = ConvertExpr(a, b);
+        if (!r) return false;
+        
+        cache.insert(std::map<string,TokenVector> :: value_type(expr,b));
+    }
+    
+	
 
-	TokenVector b;
-	r = ConvertExpr(a, b);
-	if (!r) return false;
-
+    map<string,TokenVector>::iterator it=cache.find(expr);
+    
 	TokenVector input;
 	Token x;
 	x.type = INT;
@@ -607,7 +619,7 @@ bool CalcExpr(const string & expr, int a1, int a2, Token & result)
 	x.value.i = a2;
 	input.push_back(x);
 
-	return CalcExpr(input, b, result);
+	return CalcExpr(input, it->second, result);
 }
 
 void PrintToken(const Token & token)
