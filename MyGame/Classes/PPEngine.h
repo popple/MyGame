@@ -144,7 +144,7 @@ public:
         {
             role=(CCRoleView*)(obj);
             //如果是自己不处理
-            if(role->getTag()==1000)
+            if(role->getTag()==-1000)
             {
                 continue;
             };
@@ -163,7 +163,7 @@ public:
                 
                 //CCLog("物体被消灭");
             }
-            if(dis<role->collision&&role->interactive==0)
+            if(dis<role->collision&&role->interactive==1)
             {
                 //命中目标
                 bingo=true;

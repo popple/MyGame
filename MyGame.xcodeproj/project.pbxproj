@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B19091A71774584A0046DE38 /* lizi1.plist in Resources */ = {isa = PBXBuildFile; fileRef = B19091A6177458490046DE38 /* lizi1.plist */; };
+		B19091A9177474220046DE38 /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = B19091A8177474210046DE38 /* white.png */; };
+		B196C7E1177A8F49008A4318 /* HelloWorldScene副本.txt in Sources */ = {isa = PBXBuildFile; fileRef = B196C7DF177A8F49008A4318 /* HelloWorldScene副本.txt */; };
 		B1AC71EB1769D35B00914006 /* calc_expr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1AC71E81769D35A00914006 /* calc_expr.cpp */; };
 		B1C26CF21764719A003E3DEF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C26CF11764719A003E3DEF /* QuartzCore.framework */; };
 		B1C26CF41764719A003E3DEF /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C26CF31764719A003E3DEF /* OpenGLES.framework */; };
@@ -283,6 +286,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B19091A6177458490046DE38 /* lizi1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = lizi1.plist; path = Resources/lizi1.plist; sourceTree = "<group>"; };
+		B19091A8177474210046DE38 /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = white.png; path = Resources/white.png; sourceTree = "<group>"; };
+		B196C7DF177A8F49008A4318 /* HelloWorldScene副本.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "HelloWorldScene副本.txt"; path = "Classes/HelloWorldScene副本.txt"; sourceTree = "<group>"; };
+		B196C7E0177A8F49008A4318 /* HelloWorldScene副本.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = "HelloWorldScene副本.rtf"; path = "Classes/HelloWorldScene副本.rtf"; sourceTree = "<group>"; };
+		B196C7E2177ADAFB008A4318 /* SpringObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpringObject.h; sourceTree = "<group>"; };
 		B1AC71E81769D35A00914006 /* calc_expr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = calc_expr.cpp; path = Classes/calc_expr.cpp; sourceTree = "<group>"; };
 		B1AC71E91769D35A00914006 /* calc_expr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = calc_expr.h; path = Classes/calc_expr.h; sourceTree = "<group>"; };
 		B1C26CEE1764719A003E3DEF /* MyGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -325,7 +333,7 @@
 		B1C26D371764719A003E3DEF /* CCActionGrid3D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCActionGrid3D.h; path = libs/cocos2dx/actions/CCActionGrid3D.h; sourceTree = "<group>"; };
 		B1C26D381764719A003E3DEF /* CCActionInstant.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CCActionInstant.cpp; path = libs/cocos2dx/actions/CCActionInstant.cpp; sourceTree = "<group>"; };
 		B1C26D3A1764719A003E3DEF /* CCActionInstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCActionInstant.h; path = libs/cocos2dx/actions/CCActionInstant.h; sourceTree = "<group>"; };
-		B1C26D3B1764719A003E3DEF /* CCActionInterval.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CCActionInterval.cpp; path = libs/cocos2dx/actions/CCActionInterval.cpp; sourceTree = "<group>"; };
+		B1C26D3B1764719A003E3DEF /* CCActionInterval.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCActionInterval.cpp; path = libs/cocos2dx/actions/CCActionInterval.cpp; sourceTree = "<group>"; };
 		B1C26D3D1764719A003E3DEF /* CCActionInterval.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCActionInterval.h; path = libs/cocos2dx/actions/CCActionInterval.h; sourceTree = "<group>"; };
 		B1C26D3E1764719A003E3DEF /* CCActionManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CCActionManager.cpp; path = libs/cocos2dx/actions/CCActionManager.cpp; sourceTree = "<group>"; };
 		B1C26D401764719A003E3DEF /* CCActionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCActionManager.h; path = libs/cocos2dx/actions/CCActionManager.h; sourceTree = "<group>"; };
@@ -924,6 +932,8 @@
 		B1C26D021764719A003E3DEF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B19091A8177474210046DE38 /* white.png */,
+				B19091A6177458490046DE38 /* lizi1.plist */,
 				CD054801176C0F100041655E /* newMap.json */,
 				B1C2709317647290003E3DEF /* bg.png */,
 				B1C2709417647290003E3DEF /* common */,
@@ -1851,6 +1861,8 @@
 		B1C270631764719E003E3DEF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B196C7DF177A8F49008A4318 /* HelloWorldScene副本.txt */,
+				B196C7E0177A8F49008A4318 /* HelloWorldScene副本.rtf */,
 				B1AC71E81769D35A00914006 /* calc_expr.cpp */,
 				B1AC71E91769D35A00914006 /* calc_expr.h */,
 				B1C271BF176491FC003E3DEF /* ExampleLayer.cpp */,
@@ -1870,6 +1882,7 @@
 				B1C270651764719E003E3DEF /* AppDelegate.cpp */,
 				B1C270671764719E003E3DEF /* HelloWorldScene.h */,
 				B1C270681764719E003E3DEF /* HelloWorldScene.cpp */,
+				B196C7E2177ADAFB008A4318 /* SpringObject.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -2138,6 +2151,8 @@
 				CD706B9B1764F77C0099F009 /* Default-568h@2x.png in Resources */,
 				CD706B9D1764F7800099F009 /* Default@2x.png in Resources */,
 				CD054802176C0F100041655E /* newMap.json in Resources */,
+				B19091A71774584A0046DE38 /* lizi1.plist in Resources */,
+				B19091A9177474220046DE38 /* white.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2361,6 +2376,7 @@
 				B1C271A817649122003E3DEF /* spine-cocos2dx.cpp in Sources */,
 				B1C271C1176491FC003E3DEF /* ExampleLayer.cpp in Sources */,
 				B1AC71EB1769D35B00914006 /* calc_expr.cpp in Sources */,
+				B196C7E1177A8F49008A4318 /* HelloWorldScene副本.txt in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -406,7 +406,7 @@ public:
     virtual void startWithTarget(CCNode *pTarget);
     virtual void update(float time);
     virtual CCActionInterval* reverse(void);
-
+    
 public:
     /** creates the action */
     static CCJumpBy* create(float duration, const CCPoint& position, float height, unsigned int jumps);
@@ -417,6 +417,45 @@ protected:
     unsigned int    m_nJumps;
     CCPoint         m_previousPos;
 };
+
+
+
+
+class CC_DLL CCJump : public CCActionInterval
+{
+public:
+    /** initializes the action */
+    bool initWithParam(float angle, float power,float g=.98f,float yPosition=0,float decrease=.9f);
+    
+    virtual CCObject* copyWithZone(CCZone* pZone);
+    virtual void startWithTarget(CCNode *pTarget);
+    virtual void update(float time);
+    virtual CCActionInterval* reverse(void);
+    virtual bool isDone();
+    virtual void step(float dt);
+    void setDecrease(float d);
+    void setAngle(float d);
+    void setPower(float d);
+    void setGravity(float d);
+public:
+    /** creates the action */
+    static CCJump* create(float angle, float power,float g=.98f,float yPosition=0,float decrease=.9f);
+protected:
+    float mAngle;
+    float mPower;
+    float mG;
+    float mXPower;
+    float mYPower;
+    float mOrginY;
+    float mDecrease;
+    bool mChanged;
+    float mRotate;
+    
+    float remX,rotate;
+    CCRotateBy* rotBy;
+};
+
+
 
 /** @brief Moves a CCNode object to a parabolic position simulating a jump movement by modifying it's position attribute.
 */ 

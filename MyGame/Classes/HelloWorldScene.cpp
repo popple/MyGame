@@ -15,13 +15,10 @@ USING_NS_CC;
 #include "global.h"
 #include "Trigger.h"
 #include "spine-cocos2dx.h"
+#include "SpringObject.h"
 using namespace spine;
-CCLayerColor *HelloWorld::bg=NULL;
-HelloWorld::HelloWorld():t(0),tDa(1),radius(45*3.14/180),power(0),dir(1)
-{
-	
-}
-HelloWorld::~HelloWorld(){}
+
+
 CCScene* HelloWorld::scene()
 {
     
@@ -31,196 +28,120 @@ CCScene* HelloWorld::scene()
         // 'scene' is an autorelease object
         scene = CCScene::create();
         CC_BREAK_IF(! scene);
-
-        
         // 'layer' is an autorelease object
         HelloWorld *layer = HelloWorld::create();
        
         CC_BREAK_IF(!layer);
-        bg=CCLayerColor::create(ccc4(3,20,0,255));
-        
-        scene->addChild(bg);
-       // scene->addChild(test);
+        layer->belongScene(scene);
         scene->addChild(layer);
     } while (0);
 
     // return the scene
     return scene;
 };
+HelloWorld::HelloWorld(){};
+HelloWorld::~HelloWorld(){};
 void HelloWorld::onEnter()
 {
     CCLayer::onEnter();
-    CCDirector::sharedDirector()->getTouchDispatcher()->addStandardDelegate(this, 0);
     CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
 };
+void HelloWorld::belongScene(cocos2d::CCScene *scene)
+{
+    _scene=scene;
+    _scene->retain();
+    
+    if(mSky->getParent()!=_scene)
+    {
+        _scene->addChild(mSky);
+    }
+    if(mBackGround->getParent()!=_scene)
+    {
+        _scene->addChild(mBackGround);
+    }
+    
+}
 void HelloWorld::onExit()
 {
     CCLayer::onExit();
+    CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
 };
 
-void HelloWorld::ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent)
+bool HelloWorld::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 {
-    
-   // power+=10;
-    
-};
+    _lastPoint=pTouch->getLocation();
+    return  true;
+}
 void HelloWorld::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
-    p2=pTouch->getLocation();
-    t=0;
-    startY=role->getPositionY();
-    float tx=powf((p2.x-p1.x),2);
-    float ty=powf((p2.y-p1.y),2);
+    _nowPoint=pTouch->getLocation();
+    float tpx=_nowPoint.x-_lastPoint.x;
+    float tpy=_nowPoint.y-_lastPoint.y;
+    float dis=ccpDistance(_lastPoint,_nowPoint);
+    float angle=abs(int(atan2f(tpy, tpx)*180/3.14));
+    if(tpy<0)dis=-dis;
+    CCLog("%f____%f",dis,angle);
     
-    int dis=int(ceil(sqrt(tx+ty)));
-    radius=atan2f(p2.y-p1.y, p2.x-p1.x);
-    
-    if(radius>0)
-    {
-        dir=1;
-        
-    }else{
-        dir=-1;
-        //p1=p2;
-    }
-    if(radius<0)radius=-radius;
-//    dis=sin(radius)*dis;
-//    if(dis<0)dir=-1;
-    power=dis/5;
-    role->stopAllActions();
-    role->runAction(CCRepeatForever::create(CCRotateBy::create(abs(int(radius*180/3.14f)),power*600)));
-    CCLog("%d__%f",dis,radius*180/3.14);
+    CCJump* jp=(CCJump*)mRole->getActionByTag(1000);
+    jp->initWithParam(angle,dis,.98f,mRole->getPositionY());
 }
 void HelloWorld::ccTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 {
     
 };
-bool HelloWorld::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
-{
-    p1=pTouch->getLocation();
-   // power+=10;
-    return true;
-   
-};
+
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
-
     
-    role = CCSkeletonAnimation::createWithFile("spineboy.json", "spineboy.atlas");
+    //创建主角
+    mRole = CCSkeletonAnimation::createWithFile("spineboy.json", "spineboy.atlas");
+    mRole->setAnimation("idle",true);
+    mRole->retain();
+    mRole->setTag(-1000);
+    mRole->setPosition(ccp(0,0));
+    CCFollow *follow=CCFollow::create(mRole);
+    this->runAction(follow);
+    
+    
+    this->addChild(mRole);
     
     CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("role.plist");
     CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("items.plist");
-
-	role->setMix("walk", "jump", 0.2f);
-	role->setMix("jump", "walk", 0.4f);
-    
-	role->setAnimation("walk", true);
-    role->setTag(1000);
-    
-	role->timeScale = 1.0f;
-	role->debugBones = true;
-    startY=role->getPositionY();
-
-    
-	CCSize windowSize = CCDirector::sharedDirector()->getWinSize();
-	role->setPosition(ccp(windowSize.width / 2, 20));
-    role->setScale(.6f);
-	//addChild(role);
-
-    role->retain();
-    
-    
-    fenshu=CCTextFieldTTF::create();
-    fenshu->retain();
-    CCSize win=CCDirector::sharedDirector()->getWinSize();
-    fenshu->setPosition(CCPointMake(win.width/2,win.height/2));
-    fenshu->setFontSize(100);
-    fenshu->setOpacity(40);
-    this->addChild(fenshu,1000);
-    
-    
-    
+    //初始化背景层
+    mBackGround=CCParallaxNode::create();
+    mBackGround->retain();
+    mSky=CCLayerColor::create(ccc4(80,120,250,255));
+    mSky->retain();
+    //
     engine=PPEngine::create();
     engine->retain();
-    engine->initWithMapFile("newMap.json", this);
+    engine->initWithMapFile("newMap.json",this);
+    this->schedule(schedule_selector(HelloWorld::update), 60/1000);
+    
+       
+    CCDirector::sharedDirector()->getScheduler()->setTimeScale(.2f);
     
     
-        
-
-    role->setAnchorPoint(CCPointMake(.5f,.258f));
-    //role->setPosition(ccp(500,0));
     
-    //role->runAction(CCRepeatForever::create(CCRotateBy::create(1.75f,720)));
-    role->setZOrder(0);
-    
-   
-    
-    CCFollow *ff=CCFollow::create(role);
-
-    this->runAction(ff);
-
-    this->addChild(role);
-
-    
-    this->schedule(schedule_selector(HelloWorld::update),600/1000);
-       return true;
+    CCJump* jp=CCJump::create(30, 100, .98f);
+    jp->startWithTarget(mRole);
+    jp->setTag(1000);
+    mRole->runAction(jp);
+    //makeAction();
+    return true;
 };
-void HelloWorld::enterFrame(cocos2d::CCObject *obj)
-{
-    
-};
+
 void HelloWorld::update(float dt)
 {
+//    if(mRole->getPositionY()<=0)
+//    {
+//        CCJump* tm= (CCJump*)mRole->getActionByTag(1000);
+//        tm->initWithParam(30, 20);
+//    }
+    //mRole->setPositionX(sObject->x+mRole->getPositionX());
+    //mRole->setPositionY(sObject->y);
+    engine->update(mRole->getPositionX(), mRole->getPositionY(), _angle,_bingo);
     
-    bool bingo=false;
-    this->sortAllChildren();
-    
-    float p=1-role->getPositionY()/100000.0;
-    
-    
-    ccColor3B tc=ccc3(255,0,0);
-    
-    if(p<0)p=0;
-        tc.r=(bgColor.color2.r-bgColor.color1.r)*p;
-        tc.g=(bgColor.color2.g-bgColor.color1.g)*p;
-        tc.b=(bgColor.color2.b-bgColor.color1.b)*p;
-   
-
-    bg->setColor(tc);
-	engine->update(role->getPositionX(), role->getPositionY(),radius,bingo);
-
-    if(bingo||role->getPositionY()<0)
-    {
-        role->stopAllActions();
-        role->setPositionY(0);
-        t=0;
-        dir=1;
-        power/=1.2;
-        startY=0;
-        //power=abs(power);
-        
-        //if(radius<0)radius=-radius;
-       
-        role->runAction(CCRepeatForever::create(CCRotateBy::create(radius*180/3.14f,power*800)));
-       
-        //this->schedule(schedule_selector(HelloWorld::update),500/1000);
-       
-    }
-    
-    float ty=dir*power*t*sin(radius)-.098*t*t/2;
-    float tx=role->getPositionX()+abs(int(power*cos(radius)));
-    role->setPositionX(tx);
-    role->setPositionY(ty+startY);
-       
-    CCString *tr=CCString::createWithFormat("%d米",int(role->getPositionX()/100));
-    fenshu->setString(tr->getCString());
-    fenshu->setPosition(role->getPosition());
-        t+=tDa;
-};
-void HelloWorld::menuCloseCallback(CCObject* pSender)
-{
-    // "close" menu item clicked
-    CCDirector::sharedDirector()->end();
 };
 

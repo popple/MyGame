@@ -7,59 +7,62 @@
 #include <spine/spine-cocos2dx.h>
 #include "SimpleAudioEngine.h"
 #include "spine-cocos2dx.h"
-struct BgColor
-{
-    ccColor3B color1=ccc3(3,20,0);
-    ccColor3B color2=ccc3(80,120,250);
-    ccColor3B color3=ccc3(0,0,0);
-    
-    
-};
+#include "SpringObject.h"
+
+typedef int motionType;
 class HelloWorld : public cocos2d::CCLayer
 {
+private:
+    CCPoint _lastPoint;
+    CCPoint _nowPoint;
+    CCScene* _scene;
+    float _tick;
+    float _tStep;
+    float _collisionRadius;
+    int _direct;
+    float _startY;
+    
+    bool _bingo;
+    float _angle;
+    
 public:
-    float t;
-    float tDa;
-    float radius;
-    CCPoint p1;
-    CCPoint p2;
-    int dir;
-    float startY;
-    int power;
-    BgColor bgColor;
-    CCLabelTTF *fenshu;
-    static CCLayerColor *bg;
-    // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
-    virtual bool init();  
-	
-	HelloWorld();
-	~HelloWorld();
-    // there's no 'id' in cpp, so we recommand to return the exactly class pointer
-    static cocos2d::CCScene* scene();
-    PPEngine *engine;
+    
+   
     virtual void onEnter();
     virtual void onExit();
+    virtual bool init();
+  
     
+    static cocos2d::CCScene* scene();
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
     // optional
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
-    //virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
-    //virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
-    // default implements are used to call script callback if exist
-    virtual void ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent);
-    //    virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
-//    virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
-//    virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
-    
-    // a selector callback
-    void menuCloseCallback(CCObject* pSender);
+
+       void makeAction();
+    void check(CCNode*sender,void*data);
 	void update(float dt);
-	void enterFrame(CCObject* obj);
+    HelloWorld();
+    ~HelloWorld();
+    
+    void belongScene(CCScene* scene);
     // implement the "static node()" method manually
     CREATE_FUNC(HelloWorld);
 protected:
-    CCSkeletonAnimation* role;
-    CCSkeletonAnimation* skeletonNode;
+    motionType mType;
+    int mPower;
+    int angle;
+    float speed;
+    CCSkeletonAnimation* mRole;
+    //天空层
+    CCLayerColor *mSky;
+    //背景层
+    CCParallaxNode* mBackGround;
+    //引擎
+    PPEngine* engine;
+    
+    SpringObject* sObject;
+    
+    
 };
 #endif

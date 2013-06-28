@@ -242,7 +242,7 @@ bool CCFollow::initWithTarget(CCNode *pFollowedNode, const CCRect& rect/* = CCRe
 
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     m_obFullScreenSize = CCPointMake(winSize.width, winSize.height);
-    m_obHalfScreenSize = ccpMult(m_obFullScreenSize, 0.5f);
+    m_obHalfScreenSize = ccp(winSize.width/2,winSize.height*.3);//ccpMult(m_obFullScreenSize, 0.5f);
 
     if (m_bBoundarySet)
     {

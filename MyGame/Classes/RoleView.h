@@ -16,7 +16,7 @@ public:
     int type;
     int uid;
     int dis;
-    bool collision;
+    int collision;
     int  interactive;
 	void addMovie(std::string name,CCArray* spriteFrames);
 	void playMovie(std::string name,bool repeat=true);

@@ -1307,6 +1307,157 @@ CCActionInterval* CCSkewBy::reverse()
     return create(m_fDuration, -m_fSkewX, -m_fSkewY);
 }
 
+
+
+void CCJump::setDecrease(float d)
+{
+    mDecrease=d;
+}
+void CCJump::setAngle(float d)
+{
+    mAngle=d;
+    mChanged=true;
+}
+void CCJump::setPower(float d)
+{
+    mPower=d;
+    mChanged=true;
+}
+void CCJump::setGravity(float d)
+{
+    mG=d;
+}
+
+
+CCJump* CCJump::create(float angle,float power,float g,float yPosition,float decrease)
+{
+   
+    CCJump *pJumpBy = new CCJump;
+    pJumpBy->initWithParam(angle,power,g,yPosition,decrease);
+    pJumpBy->autorelease();
+    
+    return pJumpBy;
+}
+void CCJump::step(float dt)
+{
+    if (m_bFirstTick)
+    {
+        m_bFirstTick = false;
+        m_elapsed = 0;
+    }
+    else
+    {
+        m_elapsed += dt*10;
+    }
+    this->update(m_elapsed);
+    //m_elapsed += dt;
+}
+bool CCJump::initWithParam(float angle,float power,float g,float yPosition,float decrease)
+{
+    mDecrease=decrease;
+    CCActionInterval::initWithDuration(10);
+    mOrginY=yPosition;
+    mDecrease=decrease;
+    mG=g;
+    mPower=power;
+    mAngle=angle;
+    
+    mChanged=true;
+    
+    
+    return true;
+}
+
+CCObject* CCJump::copyWithZone(CCZone *pZone)
+{
+    CCZone* pNewZone = NULL;
+    CCJump* pCopy = NULL;
+    if(pZone && pZone->m_pCopyObject)
+    {
+        //in case of being called at sub class
+        pCopy = (CCJump*)(pZone->m_pCopyObject);
+    }
+    else
+    {
+        pCopy = new CCJump();
+        pZone = pNewZone = new CCZone(pCopy);
+    }
+    
+    CCActionInterval::copyWithZone(pZone);
+    
+    pCopy->initWithParam(mAngle,mPower, mG,mOrginY);
+    
+    CC_SAFE_DELETE(pNewZone);
+    return pCopy;
+}
+
+void CCJump::startWithTarget(CCNode *pTarget)
+{
+    CCActionInterval::startWithTarget(pTarget);
+    mOrginY=pTarget->getPositionY();
+    //m_previousPos = m_startPosition = pTarget->getPosition();
+   // rotBy=CCRotateBy::create(100/mPower,mAngle);
+    
+    //m_pTarget->runAction(CCRepeatForever::create(rotBy));
+}
+bool CCJump::isDone()
+{
+    return false;
+}
+
+void CCJump::update(float t)
+{
+    // parabolic jump (since v0.8.2)
+    if (m_pTarget)
+    {
+        
+        if(mChanged)
+        {
+            m_elapsed=0;
+            
+            float rt=mAngle*3.14/180;
+            mXPower=mPower*cos(rt);
+            mYPower=mPower*sin(rt);
+            
+            
+            mRotate=abs(mXPower)/10;
+            mPower*=mDecrease;
+            mChanged=false;
+            remX=m_pTarget->getPositionX();
+            rotate=m_pTarget->getRotation();
+           // rotBy->initWithDuration(1,60);
+        }
+        
+        float ty=mYPower*t-mG*t*t/2+mOrginY;
+        float tx=abs(mXPower*.8)*m_elapsed+remX;
+        
+        if(ty<0)
+        {
+            ty=0;
+            mChanged=true;
+            mOrginY=0;
+            mPower=abs(mPower);
+        }
+       // CCLog("time%f",ty);
+        m_pTarget->setPosition(ccp(tx,ty));
+        m_pTarget->setRotation(mRotate*m_elapsed+rotate);
+        
+    }
+}
+
+CCActionInterval* CCJump::reverse(void)
+{
+    return CCJump::create(-mAngle, -mPower,mG);
+}
+
+
+
+
+
+
+
+
+
 //
 // JumpBy
 //
@@ -1372,6 +1523,8 @@ void CCJumpBy::update(float t)
         float y = m_height * 4 * frac * (1 - frac);
         y += m_delta.y * t;
 
+        
+        CCLog("shijian%f",t);
         float x = m_delta.x * t;
 #if CC_ENABLE_STACKABLE_ACTIONS
         CCPoint currentPos = m_pTarget->getPosition();
@@ -1439,7 +1592,7 @@ void CCJumpTo::startWithTarget(CCNode *pTarget)
 
 // Bezier cubic formula:
 //    ((1 - t) + t)3 = 1 
-// Expands to¡­ 
+// Expands toÂ°â‰  
 //   (1 - t)3 + 3t(1-t)2 + 3t2(1 - t) + t3 = 1 
 static inline float bezierat( float a, float b, float c, float d, float t )
 {
