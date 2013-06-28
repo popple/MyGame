@@ -1329,13 +1329,17 @@ void CCJump::setGravity(float d)
 }
 
 
+void CCJump::setListener(cocos2d::CCJumpListener *listener)
+{
+    mListener=listener;
+}
 CCJump* CCJump::create(float angle,float power,float g,float yPosition,float decrease)
 {
    
     CCJump *pJumpBy = new CCJump;
     pJumpBy->initWithParam(angle,power,g,yPosition,decrease);
     pJumpBy->autorelease();
-    
+   
     return pJumpBy;
 }
 void CCJump::step(float dt)
@@ -1354,6 +1358,8 @@ void CCJump::step(float dt)
 }
 bool CCJump::initWithParam(float angle,float power,float g,float yPosition,float decrease)
 {
+    allowRot=1;
+    mListener=NULL;
     mDecrease=decrease;
     CCActionInterval::initWithDuration(10);
     mOrginY=yPosition;
@@ -1367,7 +1373,10 @@ bool CCJump::initWithParam(float angle,float power,float g,float yPosition,float
     
     return true;
 }
-
+void CCJump::setAllowRot(int d)
+{
+    allowRot=d;
+}
 CCObject* CCJump::copyWithZone(CCZone *pZone)
 {
     CCZone* pNewZone = NULL;
@@ -1404,6 +1413,26 @@ bool CCJump::isDone()
 {
     return false;
 }
+void CCJump::reset()
+{
+    m_elapsed=0;
+    
+    float rt=mAngle*3.14/180;
+    mXPower=mPower*cos(rt);
+    mYPower=mPower*sin(rt);
+    
+    
+    mRotate=abs(mXPower)/10;
+    mPower*=mDecrease;
+    mChanged=false;
+    remX=m_pTarget->getPositionX();
+    rotate=m_pTarget->getRotation();
+    
+    if(mPower<1&&mListener!=NULL)
+    {
+        mListener->onJump(1);
+    }
+}
 
 void CCJump::update(float t)
 {
@@ -1413,19 +1442,7 @@ void CCJump::update(float t)
         
         if(mChanged)
         {
-            m_elapsed=0;
-            
-            float rt=mAngle*3.14/180;
-            mXPower=mPower*cos(rt);
-            mYPower=mPower*sin(rt);
-            
-            
-            mRotate=abs(mXPower)/10;
-            mPower*=mDecrease;
-            mChanged=false;
-            remX=m_pTarget->getPositionX();
-            rotate=m_pTarget->getRotation();
-           // rotBy->initWithDuration(1,60);
+            reset();
         }
         
         float ty=mYPower*t-mG*t*t/2+mOrginY;
@@ -1434,14 +1451,22 @@ void CCJump::update(float t)
         if(ty<0)
         {
             ty=0;
-            mChanged=true;
+           // mChanged=true;
             mOrginY=0;
             mPower=abs(mPower);
+            
+            
+            reset();
+            
         }
        // CCLog("time%f",ty);
-        m_pTarget->setPosition(ccp(tx,ty));
-        m_pTarget->setRotation(mRotate*m_elapsed+rotate);
+                
         
+        
+        
+        m_pTarget->setPosition(ccp(tx,ty));
+        m_pTarget->setRotation(mRotate*m_elapsed*allowRot+rotate);
+
     }
 }
 

@@ -10,7 +10,8 @@
 #include "SpringObject.h"
 
 typedef int motionType;
-class HelloWorld : public cocos2d::CCLayer
+
+class HelloWorld : public cocos2d::CCLayer,CCJumpListener
 {
 private:
     CCPoint _lastPoint;
@@ -27,7 +28,7 @@ private:
     
 public:
     
-   
+    virtual void onJump(int state);
     virtual void onEnter();
     virtual void onExit();
     virtual bool init();
@@ -39,9 +40,11 @@ public:
     // optional
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
 
-       void makeAction();
+    void makeAction();
     void check(CCNode*sender,void*data);
 	void update(float dt);
+    void timeOut(float d);
+    
     HelloWorld();
     ~HelloWorld();
     
@@ -49,6 +52,7 @@ public:
     // implement the "static node()" method manually
     CREATE_FUNC(HelloWorld);
 protected:
+    CCTimer *tm;
     motionType mType;
     int mPower;
     int angle;

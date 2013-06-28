@@ -418,7 +418,11 @@ protected:
     CCPoint         m_previousPos;
 };
 
-
+class CC_DLL CCJumpListener
+{
+public:
+    virtual void onJump(int state)=0;
+};
 
 
 class CC_DLL CCJump : public CCActionInterval
@@ -433,10 +437,13 @@ public:
     virtual CCActionInterval* reverse(void);
     virtual bool isDone();
     virtual void step(float dt);
+    void setListener(CCJumpListener* listener);
     void setDecrease(float d);
     void setAngle(float d);
     void setPower(float d);
     void setGravity(float d);
+    void reset();
+    void setAllowRot(int d);
 public:
     /** creates the action */
     static CCJump* create(float angle, float power,float g=.98f,float yPosition=0,float decrease=.9f);
@@ -450,7 +457,8 @@ protected:
     float mDecrease;
     bool mChanged;
     float mRotate;
-    
+    CCJumpListener* mListener;
+    int allowRot;
     float remX,rotate;
     CCRotateBy* rotBy;
 };

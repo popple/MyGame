@@ -78,12 +78,35 @@ void HelloWorld::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     float tpx=_nowPoint.x-_lastPoint.x;
     float tpy=_nowPoint.y-_lastPoint.y;
     float dis=ccpDistance(_lastPoint,_nowPoint);
-    float angle=abs(int(atan2f(tpy, tpx)*180/3.14));
+    int angle=int(atan2f(tpy, tpx)*180/3.14);
+    //反作用力
     if(tpy<0)dis=-dis;
     CCLog("%f____%f",dis,angle);
     
+    mRole->setRotation(360-angle+90);
+    mRole->setAnimation("fly",false);
     CCJump* jp=(CCJump*)mRole->getActionByTag(1000);
-    jp->initWithParam(angle,dis,.98f,mRole->getPositionY());
+    jp->initWithParam(abs(angle),dis,.98f,mRole->getPositionY());
+    jp->setAllowRot(0);
+    if(tm)tm->release();
+    tm=CCTimer::timerWithTarget(this, schedule_selector(HelloWorld::timeOut));
+    tm->setInterval(3);
+    tm->retain();
+}
+void HelloWorld::timeOut(float d)
+{
+    CCJump* jp=(CCJump*)mRole->getActionByTag(1000);
+    jp->setAllowRot(1);
+}
+
+void HelloWorld::onJump(int state)
+{
+    if(state==1)
+    {
+        //do sth;
+        CCLog("over,do sth");
+        mRole->setAnimation("run",true);
+    }
 }
 void HelloWorld::ccTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 {
@@ -120,7 +143,7 @@ bool HelloWorld::init()
     this->schedule(schedule_selector(HelloWorld::update), 60/1000);
     
        
-    CCDirector::sharedDirector()->getScheduler()->setTimeScale(.2f);
+    //CCDirector::sharedDirector()->getScheduler()->setTimeScale(.2f);
     
     
     
@@ -134,6 +157,8 @@ bool HelloWorld::init()
 
 void HelloWorld::update(float dt)
 {
+    if(tm)
+    tm->update(dt);
 //    if(mRole->getPositionY()<=0)
 //    {
 //        CCJump* tm= (CCJump*)mRole->getActionByTag(1000);
