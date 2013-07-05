@@ -3,7 +3,7 @@
 
 CCRoleCache* CCRoleCache::_instance = NULL;
 
-CCRoleView::CCRoleView():ani(NULL),m_speed(30.0f/1000),m_isIdle(true),collision(50),type(0),uid(0),dis(0)
+CCRoleView::CCRoleView():ani(NULL),m_speed(30.0f/1000)
 {
 	m_cache=CCSpriteFrameCache::sharedSpriteFrameCache();
 	m_rep=CCRepeatForever::create(CCActionInterval::create(.1f));
@@ -18,6 +18,7 @@ void CCRoleView::ccTouchMoved(CCTouch* touch, CCEvent* event)
 {
 
 };
+
 void CCRoleView::ccTouchEnded(CCTouch* touch, CCEvent* event){};
 void CCRoleView::onEnter()
 {
@@ -42,6 +43,7 @@ void CCRoleView::addMovie(std::string name,CCArray* spriteFrames)
 	{
 		CCAnimation *ani=CCAnimation::createWithSpriteFrames(spriteFrames,m_speed);
 		CCAnimate *amt=CCAnimate::create(ani);
+        
 		amt->retain();
 		
 		m_map.insert(std::map<std::string,CCAnimate*> :: value_type(name,amt));

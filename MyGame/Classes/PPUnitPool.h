@@ -11,6 +11,7 @@
 #include "cocos2d.h"
 #include "string.h"
 #include "PPMapData.h"
+#include "CCInteractiveObj.h"
 USING_NS_CC;
 using namespace std;
 
@@ -23,10 +24,10 @@ public:
     ~PPUnitPool(){};
     int total;
     //按坐标给出显示对象，如果对象已存在则忽略本次请求
-    CCRoleView *getUnitByKey(string key)
+    CCInteractiveObj *getUnitByKey(string key)
     {
         int a;
-        CCRoleView* tmp;
+        CCInteractiveObj* tmp;
         
         //如果对象已经存在于字典，则直接返回...
         
@@ -37,7 +38,7 @@ public:
         
         //清除字典中已经死去的对象--------------.
         CCDictElement* oe;
-        CCRoleView*rv;
+        CCInteractiveObj*rv;
         
         
         //        int m=0;
@@ -54,8 +55,8 @@ public:
         
         CCDICT_FOREACH(m_map,oe)
         {
-            rv=(CCRoleView*)(oe->getObject());
-            if(rv->isIdle)
+            rv=(CCInteractiveObj*)(oe->getObject());
+            if(rv->getIdle())
             {
                 m_map->removeObjectForKey(oe->getStrKey());
             }
@@ -66,12 +67,12 @@ public:
         
         for(a=0;a<total;a++)
         {
-            tmp=(CCRoleView*)(m_objects->objectAtIndex(a));
-            if(tmp&&tmp->isIdle)
+            tmp=(CCInteractiveObj*)(m_objects->objectAtIndex(a));
+            if(tmp&&tmp->getIdle())
             {
                 
                 m_map->setObject(tmp,key);
-                tmp->isIdle=false;
+                tmp->setIdle(false);
                 return tmp;
             }
         }
@@ -87,13 +88,13 @@ public:
         m_objects=CCArray::createWithCapacity(total);
         m_objects->retain();
         
-        int a;CCRoleView*tmp;
+        int a;CCInteractiveObj*tmp;
         for(a=0;a<total;a++)
         {
             tmp=CCRoleView::create();
-            tmp->uid=a;
-            tmp->isIdle=true;
-            tmp->isActive=false;
+            
+            tmp->setIdle(true);
+            
             m_objects->addObject(tmp);
         }
         return true;

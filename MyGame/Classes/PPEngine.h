@@ -23,7 +23,11 @@ typedef float roleY;
 #include "spine-cocos2dx.h"
 #include "NewMap.h"
 #include "calc_expr.h"
+#include "CCInteractiveObj.h"
+#include "CCMySketlonAnimation.h"
 using namespace spine;
+
+
 
 //extern bool CalcExpr(const std::string & expr, int a1, int a2, Token & result);
 
@@ -85,51 +89,62 @@ public:
         m_mapData->height=root["height"].asInt();
         //m_mapData->items=new vector<PPitem>;
         JsonCPP::Value items=root["items"];
-        int a,len=items.size();
-        for(a=0;a<len;a++)
+        JsonCPP::Value grounds=root["ground"];
+        
+        int a=0,len=items.size();
+        for(;a<len;a++)
         {
-            PPitem item;
             JsonCPP::Value tmp=items[a];
-            
-            item.name=tmp["name"].asString();
-            item.rule=tmp["rule"].asString();
-            item.interactive=tmp["interactive"].asInt();
-            item.collision=tmp["collision"].asInt();
-            item.power=tmp["power"].asInt();
-            item.depth=tmp["depth"].asInt();
-            item.condition=tmp["condition"].asString();
-            JsonCPP::Value p=tmp["anchorPoint"];
-            item.x=tmp["x"].asString();
-            item.isGround=tmp["isGround"].asBool();
-            item.y=tmp["y"].asString();
-            item.width=tmp["width"].asInt();
-            item.height=tmp["height"].asInt();
-            item.randomZ=tmp["randomZ"].asInt();
-            item.layoutWidth=tmp["layoutWidth"].asInt();
-            item.layoutHeight=tmp["layoutHeight"].asInt();
-            item.anchorPoint=ccp(atof(p["x"].asString().c_str()),atof(p["y"].asString().c_str()));
-            
-            item.initFrame=tmp["initFrame"].asString();
-            //item.resource=new vector<PPMovies>;
-            JsonCPP::Value resources=tmp["resource"];
-            
-            int b,len1=resources.size();
-            for(b=0;b<len1;b++)
-            {
-                PPMovies mov;
-                JsonCPP::Value jItem=resources[b];
-                mov.name=jItem["name"].asString();
-                mov.rule=jItem["rule"].asString();
-                mov.from=jItem["from"].asInt();
-                mov.to=jItem["to"].asInt();
-                item.resource.push_back(mov);
-            }
-            m_mapData->items.push_back(item);
+            m_mapData->items.push_back(getData(tmp));
         }
         
+        len=grounds.size();
+        for(;a<len;a++)
+        {
+            JsonCPP::Value tmp1=grounds[a];
+            m_mapData->ground.push_back(getData(tmp1));
+        }
         procces(true);
     }
 
+    PPitem getData(JsonCPP::Value& tmp)
+    {
+        
+        PPitem item;
+        JsonCPP::Value jview=tmp["view"];
+        JsonCPP::Value jlayout=tmp["layout"];
+        JsonCPP::Value jlogic=tmp["logic"];
+        
+        PPView& view=item.view;
+        PPLayout& layout=item.layout;
+        PPLogic& logic=item.logic;
+        
+        
+        item.name=tmp["name"].asString();
+        item.isGround=tmp["isGround"].asBool();
+        
+        
+        layout.condition=jlayout["condition"].asString();
+        layout.rule =jlayout["rule"].asString();
+        layout.width=atof(jlayout["width"].asString().c_str());
+        layout.height=atof(jlayout["height"].asString().c_str());
+        // getVALUE(item.layout,layout,"widht","int");
+        logic.isInteractive=jlogic["interactive"].asBool();
+        logic.collision=jlogic["collision"].asInt();
+        logic.power=atof(jlogic["power"].asString().c_str());
+        
+        view.type=jview["type"].asString();
+        view.resource=jview["resource"].asString();
+        view.anchorX=atof(jview["anchorX"].asString().c_str());
+        view.anchorY=atof(jview["anchorY"].asString().c_str());
+        view.width=atof(jview["width"].asString().c_str());
+        view.height=atof(jview["height"].asString().c_str());
+        view.depth=atof(jview["depth"].asString().c_str());
+        view.verticleZ=atof(jview["verticleZ"].asString().c_str());
+        
+        view.init=jview["init"].asString();
+        return item;
+    }
     void update(roleX x,roleY y,float &radius,bool &bingo)
     {
         personX=x;
@@ -138,13 +153,13 @@ public:
         //CCLog("开始装载地图");
         
         CCObject* obj;
-        CCRoleView* role;
+        CCMySketlonAnimation* role;
         
         CCARRAY_FOREACH(container->getChildren(), obj)
         {
-            role=(CCRoleView*)(obj);
+            role=(CCMySketlonAnimation*)(obj);
             //如果是自己不处理
-            if(role->getTag()==-1000)
+            if(role->getType()==1000)
             {
                 continue;
             };
@@ -155,23 +170,22 @@ public:
             float ty=powf((t1.y-t2.y),2);
             int dis=abs(int(ceil(sqrt(tx+ty))));
             CCSize scz=role->getContentSize();
-            if(dis-role->dis>0&&dis>(screenSize.width+scz.width))
+            if(dis-role->getDistance()>0&&dis>(screenSize.width+scz.width))
             {
-                role->isIdle=true;
-                role->isActive=false;
+                role->setIdle(true);
                 role->setVisible(false);
                 
                 //CCLog("物体被消灭");
             }
-            if(dis<role->collision&&role->interactive==1)
+            if(dis<role->getCollision()&&role->getInteractive()==1)
             {
                 //命中目标
                 bingo=true;
-                role->isActive=false;
-                radius=(x-role->getPositionX())/role->collision*90*3.14/180;
+               
+                radius=(x-role->getPositionX())/role->getCollision()*90*3.14/180;
                 if(radius<0)radius=-radius;
-                CCLog("碰撞角度%f___%d",radius*180/3.14,role->uid);
-                role->playMovie("attack");
+                CCLog("碰撞角度%f___%d",radius*180/3.14,role->getTag());
+                role->setAnimation("idle", true);
                 //role->setVisible(false);
                // CCLog("物体被命中");
             }
@@ -194,8 +208,8 @@ private:
         for(n=0;n<len;n++)
         {
             PPitem item=m_mapData->items[n];
-            int w=item.width;
-            int h=item.height;
+            int w=item.view.width;
+            int h=item.view.height;
             
             //        string type=layer.type;
             //        string name=layer.name;
@@ -204,8 +218,8 @@ private:
             int py=int(personY/h);
             
             //取得最大屏幕覆盖区域
-            int saveX=ceil((screenSize.width/2+item.layoutWidth)/w);
-            int saveY=ceil((screenSize.height/2+item.layoutHeight)/h);
+            int saveX=ceil((screenSize.width/2+item.layout.width)/w);
+            int saveY=ceil((screenSize.height/2+item.layout.height)/h);
             
             int startX=px-saveX;
             int startY=py-saveY;
@@ -221,7 +235,7 @@ private:
                 {
                     for(b=startY;b<=stopY;b++)
                     {
-                        getPosition(a,b,px,py,&item);
+                        getPosition(a,b,px,py,item);
                         //CCLOG("%d__%d",a,b);
                     }
                 }
@@ -232,12 +246,12 @@ private:
                 {
                     for(a=startY;a<stopY;a++)
                     {
-                        getPosition(stopX,a,px,py,&item);
+                        getPosition(stopX,a,px,py,item);
                         //CCLog("%d___%d____%s_____坐标扫瞄",a,stopY,name.c_str());
                     }
                     for(a=startX;a<=stopX;a++)
                     {
-                        getPosition(a,startY,px,py,&item);
+                        getPosition(a,startY,px,py,item);
     
                     }
 
@@ -245,7 +259,7 @@ private:
                 else
                 {
                     a=rand()%(stopX-startX)+startX;
-                    getPosition(a,stopY,px,py,&item);
+                    getPosition(a,stopY,px,py,item);
                     //                //取上方横条
                     //                for(a=startX;a<=stopX;a++)
                     //                {
@@ -255,7 +269,7 @@ private:
                     //                }
                     //取右边竖条
                     a=rand()%(stopY-startY)+startY;
-                    getPosition(stopX,a,px,py,&item);
+                    getPosition(stopX,a,px,py,item);
                     //                for(a=startY;a<stopY;a++)
                     //                {
                     //                    getPosition(stopX,a,&item);
@@ -274,44 +288,44 @@ private:
             }
         }
     };
-    void getPosition(int x,int y,int bx,int by,PPitem *item)
+    void getPosition(int x,int y,int bx,int by,PPitem& item)
     {
 
         Token result;
 
-        bool rex=CalcExpr(item->rule, x, y, result)&&result.value.b;
+        bool rex=CalcExpr(item.layout.rule, x, y, result)&&result.value.b;
         if(rex)
         {
-            string key=CCString::createWithFormat("%d_%d_%d_%d_%d_%d",item->width,item->height,bx,by,x,y)->getCString();
-            //CCLog("%s",key.c_str());
-            CCRoleView* role=pool->getUnitByKey(key);
-            if(role)
-            {
-                initView(item,role);
-                role->setPositionX(x*item->width);
-                role->setPositionY(y*item->height);
-                role->interactive=item->interactive;
-                role->setAnchorPoint(ccp(item->anchorPoint.x,item->anchorPoint.y));
-                
-                
-                int rnd=rand()%300-rand()%100;
-                
-                if(item->randomZ==1)
-                {
-                    role->setVertexZ(rnd);
-                    
-                }
-                role->setZOrder(item->depth);
-                if(item->interactive==1)
-                {
-                    role->playMovie("stand");
-                }
-                if(role->getParent()!=container)
-                {
-                    container->addChild(role);
-                }
-                role->setVisible(true);
-            }
+            string key=CCString::createWithFormat("%d_%d_%d_%d_%d_%d",item.view.width,item.view.height,bx,by,x,y)->getCString();
+            CCLog("%s",key.c_str());
+//            CCRoleView* role=pool->getUnitByKey(key);
+//            if(role)
+//            {
+//                initView(item,role);
+//                role->setPositionX(x*item->width);
+//                role->setPositionY(y*item->height);
+//                role->setInteractive(item->interactive);
+//                role->setAnchorPoint(ccp(item->anchorPoint.x,item->anchorPoint.y));
+//                
+//                
+//                int rnd=rand()%300-rand()%100;
+//                
+//                if(item->randomZ==1)
+//                {
+//                    role->setVertexZ(rnd);
+//                    
+//                }
+//                role->setZOrder(item->depth);
+//                if(item->interactive==1)
+//                {
+//                    role->playMovie("stand");
+//                }
+//                if(role->getParent()!=container)
+//                {
+//                    container->addChild(role);
+//                }
+//                role->setVisible(true);
+//            }
 
         }
                 

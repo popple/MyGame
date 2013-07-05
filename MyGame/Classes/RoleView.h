@@ -1,7 +1,7 @@
 #ifndef __ROLEVIEW_SCENE_H__
 #define __ROLEVIEW_SCENE_H__
 #include "cocos2d.h"
-
+#include "CCInteractiveObj.h"
 USING_NS_CC;
 
 class CCRoleView:public CCSprite,public CCTargetedTouchDelegate
@@ -11,19 +11,18 @@ public:
 
 	CCRoleView();
 	~CCRoleView();
-    bool isIdle;
-    bool isActive;
-    int type;
-    int uid;
-    int dis;
-    int collision;
-    int  interactive;
+   
+   
 	void addMovie(std::string name,CCArray* spriteFrames);
 	void playMovie(std::string name,bool repeat=true);
 	void setSpeed(float delay);
 	void virtual onEnter();
     
-    
+
+//    virtual void setType(int type);
+//    virtual int getType();
+//    virtual void setIdle(bool value);
+//    virtual bool getIdle();
 	//CC_SYNTHESIZE_RETAIN(CCRoleView*,param,idle);
 	
 	virtual bool ccTouchBegan(CCTouch* touch, CCEvent* event);
@@ -37,12 +36,11 @@ protected:
 	CCRepeatForever* m_rep;
 	CCSpriteFrameCache *m_cache;
 	CCAnimate *ani;
-	bool m_isIdle;
+    
 	void m_play(std::string name);
 
 	std::map <std::string,CCAnimate*> m_map;
-	CC_SYNTHESIZE(bool,param,Idle);
-
+	//CC_SYNTHESIZE(bool,param,Idle);
 };
 
 class CCRoleCache:public CCObject
@@ -62,6 +60,7 @@ public:
 
 protected:
 	int m_total;
+   
 	CCArray* m_cache;
 	
 };

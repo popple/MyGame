@@ -17,27 +17,45 @@ struct PPMovies
     int to;
     
 };
+struct PPView
+{
+    string type;
+    string init;
+    string resource;
+    float anchorX;
+    float anchorY;
+    float width;
+    float height;
+    float verticleZ;
+    float depth;
+};
+struct PPLayout
+{
+    string rule;
+    string condition;
+
+    
+    float width;
+    float height;
+    
+    float layoutWidth;
+    float layoutHeight;
+};
+
+struct PPLogic
+{
+    float collision;
+    float power;
+    bool isInteractive;
+};
 struct PPitem
 {
     string name;
-    string rule;
-    int interactive;
-    //power 0 直接静止 ＋增加力量 －减少力量
-    float power;
-    int collision;
-    CCPoint anchorPoint;
-    int randomZ;
-    int depth;
     bool isGround;
-    string x;
-    string y;
-    int width;
-    int height;
-    int layoutWidth;
-    int layoutHeight;
-    string condition;
-    string initFrame;
-    vector<PPMovies> resource;
+    PPView view;
+    PPLayout layout;
+    PPLogic logic;
+    
 };
 struct PPMap
 {
@@ -46,6 +64,7 @@ struct PPMap
     int width;
     int height;
     vector<PPitem> items;
+    vector<PPitem>  ground;
 };
 
 #endif

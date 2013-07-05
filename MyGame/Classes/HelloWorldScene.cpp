@@ -16,6 +16,7 @@ USING_NS_CC;
 #include "Trigger.h"
 #include "spine-cocos2dx.h"
 #include "SpringObject.h"
+#include "CCJump.h"
 using namespace spine;
 
 
@@ -85,18 +86,25 @@ void HelloWorld::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     
     mRole->setRotation(360-angle+90);
     mRole->setAnimation("fly",false);
+    mRole->timeScale=.5f;
     CCJump* jp=(CCJump*)mRole->getActionByTag(1000);
     jp->initWithParam(abs(angle),dis,.98f,mRole->getPositionY());
     jp->setAllowRot(0);
     if(tm)tm->release();
     tm=CCTimer::timerWithTarget(this, schedule_selector(HelloWorld::timeOut));
-    tm->setInterval(3);
+    tm->setInterval(.6f);
     tm->retain();
 }
 void HelloWorld::timeOut(float d)
 {
     CCJump* jp=(CCJump*)mRole->getActionByTag(1000);
-    jp->setAllowRot(1);
+    if(jp)
+    {
+        jp->setAllowRot(1);
+        tm->release();
+        tm=NULL;
+    }
+    
 }
 
 void HelloWorld::onJump(int state)
@@ -118,10 +126,11 @@ bool HelloWorld::init()
 {
     
     //创建主角
-    mRole = CCSkeletonAnimation::createWithFile("spineboy.json", "spineboy.atlas");
+    mRole = CCMySketlonAnimation::createWithFile("spineboy.json", "spineboy.atlas");
     mRole->setAnimation("idle",true);
+    mRole->setType(1000);
     mRole->retain();
-    mRole->setTag(-1000);
+   // mRole->setType;
     mRole->setPosition(ccp(0,0));
     CCFollow *follow=CCFollow::create(mRole);
     this->runAction(follow);
@@ -133,6 +142,8 @@ bool HelloWorld::init()
     CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("items.plist");
     //初始化背景层
     mBackGround=CCParallaxNode::create();
+    
+    
     mBackGround->retain();
     mSky=CCLayerColor::create(ccc4(80,120,250,255));
     mSky->retain();
@@ -143,7 +154,7 @@ bool HelloWorld::init()
     this->schedule(schedule_selector(HelloWorld::update), 60/1000);
     
        
-    //CCDirector::sharedDirector()->getScheduler()->setTimeScale(.2f);
+    CCDirector::sharedDirector()->getScheduler()->setTimeScale(.2f);
     
     
     
@@ -151,14 +162,15 @@ bool HelloWorld::init()
     jp->startWithTarget(mRole);
     jp->setTag(1000);
     mRole->runAction(jp);
+    
+ 
     //makeAction();
     return true;
 };
 
 void HelloWorld::update(float dt)
 {
-    if(tm)
-    tm->update(dt);
+    
 //    if(mRole->getPositionY()<=0)
 //    {
 //        CCJump* tm= (CCJump*)mRole->getActionByTag(1000);

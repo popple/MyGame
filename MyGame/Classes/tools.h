@@ -41,7 +41,7 @@ CCArray* getSpriteFrameByBat(std::string param,int start,int stop)
 	char temp[50];
 	CCSpriteFrame *frame;
 	CCArray *tem=CCArray::createWithCapacity(stop-start+1);
-	tem->retain();
+	//tem->retain();
 	for(int a=start;a<=stop;a++)
 	{
 		sprintf(temp,"%d",a);

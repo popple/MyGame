@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B19091A71774584A0046DE38 /* lizi1.plist in Resources */ = {isa = PBXBuildFile; fileRef = B19091A6177458490046DE38 /* lizi1.plist */; };
 		B19091A9177474220046DE38 /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = B19091A8177474210046DE38 /* white.png */; };
+		B195B92C17844BDC006DD2F9 /* GameObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B195B92B17844BDC006DD2F9 /* GameObj.cpp */; };
 		B196C7E1177A8F49008A4318 /* HelloWorldScene副本.txt in Sources */ = {isa = PBXBuildFile; fileRef = B196C7DF177A8F49008A4318 /* HelloWorldScene副本.txt */; };
 		B1AC71EB1769D35B00914006 /* calc_expr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1AC71E81769D35A00914006 /* calc_expr.cpp */; };
 		B1C26CF21764719A003E3DEF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C26CF11764719A003E3DEF /* QuartzCore.framework */; };
@@ -278,6 +279,8 @@
 		B1C271A717649122003E3DEF /* SlotData.c in Sources */ = {isa = PBXBuildFile; fileRef = B1C2719217649122003E3DEF /* SlotData.c */; };
 		B1C271A817649122003E3DEF /* spine-cocos2dx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1C2719317649122003E3DEF /* spine-cocos2dx.cpp */; };
 		B1C271C1176491FC003E3DEF /* ExampleLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1C271BF176491FC003E3DEF /* ExampleLayer.cpp */; };
+		B1EDE65717815A9600B1202C /* CCJump.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1EDE65617815A9600B1202C /* CCJump.cpp */; };
+		B1EDE65C1781752500B1202C /* CCMySketlonAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1EDE65B1781752500B1202C /* CCMySketlonAnimation.cpp */; };
 		CD054802176C0F100041655E /* newMap.json in Resources */ = {isa = PBXBuildFile; fileRef = CD054801176C0F100041655E /* newMap.json */; };
 		CD706B971764F70D0099F009 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD706B961764F70D0099F009 /* Default-Portrait@2x~ipad.png */; };
 		CD706B991764F7330099F009 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD706B981764F7330099F009 /* Default-Landscape@2x~ipad.png */; };
@@ -288,6 +291,8 @@
 /* Begin PBXFileReference section */
 		B19091A6177458490046DE38 /* lizi1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = lizi1.plist; path = Resources/lizi1.plist; sourceTree = "<group>"; };
 		B19091A8177474210046DE38 /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = white.png; path = Resources/white.png; sourceTree = "<group>"; };
+		B195B92A17844516006DD2F9 /* GameObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameObj.h; sourceTree = "<group>"; };
+		B195B92B17844BDC006DD2F9 /* GameObj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObj.cpp; sourceTree = "<group>"; };
 		B196C7DF177A8F49008A4318 /* HelloWorldScene副本.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "HelloWorldScene副本.txt"; path = "Classes/HelloWorldScene副本.txt"; sourceTree = "<group>"; };
 		B196C7E0177A8F49008A4318 /* HelloWorldScene副本.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = "HelloWorldScene副本.rtf"; path = "Classes/HelloWorldScene副本.rtf"; sourceTree = "<group>"; };
 		B196C7E2177ADAFB008A4318 /* SpringObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpringObject.h; sourceTree = "<group>"; };
@@ -853,6 +858,11 @@
 		B1C271BE1764919E003E3DEF /* spine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spine.h; sourceTree = "<group>"; };
 		B1C271BF176491FC003E3DEF /* ExampleLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ExampleLayer.cpp; path = Classes/ExampleLayer.cpp; sourceTree = "<group>"; };
 		B1C271C0176491FC003E3DEF /* ExampleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExampleLayer.h; path = Classes/ExampleLayer.h; sourceTree = "<group>"; };
+		B1EDE65517815A2B00B1202C /* CCJump.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCJump.h; sourceTree = "<group>"; };
+		B1EDE65617815A9600B1202C /* CCJump.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCJump.cpp; sourceTree = "<group>"; };
+		B1EDE6591781697C00B1202C /* CCInteractiveObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCInteractiveObj.h; sourceTree = "<group>"; };
+		B1EDE65A1781739400B1202C /* CCMySketlonAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCMySketlonAnimation.h; sourceTree = "<group>"; };
+		B1EDE65B1781752500B1202C /* CCMySketlonAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCMySketlonAnimation.cpp; sourceTree = "<group>"; };
 		CD054801176C0F100041655E /* newMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = newMap.json; path = Resources/newMap.json; sourceTree = "<group>"; };
 		CD706B961764F70D0099F009 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		CD706B981764F7330099F009 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
@@ -1883,6 +1893,13 @@
 				B1C270671764719E003E3DEF /* HelloWorldScene.h */,
 				B1C270681764719E003E3DEF /* HelloWorldScene.cpp */,
 				B196C7E2177ADAFB008A4318 /* SpringObject.h */,
+				B1EDE65517815A2B00B1202C /* CCJump.h */,
+				B1EDE65617815A9600B1202C /* CCJump.cpp */,
+				B1EDE6591781697C00B1202C /* CCInteractiveObj.h */,
+				B1EDE65A1781739400B1202C /* CCMySketlonAnimation.h */,
+				B1EDE65B1781752500B1202C /* CCMySketlonAnimation.cpp */,
+				B195B92A17844516006DD2F9 /* GameObj.h */,
+				B195B92B17844BDC006DD2F9 /* GameObj.cpp */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -2377,6 +2394,9 @@
 				B1C271C1176491FC003E3DEF /* ExampleLayer.cpp in Sources */,
 				B1AC71EB1769D35B00914006 /* calc_expr.cpp in Sources */,
 				B196C7E1177A8F49008A4318 /* HelloWorldScene副本.txt in Sources */,
+				B1EDE65717815A9600B1202C /* CCJump.cpp in Sources */,
+				B1EDE65C1781752500B1202C /* CCMySketlonAnimation.cpp in Sources */,
+				B195B92C17844BDC006DD2F9 /* GameObj.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
