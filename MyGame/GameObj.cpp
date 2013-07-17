@@ -29,6 +29,18 @@ GameObj::GameObj(CCArray*data):mRole(NULL),mSkeletonRole(NULL),mSprite(NULL)
         this->addChild(mSprite);
     }
 }
+bool GameObj::getIdle()
+{
+    return true;
+}
+int GameObj::getType()
+{
+    
+}
+float GameObj::getInstance(){}
+float GameObj::getCollision(){}
+void GameObj::setType(int value){}
+bool GameObj::getInteractive(){}
 GameObj::GameObj(CCDictionary* data):mRole(NULL),mSkeletonRole(NULL),mSprite(NULL)
 {
     if(mRole==NULL)

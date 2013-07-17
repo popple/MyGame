@@ -10,7 +10,7 @@
 #define MyGame_CCInteractiveObj_h
 #include "cocos2d.h"
 USING_NS_CC;
-class CCInteractiveObj
+class CCInteractiveObj:public CCNode
 {
 public:
     virtual void setInteractive(bool value)=0;

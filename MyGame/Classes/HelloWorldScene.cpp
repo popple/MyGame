@@ -17,6 +17,7 @@ USING_NS_CC;
 #include "spine-cocos2dx.h"
 #include "SpringObject.h"
 #include "CCJump.h"
+#include "CCSkeletonAnimation.h"
 using namespace spine;
 
 
@@ -86,7 +87,7 @@ void HelloWorld::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     
     mRole->setRotation(360-angle+90);
     mRole->setAnimation("fly",false);
-    mRole->timeScale=.5f;
+    //mRole->timeScale=.5f;
     CCJump* jp=(CCJump*)mRole->getActionByTag(1000);
     jp->initWithParam(abs(angle),dis,.98f,mRole->getPositionY());
     jp->setAllowRot(0);
@@ -126,16 +127,19 @@ bool HelloWorld::init()
 {
     
     //创建主角
-    mRole = CCMySketlonAnimation::createWithFile("spineboy.json", "spineboy.atlas");
+    mRole = CCSkeletonAnimation::createWithFile("spineboy.json", "spineboy.atlas");
     mRole->setAnimation("idle",true);
-    mRole->setType(1000);
+    //mRole->set
+    mRole->timeScale=.3f;
+    mRole->setTag(1000);
     mRole->retain();
    // mRole->setType;
     mRole->setPosition(ccp(0,0));
     CCFollow *follow=CCFollow::create(mRole);
     this->runAction(follow);
     
-    
+    mRole->states[0]->animation->name;
+    CCLog("%d",mRole->getChildrenCount());
     this->addChild(mRole);
     
     CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("role.plist");
@@ -148,9 +152,9 @@ bool HelloWorld::init()
     mSky=CCLayerColor::create(ccc4(80,120,250,255));
     mSky->retain();
     //
-    engine=PPEngine::create();
-    engine->retain();
-    engine->initWithMapFile("newMap.json",this);
+//    engine=PPEngine::create();
+//    engine->retain();
+//    engine->initWithMapFile("newMap.json",this);
     this->schedule(schedule_selector(HelloWorld::update), 60/1000);
     
        
@@ -170,7 +174,7 @@ bool HelloWorld::init()
 
 void HelloWorld::update(float dt)
 {
-    
+    CCLog("%s,%f",mRole->states[0]->animation->name,mRole->states[0]->animation->duration);
 //    if(mRole->getPositionY()<=0)
 //    {
 //        CCJump* tm= (CCJump*)mRole->getActionByTag(1000);
@@ -178,7 +182,7 @@ void HelloWorld::update(float dt)
 //    }
     //mRole->setPositionX(sObject->x+mRole->getPositionX());
     //mRole->setPositionY(sObject->y);
-    engine->update(mRole->getPositionX(), mRole->getPositionY(), _angle,_bingo);
+    //engine->update(mRole->getPositionX(), mRole->getPositionY(), _angle,_bingo);
     
 };
 

@@ -3,21 +3,24 @@
   "descript": "这是新大陆",
   "width": 0,
   "height": 0,
+  "views": [
+    {
+      "name": "classmate",
+      "anchorY": "",
+      "anchorX": "",
+      "type": "",
+      "width": "",
+      "height": "",
+      "idle": "",
+      "resource": "",
+      "buildNum": 0
+    }
+  ],
   "items": [
     {
       "isGround": true,
       "name": "cloud",
-      "view": {
-        "width": "100",
-        "height": "100",
-        "type": "image",
-        "init": "14327330_24.png",
-        "resource": "cloud",
-        "anchorX": "",
-        "anchorY": "",
-        "verticleZ": "1",
-        "depth": "2"
-      },
+      "viewType": "classmate",
       "logic": {
         "collision": 50,
         "power": 0,
@@ -27,7 +30,9 @@
         "rule": "r%5==1&&x1>10",
         "condition": "1=1",
         "width": "359",
-        "height": "146"
+        "height": "146",
+        "depth": "2",
+        "verticleZ": "1"
       }
     }
   ],

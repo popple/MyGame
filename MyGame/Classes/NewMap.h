@@ -17,18 +17,19 @@ struct PPMovies
     int to;
     
 };
-struct PPView
+struct PPViewProto
 {
+    string name;
     string type;
-    string init;
+    string idle;
     string resource;
     float anchorX;
     float anchorY;
     float width;
     float height;
-    float verticleZ;
-    float depth;
+    unsigned int buildNum;
 };
+
 struct PPLayout
 {
     string rule;
@@ -40,6 +41,9 @@ struct PPLayout
     
     float layoutWidth;
     float layoutHeight;
+    
+    float verticleZ;
+    float depth;
 };
 
 struct PPLogic
@@ -52,7 +56,8 @@ struct PPitem
 {
     string name;
     bool isGround;
-    PPView view;
+    string viewType;
+    PPViewProto *viewProto;
     PPLayout layout;
     PPLogic logic;
     
@@ -63,8 +68,10 @@ struct PPMap
     string desctript;
     int width;
     int height;
+    
+    map<string, PPViewProto> viewProto;
     vector<PPitem> items;
-    vector<PPitem>  ground;
+    vector<PPitem>  background;
 };
 
 #endif

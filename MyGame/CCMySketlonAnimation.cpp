@@ -52,7 +52,7 @@ CCMySketlonAnimation::~CCMySketlonAnimation()
 
 CCMySketlonAnimation* CCMySketlonAnimation::createWithFile (const char* skeletonDataFile, const char* atlasFile,float scale)
 {
-    CCMySketlonAnimation* node = new CCMySketlonAnimation (skeletonDataFile, atlasFile, scale);
+    CCMySketlonAnimation* node = new CCMySketlonAnimation();
 	node->autorelease();
 	return node;
 

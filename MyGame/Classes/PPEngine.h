@@ -24,7 +24,7 @@ typedef float roleY;
 #include "NewMap.h"
 #include "calc_expr.h"
 #include "CCInteractiveObj.h"
-#include "CCMySketlonAnimation.h"
+#include "GameObj.h"
 using namespace spine;
 
 
@@ -89,60 +89,91 @@ public:
         m_mapData->height=root["height"].asInt();
         //m_mapData->items=new vector<PPitem>;
         JsonCPP::Value items=root["items"];
-        JsonCPP::Value grounds=root["ground"];
+        JsonCPP::Value grounds=root["background"];
+        JsonCPP::Value viewProtos=root["views"];
         
-        int a=0,len=items.size();
-        for(;a<len;a++)
+        int a,len=items.size();
+        
+        
+        
+        JsonCPP::Value tmp;
+        
+        
+        len=viewProtos.size();
+        for(a=0;a<len;a++)
         {
-            JsonCPP::Value tmp=items[a];
+            tmp=viewProtos[a];
+            string name=tmp["name"].asString();
+            (&m_mapData->viewProto)->insert(make_pair(name, getProtos(tmp)));
+        }
+        
+        
+        
+        for(a=0;a<len;a++)
+        {
+            tmp=items[a];
             m_mapData->items.push_back(getData(tmp));
         }
         
         len=grounds.size();
-        for(;a<len;a++)
+        for(a=0;a<len;a++)
         {
-            JsonCPP::Value tmp1=grounds[a];
-            m_mapData->ground.push_back(getData(tmp1));
+            tmp=grounds[a];
+            m_mapData->background.push_back(getData(tmp));
         }
+        
+        
         procces(true);
     }
-
+    PPViewProto getProtos(JsonCPP::Value value)
+    {
+        
+        PPViewProto vp;
+        vp.name=value["name"].asString();
+        vp.idle=value["idle"].asString();
+        vp.resource=value["resource"].asString();
+        vp.type=value["type"].asString();
+        vp.width=atof(value["width"].asString().c_str());
+        vp.height=atof(value["height"].asString().c_str());
+        vp.buildNum=value["buildNum"].asUInt();
+        vp.anchorX=atof(value["anchorX"].asString().c_str());
+        vp.anchorY=atof(value["anchorY"].asString().c_str());
+        return vp;
+    }
     PPitem getData(JsonCPP::Value& tmp)
     {
         
         PPitem item;
-        JsonCPP::Value jview=tmp["view"];
+        
         JsonCPP::Value jlayout=tmp["layout"];
         JsonCPP::Value jlogic=tmp["logic"];
         
-        PPView& view=item.view;
+       // PPView& view=item.view;
+        
         PPLayout& layout=item.layout;
         PPLogic& logic=item.logic;
         
-        
+        item.viewType=tmp["viewType"].asString();
         item.name=tmp["name"].asString();
         item.isGround=tmp["isGround"].asBool();
         
+        
+        map<string, PPViewProto>::iterator it;
+        it=m_mapData->viewProto.find(item.viewType);
+        item.viewProto=&it->second;
         
         layout.condition=jlayout["condition"].asString();
         layout.rule =jlayout["rule"].asString();
         layout.width=atof(jlayout["width"].asString().c_str());
         layout.height=atof(jlayout["height"].asString().c_str());
+        layout.depth=atof(jlayout["depth"].asString().c_str());
+        layout.verticleZ=atof(jlayout["verticleZ"].asString().c_str());
         // getVALUE(item.layout,layout,"widht","int");
         logic.isInteractive=jlogic["interactive"].asBool();
         logic.collision=jlogic["collision"].asInt();
         logic.power=atof(jlogic["power"].asString().c_str());
         
-        view.type=jview["type"].asString();
-        view.resource=jview["resource"].asString();
-        view.anchorX=atof(jview["anchorX"].asString().c_str());
-        view.anchorY=atof(jview["anchorY"].asString().c_str());
-        view.width=atof(jview["width"].asString().c_str());
-        view.height=atof(jview["height"].asString().c_str());
-        view.depth=atof(jview["depth"].asString().c_str());
-        view.verticleZ=atof(jview["verticleZ"].asString().c_str());
         
-        view.init=jview["init"].asString();
         return item;
     }
     void update(roleX x,roleY y,float &radius,bool &bingo)
@@ -153,11 +184,11 @@ public:
         //CCLog("开始装载地图");
         
         CCObject* obj;
-        CCMySketlonAnimation* role;
+        GameObj* role;
         
         CCARRAY_FOREACH(container->getChildren(), obj)
         {
-            role=(CCMySketlonAnimation*)(obj);
+            role=(GameObj*)(obj);
             //如果是自己不处理
             if(role->getType()==1000)
             {
@@ -170,14 +201,14 @@ public:
             float ty=powf((t1.y-t2.y),2);
             int dis=abs(int(ceil(sqrt(tx+ty))));
             CCSize scz=role->getContentSize();
-            if(dis-role->getDistance()>0&&dis>(screenSize.width+scz.width))
+            if(dis-role->getInstance() >0&&dis>(screenSize.width+scz.width))
             {
                 role->setIdle(true);
                 role->setVisible(false);
                 
                 //CCLog("物体被消灭");
             }
-            if(dis<role->getCollision()&&role->getInteractive()==1)
+            if(dis<role->getCollision()&&role->getInteractive()==true)
             {
                 //命中目标
                 bingo=true;
@@ -185,7 +216,7 @@ public:
                 radius=(x-role->getPositionX())/role->getCollision()*90*3.14/180;
                 if(radius<0)radius=-radius;
                 CCLog("碰撞角度%f___%d",radius*180/3.14,role->getTag());
-                role->setAnimation("idle", true);
+                role->play("idle", true);
                 //role->setVisible(false);
                // CCLog("物体被命中");
             }
@@ -205,11 +236,15 @@ private:
         int a,b;
         int n,len=m_mapData->items.size();
         //PPitem item=m_mapData->items;
+        
+        map<string, PPViewProto>::iterator it;
         for(n=0;n<len;n++)
         {
-            PPitem item=m_mapData->items[n];
-            int w=item.view.width;
-            int h=item.view.height;
+            PPitem &item=m_mapData->items[n];
+            it=m_mapData->viewProto.find(item.viewType);
+            PPViewProto &viewPro=it->second ;
+            int w=viewPro.width;
+            int h=viewPro.height;
             
             //        string type=layer.type;
             //        string name=layer.name;
@@ -277,7 +312,7 @@ private:
                     //                }
                     //取下方横条
                     a=rand()%(stopX-startX)+startX;
-                    getPosition(a,startY,px,py,&item);
+                    getPosition(a,startY,px,py,item);
                     //                for(a=startX;a<=stopX;a++)
                     //                {
                     //                    getPosition(a,startY,&item);
@@ -296,65 +331,10 @@ private:
         bool rex=CalcExpr(item.layout.rule, x, y, result)&&result.value.b;
         if(rex)
         {
-            string key=CCString::createWithFormat("%d_%d_%d_%d_%d_%d",item.view.width,item.view.height,bx,by,x,y)->getCString();
+            string key=CCString::createWithFormat("%d_%d_%d_%d_%d_%d",item.viewProto->width,item.viewProto->height,bx,by,x,y)->getCString();
             CCLog("%s",key.c_str());
-//            CCRoleView* role=pool->getUnitByKey(key);
-//            if(role)
-//            {
-//                initView(item,role);
-//                role->setPositionX(x*item->width);
-//                role->setPositionY(y*item->height);
-//                role->setInteractive(item->interactive);
-//                role->setAnchorPoint(ccp(item->anchorPoint.x,item->anchorPoint.y));
-//                
-//                
-//                int rnd=rand()%300-rand()%100;
-//                
-//                if(item->randomZ==1)
-//                {
-//                    role->setVertexZ(rnd);
-//                    
-//                }
-//                role->setZOrder(item->depth);
-//                if(item->interactive==1)
-//                {
-//                    role->playMovie("stand");
-//                }
-//                if(role->getParent()!=container)
-//                {
-//                    container->addChild(role);
-//                }
-//                role->setVisible(true);
-//            }
-
         }
                 
-    }
-    CCArray* initView(PPitem *unitP,CCRoleView* role)
-    {
-        string initfstr=unitP->initFrame;
-        CCSpriteFrame* initFrame=getSpriteFrameByName(initfstr.c_str());
-        if(initFrame!=NULL)
-        role->initWithSpriteFrame(initFrame);
-        role->setVertexZ(0);
-        
-        string name;string rule;int from;int to;
-        
-        vector<PPMovies>::iterator it=unitP->resource.begin();
-        
-        for(;it!=unitP->resource.end();it++)
-        {
-            name=it->name;
-            rule=it->rule;
-            from=it->from;
-            to=it->to;
-            
-            CCArray*frames=getSpriteFrameByBat(rule,from,to);
-            role->addMovie(name.c_str(),frames);
-            
-        }
-        
-        return NULL;
     }
 };
 

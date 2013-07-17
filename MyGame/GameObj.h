@@ -32,9 +32,14 @@ public:
     void play(string name,bool repeat);
     void gotoAndStop(int frame);
     int getType();
+    void setType(int value);
     void setIdle(bool value);
+    
+    
     bool getIdle();
+    float getInstance();
     float getCollision();
+    bool getInteractive();
 protected:
     CCSprite* mSprite;
     CCRoleView* mRole;

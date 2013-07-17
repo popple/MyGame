@@ -8,7 +8,7 @@
 #include "SimpleAudioEngine.h"
 #include "spine-cocos2dx.h"
 #include "SpringObject.h"
-#include "CCMySketlonAnimation.h"
+#include "GameObj.h"
 typedef int motionType;
 
 class HelloWorld : public cocos2d::CCLayer,CCJumpListener
@@ -57,7 +57,7 @@ protected:
     int mPower;
     int angle;
     float speed;
-    CCMySketlonAnimation * mRole;
+    CCSkeletonAnimation * mRole;
     //天空层
     CCLayerColor *mSky;
     //背景层
