@@ -328,11 +328,14 @@ private:
 
         Token result;
 
+        
+        string key=CCString::createWithFormat("%f_%f_%f_%f_%f_%f",item.viewProto->width,item.viewProto->height,bx,by,x,y)->getCString();
+        CCLog("%s",key.c_str());
+        
         bool rex=CalcExpr(item.layout.rule, x, y, result)&&result.value.b;
         if(rex)
         {
-            string key=CCString::createWithFormat("%d_%d_%d_%d_%d_%d",item.viewProto->width,item.viewProto->height,bx,by,x,y)->getCString();
-            CCLog("%s",key.c_str());
+            
         }
                 
     }

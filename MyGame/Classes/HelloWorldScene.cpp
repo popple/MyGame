@@ -137,9 +137,8 @@ bool HelloWorld::init()
     mRole->setPosition(ccp(0,0));
     CCFollow *follow=CCFollow::create(mRole);
     this->runAction(follow);
+ 
     
-    mRole->states[0]->animation->name;
-    CCLog("%d",mRole->getChildrenCount());
     this->addChild(mRole);
     
     CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("role.plist");
@@ -152,9 +151,9 @@ bool HelloWorld::init()
     mSky=CCLayerColor::create(ccc4(80,120,250,255));
     mSky->retain();
     //
-//    engine=PPEngine::create();
-//    engine->retain();
-//    engine->initWithMapFile("newMap.json",this);
+    engine=PPEngine::create();
+    engine->retain();
+    engine->initWithMapFile("newMap.json",this);
     this->schedule(schedule_selector(HelloWorld::update), 60/1000);
     
        
@@ -182,7 +181,7 @@ void HelloWorld::update(float dt)
 //    }
     //mRole->setPositionX(sObject->x+mRole->getPositionX());
     //mRole->setPositionY(sObject->y);
-    //engine->update(mRole->getPositionX(), mRole->getPositionY(), _angle,_bingo);
+    engine->update(mRole->getPositionX(), mRole->getPositionY(), _angle,_bingo);
     
 };
 

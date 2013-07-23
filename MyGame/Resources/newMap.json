@@ -6,24 +6,24 @@
   "views": [
     {
       "name": "classmate",
-      "anchorY": "",
-      "anchorX": "",
-      "type": "",
-      "width": "",
-      "height": "",
-      "idle": "",
-      "resource": "",
+      "anchorY": "0",
+      "anchorX": ".5",
+      "type": "skelton",
+      "width": "50",
+      "height": "100",
+      "idle": "idle",
+      "resource": "spineBoy",
       "buildNum": 0
     }
   ],
   "items": [
     {
-      "isGround": true,
+      "isGround": false,
       "name": "cloud",
       "viewType": "classmate",
       "logic": {
         "collision": 50,
-        "power": 0,
+        "power": "0",
         "isInteractive": true
       },
       "layout": {
