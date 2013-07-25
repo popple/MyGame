@@ -13,45 +13,53 @@
 #include "map"
 #include "RoleView.h"
 #include "spine-cocos2dx.h"
+#include "MyGame.h"
 USING_NS_CC;
 using namespace spine;
 using namespace std;
 
+
 class GameObj:public CCNode
 {
 public:
-    GameObj(CCArray*);
-    GameObj(CCDictionary*);
-    GameObj(string fname);
+    float width,height;
+    GameObj(CCSpriteFrame* spriteFrame);
+    GameObj(CCDictionary* movies);
+    GameObj(string spineFile);
 
-    static GameObj* create(CCArray*);
-    static GameObj* create(CCDictionary*);
-    static GameObj* create(string fname);
-    void init(int frame);
-    void init(string name,bool repeat);
+    static GameObj* create(CCSpriteFrame* spriteFrame);
+    static GameObj* create(CCDictionary* movies);
+    static GameObj* create(string spineFile);
+    
     void play(string name,bool repeat);
     void gotoAndStop(int frame);
     int getType();
-    void setType(int value);
+    void setType(EViewType value);
     void setIdle(bool value);
     
     
     bool getIdle();
     float getInstance();
+    void setInstance(float value);
     float getCollision();
     bool getInteractive();
+    void setInteractive(bool value);
+    
+    bool init();
 protected:
     CCSprite* mSprite;
     CCRoleView* mRole;
     CCSkeletonAnimation* mSkeletonRole;
     
-    CCArray* mSpriteData;
+    CCSpriteFrame* mSpriteData;
     CCDictionary* mRoleViewData;
-    string mJsonName;
+    string mSkeltonName;
     bool mIdle;
     float mCollision;
-    
-    int mType;
+    bool mInteractive;
+    EViewType mType;
+private:
+    float _instance;
 };
 
 #endif

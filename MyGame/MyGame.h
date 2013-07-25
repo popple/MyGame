@@ -12,11 +12,12 @@
 enum EViewType
 {
     IMAGE=0,
-    SKELTON
+    SKELTON,
+    ROLEVIEW
 };
 struct TypeKey
 {
-    string name;
+    std::string name;
     EViewType type;
     bool operator<(const TypeKey& other) const
     {

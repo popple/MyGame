@@ -3,24 +3,44 @@
   "descript": "这是新大陆",
   "width": 0,
   "height": 0,
-  "views": [
-    {
-      "name": "classmate",
-      "anchorY": "0",
-      "anchorX": ".5",
-      "type": "skelton",
-      "width": "50",
-      "height": "100",
-      "idle": "idle",
-      "resource": "spineBoy",
-      "buildNum": 0
-    }
-  ],
+  "views": {
+    "skelton": [
+      {
+        "name": "SpineBoy",
+        "cacheNumber": 20,
+        "resource": "spineboy"
+      }
+    ],
+    "roleview": [
+      {
+        "name": "",
+        "cacheNumber": 0,
+        "movies": [
+          {
+            "to": 0,
+            "from": 5,
+            "rule": "WGA$NUM$",
+            "name": "enem"
+          }
+        ]
+      }
+    ],
+    "image": [
+      {
+        "name": "",
+        "cacheNumber": 0,
+        "spriteFrame": ""
+      }
+    ]
+  },
   "items": [
     {
+      "height": 150,
+      "width": 100,
+      "name": "SpineBoy",
       "isGround": false,
-      "name": "cloud",
-      "viewType": "classmate",
+      "anchorX": ".5",
+      "anchorY": "0",
       "logic": {
         "collision": 50,
         "power": "0",
@@ -36,7 +56,7 @@
       }
     }
   ],
-  "background": [
+  "backgrounds": [
     {
       "name": "",
       "resoure": "",

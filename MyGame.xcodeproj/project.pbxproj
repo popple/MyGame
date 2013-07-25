@@ -860,7 +860,6 @@
 		B1EA95DA178FFC44002092BF /* MyGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGame.h; sourceTree = "<group>"; };
 		B1EDE65517815A2B00B1202C /* CCJump.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCJump.h; sourceTree = "<group>"; };
 		B1EDE65617815A9600B1202C /* CCJump.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCJump.cpp; sourceTree = "<group>"; };
-		B1EDE6591781697C00B1202C /* CCInteractiveObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCInteractiveObj.h; sourceTree = "<group>"; };
 		CD054801176C0F100041655E /* newMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = newMap.json; path = Resources/newMap.json; sourceTree = "<group>"; };
 		CD706B961764F70D0099F009 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		CD706B981764F7330099F009 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
@@ -1893,7 +1892,6 @@
 				B196C7E2177ADAFB008A4318 /* SpringObject.h */,
 				B1EDE65517815A2B00B1202C /* CCJump.h */,
 				B1EDE65617815A9600B1202C /* CCJump.cpp */,
-				B1EDE6591781697C00B1202C /* CCInteractiveObj.h */,
 				B195B92A17844516006DD2F9 /* GameObj.h */,
 				B195B92B17844BDC006DD2F9 /* GameObj.cpp */,
 				B1EA95DA178FFC44002092BF /* MyGame.h */,

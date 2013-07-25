@@ -137,7 +137,8 @@ bool HelloWorld::init()
     mRole->setPosition(ccp(0,0));
     CCFollow *follow=CCFollow::create(mRole);
     this->runAction(follow);
- 
+    
+    
     
     this->addChild(mRole);
     
