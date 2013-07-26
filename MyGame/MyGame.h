@@ -21,9 +21,25 @@ struct TypeKey
     EViewType type;
     bool operator<(const TypeKey& other) const
     {
-        if(strcmp(name.c_str(), other.name.c_str())!=0&&type==other.type)
+        int r=strcmp(name.c_str(), other.name.c_str());
+        if(r==0)
+        {
+            if(type<other.type)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        if(r<0)
         {
             return true;
+        }
+        if(r>0)
+        {
+            return false;
         }
         return false;
     }

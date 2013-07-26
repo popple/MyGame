@@ -143,7 +143,7 @@ void CCJump::update(float t)
     mRemT=t;
     if (m_pTarget)
     {
-        
+        CCLog("%f______",t);
         if(mChanged)
         {
             reset();

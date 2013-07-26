@@ -44,18 +44,12 @@ void GameObj::setInstance(float value)
 {
     _instance=value;
 }
-float GameObj::getCollision()
-{
-    return mCollision;
-}
+
 void GameObj::setType(EViewType value)
 {
     mType=value;
 }
-bool GameObj::getInteractive()
-{
-    return mInteractive;
-}
+
 GameObj::GameObj(CCDictionary* data):mSpriteData(NULL),mSkeletonRole(NULL),mSprite(NULL),mIdle(true)
 {
     if(mRole==NULL)
@@ -73,22 +67,26 @@ bool GameObj::init()
         case IMAGE:
         {
             mSprite=CCSprite::createWithSpriteFrame(mSpriteData);
-            this->addChild(mSprite);
+            mSprite->retain();
             width=mSprite->getContentSize().width;
             height=mSprite->getContentSize().height;
+           
+            Objectview=mSprite;
+            
             break;
         }
         case ROLEVIEW:
         {
             mRole=CCRoleView::create();
-            this->addChild(mRole);
+            mRole->retain();
             CCDictElement* ele;
             
             CCDICT_FOREACH(mRoleViewData, ele)
             {
                 mRole->addMovie(ele->getStrKey(), (CCArray*)ele->getObject());
             }
-
+            Objectview=mRole;
+            
             break;
         }
         case SKELTON:
@@ -96,14 +94,15 @@ bool GameObj::init()
             CCString* tem=CCString::createWithFormat("%s.json",mSkeltonName.c_str());
             CCString* tem1=CCString::createWithFormat("%s.atlas",mSkeltonName.c_str());
             mSkeletonRole=CCSkeletonAnimation::createWithFile(tem->getCString(),tem1->getCString());
-            
+            mSkeletonRole->retain();
             width=mSkeletonRole->getContentSize().width;
             height=mSkeletonRole->getContentSize().height;
-            this->addChild(mSkeletonRole);
+            
+            Objectview=mSkeletonRole;
             break;
         }
     }
-
+    Objectview->retain();
     return true;
 }
 GameObj::GameObj(string fname):mSpriteData(NULL),mSkeletonRole(NULL),mSprite(NULL),mIdle(true)
@@ -118,7 +117,7 @@ GameObj::GameObj(string fname):mSpriteData(NULL),mSkeletonRole(NULL),mSprite(NUL
 
 GameObj* GameObj::create(CCSpriteFrame* frame)
 {
-    CCAssert(frame==NULL, "无效的CCSpriteFrame");
+    CCAssert(frame!=NULL, "无效的CCSpriteFrame");
     GameObj* obj=new GameObj(frame);
     if(obj&&obj->init())
     {

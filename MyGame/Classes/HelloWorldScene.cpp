@@ -41,7 +41,7 @@ CCScene* HelloWorld::scene()
     // return the scene
     return scene;
 };
-HelloWorld::HelloWorld(){};
+HelloWorld::HelloWorld():tm(NULL){};
 HelloWorld::~HelloWorld(){};
 void HelloWorld::onEnter()
 {
@@ -83,7 +83,7 @@ void HelloWorld::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     int angle=int(atan2f(tpy, tpx)*180/3.14);
     //反作用力
     if(tpy<0)dis=-dis;
-    CCLog("%f____%f",dis,angle);
+    //CCLog("%f____%f",dis,angle);
     
     mRole->setRotation(360-angle+90);
     mRole->setAnimation("fly",false);
@@ -125,12 +125,14 @@ void HelloWorld::ccTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
-    
+    engine=PPEngine::create();
+    engine->retain();
+    engine->initWithMapFile("newMap.json",this);
     //创建主角
     mRole = CCSkeletonAnimation::createWithFile("spineboy.json", "spineboy.atlas");
     mRole->setAnimation("idle",true);
     //mRole->set
-    mRole->timeScale=.3f;
+    mRole->timeScale=1.5f;
     mRole->setTag(1000);
     mRole->retain();
    // mRole->setType;
@@ -142,8 +144,8 @@ bool HelloWorld::init()
     
     this->addChild(mRole);
     
-    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("role.plist");
-    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("items.plist");
+    
+    
     //初始化背景层
     mBackGround=CCParallaxNode::create();
     
@@ -152,13 +154,11 @@ bool HelloWorld::init()
     mSky=CCLayerColor::create(ccc4(80,120,250,255));
     mSky->retain();
     //
-    engine=PPEngine::create();
-    engine->retain();
-    engine->initWithMapFile("newMap.json",this);
+    
     this->schedule(schedule_selector(HelloWorld::update), 60/1000);
     
        
-    CCDirector::sharedDirector()->getScheduler()->setTimeScale(.2f);
+    //CCDirector::sharedDirector()->getScheduler()->setTimeScale(.2f);
     
     
     
@@ -174,7 +174,7 @@ bool HelloWorld::init()
 
 void HelloWorld::update(float dt)
 {
-    CCLog("%s,%f",mRole->states[0]->animation->name,mRole->states[0]->animation->duration);
+   // CCLog("%s,%f",mRole->states[0]->animation->name,mRole->states[0]->animation->duration);
 //    if(mRole->getPositionY()<=0)
 //    {
 //        CCJump* tm= (CCJump*)mRole->getActionByTag(1000);
@@ -182,7 +182,12 @@ void HelloWorld::update(float dt)
 //    }
     //mRole->setPositionX(sObject->x+mRole->getPositionX());
     //mRole->setPositionY(sObject->y);
+   
     engine->update(mRole->getPositionX(), mRole->getPositionY(), _angle,_bingo);
+    if(_bingo)
+    {
+        mPower+=2;
+    }
     
 };
 

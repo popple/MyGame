@@ -33,7 +33,7 @@ struct STObject
 };
 struct STImage:STObject {
     
-    string spriteFrame;
+    CCSpriteFrame* spriteFrame;
     
     
 };

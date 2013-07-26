@@ -25,6 +25,7 @@ typedef float roleY;
 #include "calc_expr.h"
 #include "CCInteractiveObj.h"
 #include "GameObj.h"
+#include "string"
 using namespace spine;
 
 
@@ -40,6 +41,8 @@ protected:
     CCSize screenSize;
     CCLayer *container;
     int remDis;
+    CCRect screenRect;
+    CCRect objectRect;
 public:
     
     PPEngine()
@@ -91,13 +94,26 @@ public:
         JsonCPP::Value views=root["views"];
         JsonCPP::Value items=root["items"];
         JsonCPP::Value backgrounds=root["background"];
+        JsonCPP::Value textures=root["textures"];
         
+        getTextures(textures);
         m_mapData->views=getViews(views);
         m_mapData->items=getItems(items);
         
+        
         procces(true);
     }
-   
+    void getTextures(JsonCPP::Value value)
+    {
+        int step;
+        int size=value.size();
+        for(step=0;step<size;step++)
+        {
+            JsonCPP::Value item=value[step];
+            string path=item["path"].asString();
+            CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("items.plist");
+        }
+    }
     vector<PPitem> getItems(JsonCPP::Value value)
     {
         int step;
@@ -222,10 +238,11 @@ public:
             STImage image;
             image.name=item["name"].asString();
             image.cacheNumber=item["cacheNumber"].asUInt();
-            image.spriteFrame=item["spriteFrame"].asString();
+            string sframe=item["spriteFrame"].asString();
             image.type=IMAGE;
             
-          
+            CCSpriteFrame* frame=getSpriteFrameByName(sframe);
+            image.spriteFrame=frame;
             
                        
             for(a=0;a<image.cacheNumber;a++)
@@ -245,6 +262,9 @@ public:
         personX=x;
         personY=y;
         
+        screenRect.origin.x=x-CCDirector::sharedDirector()->getWinSize().width/2;
+        screenRect.origin.y=y+CCDirector::sharedDirector()->getWinSize().height/2;
+        screenRect.size=CCDirector::sharedDirector()->getWinSize();
         //CCLog("开始装载地图");
         
         CCObject* obj;
@@ -254,7 +274,7 @@ public:
         {
             role=(GameObj*)(obj);
             //如果是自己不处理
-            if(role->getType()==1000)
+            if(role->getTag()==1000)
             {
                 continue;
             };
@@ -264,8 +284,10 @@ public:
             float tx=powf((t1.x-t2.x), 2);
             float ty=powf((t1.y-t2.y),2);
             int dis=abs(int(ceil(sqrt(tx+ty))));
-            CCSize scz=role->getContentSize();
-            if(dis-role->getInstance() >0&&dis>(screenSize.width+scz.width))
+            
+            
+            //CCSize scz=role->getContentSize();
+            if(dis-role->getInstance() >0&&dis>(screenSize.width+role->width))
             {
                 role->setIdle(true);
                 //role->setVisible(false);
@@ -273,12 +295,16 @@ public:
                 //CCLog("物体被消灭");
             }
             role->setInstance(dis);
-            if(dis<role->getCollision()&&role->getInteractive()==true)
+            
+            
+            
+            
+            if(dis<role->collision&&role->isInteractive==true)
             {
                 //命中目标
                 bingo=true;
                
-                radius=(x-role->getPositionX())/role->getCollision()*90*3.14/180;
+                radius=(x-role->getPositionX())/role->collision*90*3.14/180;
                 if(radius<0)radius=-radius;
                 CCLog("碰撞角度%f___%d",radius*180/3.14,role->getTag());
                 role->play("idle", true);
@@ -393,23 +419,26 @@ private:
         Token result;
 
         
-        string key=CCString::createWithFormat("%d_%d_%d_%d",bx,by,x,y)->getCString();
+        string key=CCString::createWithFormat("%d_%d_%d_%d",x,y,bx,by)->getCString();
         
       
        
         bool rex=CalcExpr(item.layout.rule, x, y, result)&&result.value.b;
-        if(true)
+        if(rex)
         {
             GameObj* obj=pool->getUnitByKey(key, item.getKey());
-            
+            int r=strcmp(item.name.c_str(),"SpineBoy");
             if(obj)
             {
-                if(obj->getParent()!=container)
+               
+                if(obj->Objectview->getParent()!=container)
                 {
-                    container->addChild(obj);
+                    container->addChild(obj->Objectview);
                 }
-                obj->setVisible(true);
-                obj->setPosition(ccp(x*item.width, y*item.height));
+               
+                obj->Objectview->setPosition(ccp(x*item.width, y*item.height));
+                obj->collision=item.logic.collision;
+                obj->isInteractive=item.logic.isInteractive;
             }
             
                        

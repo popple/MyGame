@@ -22,7 +22,10 @@ using namespace std;
 class GameObj:public CCNode
 {
 public:
+    float collision;
     float width,height;
+    bool isInteractive;
+    CCNode* Objectview;
     GameObj(CCSpriteFrame* spriteFrame);
     GameObj(CCDictionary* movies);
     GameObj(string spineFile);
@@ -41,9 +44,8 @@ public:
     bool getIdle();
     float getInstance();
     void setInstance(float value);
-    float getCollision();
-    bool getInteractive();
-    void setInteractive(bool value);
+    
+    
     
     bool init();
 protected:
@@ -55,7 +57,7 @@ protected:
     CCDictionary* mRoleViewData;
     string mSkeltonName;
     bool mIdle;
-    float mCollision;
+    
     bool mInteractive;
     EViewType mType;
 private:
