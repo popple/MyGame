@@ -21,6 +21,7 @@ void CCJump::setPower(float d)
     mPower=d;
     mChanged=true;
 }
+
 void CCJump::setGravity(float d)
 {
     mG=d;
@@ -34,6 +35,7 @@ void CCJump::setListener(cocos2d::CCJumpListener *listener)
 CCJump* CCJump::create(float angle,float power,float g,float yPosition,float decrease)
 {
     
+    
     CCJump *pJumpBy = new CCJump;
     pJumpBy->initWithParam(angle,power,g,yPosition,decrease);
     pJumpBy->autorelease();
@@ -42,6 +44,11 @@ CCJump* CCJump::create(float angle,float power,float g,float yPosition,float dec
 }
 void CCJump::step(float dt)
 {
+    _times++;
+    _totalTime+=dt;
+    
+    dt=_totalTime/_times;
+    
     if (m_bFirstTick)
     {
         m_bFirstTick = false;
@@ -49,13 +56,16 @@ void CCJump::step(float dt)
     }
     else
     {
-        m_elapsed += dt*10;
+        m_elapsed += dt;
     }
     this->update(m_elapsed);
+     
     //m_elapsed += dt;
 }
 bool CCJump::initWithParam(float angle,float power,float g,float yPosition,float decrease)
 {
+    _times=0;
+    _totalTime=0;
     allowRot=1;
     mListener=NULL;
     mDecrease=decrease;
@@ -70,6 +80,10 @@ bool CCJump::initWithParam(float angle,float power,float g,float yPosition,float
     
     
     return true;
+}
+void CCJump::setPowerChange(float d)
+{
+    mPower*=d;
 }
 void CCJump::setAllowRot(int d)
 {
@@ -143,7 +157,7 @@ void CCJump::update(float t)
     mRemT=t;
     if (m_pTarget)
     {
-        CCLog("%f______",t);
+       // CCLog("%f______",t);
         if(mChanged)
         {
             reset();
@@ -169,7 +183,8 @@ void CCJump::update(float t)
         
         
         m_pTarget->setPosition(ccp(tx,ty));
-        m_pTarget->setRotation(mRotate*deltaT*3*allowRot+m_pTarget->getRotation());
+        float r=0;//m_pTarget->getRotation();
+        m_pTarget->setRotation(mRotate*deltaT*3*allowRot+r);
         
     }
 }

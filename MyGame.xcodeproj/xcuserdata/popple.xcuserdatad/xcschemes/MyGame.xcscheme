@@ -47,7 +47,9 @@
       buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
-      allowLocationSimulation = "YES">
+      allowLocationSimulation = "YES"
+      simulatorIPhoneDisplay = "1.000000"
+      simulatorIPadDisplay = "1.000000">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"

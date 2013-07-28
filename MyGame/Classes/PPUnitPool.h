@@ -115,6 +115,10 @@ public:
         }
         //itObj->second.push_back(obj);
     }
+    map<string,GameObj*>& getMap()
+    {
+        return m_map;
+    }
     CREATE_FUNC(PPUnitPool);
 protected:
     map<string, GameObj*>  m_map;

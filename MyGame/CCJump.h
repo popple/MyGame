@@ -25,6 +25,7 @@ public:
     void setListener(CCJumpListener* listener);
     void setDecrease(float d);
     void setAngle(float d);
+    void setPowerChange(float d);
     void setPower(float d);
     void setGravity(float d);
     void reset();
@@ -48,5 +49,8 @@ protected:
     int allowRot;
     float remX,rotate;
     CCRotateBy* rotBy;
+private:
+    float _times;
+    float _totalTime;
 };
 #endif

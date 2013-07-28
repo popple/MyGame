@@ -257,8 +257,9 @@ public:
         return view;
     }
     
-    void update(roleX x,roleY y,float &radius,bool &bingo)
+    void update(roleX x,roleY y,float &radius,bool &bingo,GameObj* cobj)
     {
+        bingo=false;
         personX=x;
         personY=y;
         
@@ -268,17 +269,21 @@ public:
         //CCLog("开始装载地图");
         
         CCObject* obj;
+        CCNode* object;
         GameObj* role;
+        map<string, GameObj*>&objContainer=pool->getMap();
         
-        CCARRAY_FOREACH(container->getChildren(), obj)
+        map<string, GameObj*>::iterator it=objContainer.begin();
+        
+        while(it!=objContainer.end())
+        
         {
-            role=(GameObj*)(obj);
+            role=it->second;
+            
             //如果是自己不处理
-            if(role->getTag()==1000)
-            {
-                continue;
-            };
-            CCPoint t1(role->getPositionX(),role->getPositionY());
+           
+            
+            CCPoint t1(role->Objectview->getPositionX(),role->Objectview->getPositionY());
             CCPoint t2(x,y);
             
             float tx=powf((t1.x-t2.x), 2);
@@ -290,6 +295,7 @@ public:
             if(dis-role->getInstance() >0&&dis>(screenSize.width+role->width))
             {
                 role->setIdle(true);
+                
                 //role->setVisible(false);
                 
                 //CCLog("物体被消灭");
@@ -303,15 +309,16 @@ public:
             {
                 //命中目标
                 bingo=true;
-               
+                cobj=role;
                 radius=(x-role->getPositionX())/role->collision*90*3.14/180;
                 if(radius<0)radius=-radius;
-                CCLog("碰撞角度%f___%d",radius*180/3.14,role->getTag());
+                CCLog("碰撞角度%f___%d",radius,role->getTag());
                 role->play("idle", true);
                 //role->setVisible(false);
                // CCLog("物体被命中");
             }
            //-----------------从这里继续开始....
+            it++;
         }
        // procces(true);
         procces();
@@ -427,10 +434,8 @@ private:
         if(rex)
         {
             GameObj* obj=pool->getUnitByKey(key, item.getKey());
-            int r=strcmp(item.name.c_str(),"SpineBoy");
             if(obj)
             {
-               
                 if(obj->Objectview->getParent()!=container)
                 {
                     container->addChild(obj->Objectview);
@@ -439,6 +444,7 @@ private:
                 obj->Objectview->setPosition(ccp(x*item.width, y*item.height));
                 obj->collision=item.logic.collision;
                 obj->isInteractive=item.logic.isInteractive;
+                obj->power=item.logic.power;
             }
             
                        

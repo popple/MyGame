@@ -26,6 +26,7 @@ private:
     bool _bingo;
     float _angle;
     
+    GameObj* _collistionObj;
 public:
     
     virtual void onJump(int state);

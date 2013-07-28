@@ -8,13 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/Classes/HelloWorldScene.cpp"
-         timestampString = "393093353.438114"
+         timestampString = "396713554.844509"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "214"
-         endingLineNumber = "214"
-         landmarkName = "HelloWorld::update(float dt)"
-         landmarkType = "5">
+         startingLineNumber = "217"
+         endingLineNumber = "217">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -26,7 +24,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "141"
          endingLineNumber = "141"
-         landmarkName = "update(roleX x,roleY y,float &amp;radius,bool &amp;bingo)"
+         landmarkName = "getItems(JsonCPP::Value value)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -39,7 +37,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "136"
          endingLineNumber = "136"
-         landmarkName = "update(roleX x,roleY y,float &amp;radius,bool &amp;bingo)"
+         landmarkName = "getItems(JsonCPP::Value value)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -52,7 +50,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "146"
          endingLineNumber = "146"
-         landmarkName = "update(roleX x,roleY y,float &amp;radius,bool &amp;bingo)"
+         landmarkName = "getItems(JsonCPP::Value value)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -65,7 +63,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "143"
          endingLineNumber = "143"
-         landmarkName = "update(roleX x,roleY y,float &amp;radius,bool &amp;bingo)"
+         landmarkName = "getItems(JsonCPP::Value value)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -78,7 +76,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "144"
          endingLineNumber = "144"
-         landmarkName = "update(roleX x,roleY y,float &amp;radius,bool &amp;bingo)"
+         landmarkName = "getItems(JsonCPP::Value value)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -91,7 +89,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "139"
          endingLineNumber = "139"
-         landmarkName = "update(roleX x,roleY y,float &amp;radius,bool &amp;bingo)"
+         landmarkName = "getItems(JsonCPP::Value value)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -104,7 +102,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "101"
          endingLineNumber = "101"
-         landmarkName = "HelloWorld::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)"
+         landmarkName = "HelloWorld::timeOut(float d)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -117,7 +115,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "63"
          endingLineNumber = "63"
-         landmarkName = "HelloWorld::ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent)"
+         landmarkName = "HelloWorld::belongScene(cocos2d::CCScene *scene)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -143,7 +141,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "75"
          endingLineNumber = "75"
-         landmarkName = "HelloWorld::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
+         landmarkName = "HelloWorld::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -182,7 +180,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "156"
          endingLineNumber = "156"
-         landmarkName = "update(roleX x,roleY y,float &amp;radius,bool &amp;bingo)"
+         landmarkName = "getViews(JsonCPP::Value value)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -190,12 +188,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/Classes/PPEngine.h"
-         timestampString = "393074109.767874"
+         timestampString = "396681983.468674"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "213"
          endingLineNumber = "213"
-         landmarkName = "procces(bool init=false)"
+         landmarkName = "getViews(JsonCPP::Value value)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -203,12 +201,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/Classes/PPEngine.h"
-         timestampString = "393089449.741998"
+         timestampString = "396713554.844509"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "261"
          endingLineNumber = "261"
-         landmarkName = "getPosition(int x,int y,PPitem *item)"
+         landmarkName = "update(roleX x,roleY y,float &amp;radius,bool &amp;bingo,GameObj* cobj)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -216,25 +214,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/Classes/PPEngine.h"
-         timestampString = "393089449.741998"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "265"
-         endingLineNumber = "265"
-         landmarkName = "getPosition(int x,int y,PPitem *item)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "MyGame/Classes/PPEngine.h"
-         timestampString = "393089449.741998"
+         timestampString = "396713554.844509"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "266"
          endingLineNumber = "266"
-         landmarkName = "getPosition(int x,int y,PPitem *item)"
+         landmarkName = "update(roleX x,roleY y,float &amp;radius,bool &amp;bingo,GameObj* cobj)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "MyGame/Classes/PPEngine.h"
+         timestampString = "396713554.844509"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "267"
+         endingLineNumber = "267"
+         landmarkName = "update(roleX x,roleY y,float &amp;radius,bool &amp;bingo,GameObj* cobj)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -247,7 +245,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "159"
          endingLineNumber = "159"
-         landmarkName = "update(roleX x,roleY y,float &amp;radius,bool &amp;bingo)"
+         landmarkName = "getViews(JsonCPP::Value value)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -255,12 +253,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/Classes/PPEngine.h"
-         timestampString = "393089449.741998"
+         timestampString = "396713554.844509"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "268"
-         endingLineNumber = "268"
-         landmarkName = "getPosition(int x,int y,PPitem *item)"
+         startingLineNumber = "269"
+         endingLineNumber = "269"
+         landmarkName = "update(roleX x,roleY y,float &amp;radius,bool &amp;bingo,GameObj* cobj)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -273,20 +271,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "160"
          endingLineNumber = "160"
-         landmarkName = "update(roleX x,roleY y,float &amp;radius,bool &amp;bingo)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "MyGame/Classes/PPEngine.h"
-         timestampString = "393089449.741998"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "296"
-         endingLineNumber = "296"
-         landmarkName = "initView(PPitem *unitP,CCRoleView* role)"
+         landmarkName = "getViews(JsonCPP::Value value)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -294,11 +279,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/Classes/HelloWorldScene.cpp"
-         timestampString = "393093353.438114"
+         timestampString = "396682407.261173"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "166"
-         endingLineNumber = "166"
+         startingLineNumber = "168"
+         endingLineNumber = "168"
          landmarkName = "HelloWorld::init()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -320,13 +305,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/Classes/HelloWorldScene.cpp"
-         timestampString = "393093353.438114"
+         timestampString = "396713554.844509"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "211"
-         endingLineNumber = "211"
-         landmarkName = "HelloWorld::update(float dt)"
-         landmarkType = "5">
+         startingLineNumber = "214"
+         endingLineNumber = "214">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -339,6 +322,19 @@
          startingLineNumber = "85"
          endingLineNumber = "85"
          landmarkName = "HelloWorld::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "MyGame/Classes/PPEngine.h"
+         timestampString = "396713554.844509"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "313"
+         endingLineNumber = "313"
+         landmarkName = "update(roleX x,roleY y,float &amp;radius,bool &amp;bingo,GameObj* cobj)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

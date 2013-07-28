@@ -79,7 +79,7 @@ void HelloWorld::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     _nowPoint=pTouch->getLocation();
     float tpx=_nowPoint.x-_lastPoint.x;
     float tpy=_nowPoint.y-_lastPoint.y;
-    float dis=ccpDistance(_lastPoint,_nowPoint);
+    float dis=ccpDistance(_lastPoint,_nowPoint)*10;
     int angle=int(atan2f(tpy, tpx)*180/3.14);
     //反作用力
     if(tpy<0)dis=-dis;
@@ -130,6 +130,8 @@ bool HelloWorld::init()
     engine->initWithMapFile("newMap.json",this);
     //创建主角
     mRole = CCSkeletonAnimation::createWithFile("spineboy.json", "spineboy.atlas");
+    
+    
     mRole->setAnimation("idle",true);
     //mRole->set
     mRole->timeScale=1.5f;
@@ -183,10 +185,13 @@ void HelloWorld::update(float dt)
     //mRole->setPositionX(sObject->x+mRole->getPositionX());
     //mRole->setPositionY(sObject->y);
    
-    engine->update(mRole->getPositionX(), mRole->getPositionY(), _angle,_bingo);
+    engine->update(mRole->getPositionX(), mRole->getPositionY(), _angle,_bingo,_collistionObj);
     if(_bingo)
     {
-        mPower+=2;
+        CCJump *jp=(CCJump*)mRole->getActionByTag(1000);
+        jp->setPower(_collistionObj->power);
+        
+        //_collistionObj->Objectview->setActionManager(<#cocos2d::CCActionManager *actionManager#>)
     }
     
 };

@@ -25,6 +25,8 @@ public:
     float collision;
     float width,height;
     bool isInteractive;
+    bool isActive;
+    float power;
     CCNode* Objectview;
     GameObj(CCSpriteFrame* spriteFrame);
     GameObj(CCDictionary* movies);
