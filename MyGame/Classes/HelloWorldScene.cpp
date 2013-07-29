@@ -188,8 +188,8 @@ void HelloWorld::update(float dt)
     engine->update(mRole->getPositionX(), mRole->getPositionY(), _angle,_bingo,_collistionObj);
     if(_bingo)
     {
-        CCJump *jp=(CCJump*)mRole->getActionByTag(1000);
-        jp->setPower(_collistionObj->power);
+        //CCJump *jp=(CCJump*)mRole->getActionByTag(1000);
+       // jp->setPower(_collistionObj->power);
         
         //_collistionObj->Objectview->setActionManager(<#cocos2d::CCActionManager *actionManager#>)
     }

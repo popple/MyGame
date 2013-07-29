@@ -60,6 +60,7 @@ public:
             if(rv->getIdle())
             {
                 (&m_map)->erase(it);
+                CCLog("删除对象");
             }
             it++;
         }
@@ -78,7 +79,7 @@ public:
             if(tmp&&tmp->getIdle())
             {
                 
-                (&m_map)->insert(make_pair(typeKey.name,tmp));
+                (&m_map)->insert(make_pair(key,tmp));
                 
                 tmp->setIdle(false);
                 
@@ -108,10 +109,13 @@ public:
             else
             {
                 vector<GameObj*> container;
-                objectMap.insert(make_pair(key,container));
                 obj->retain();
                 container.push_back(obj);
+                objectMap.insert(make_pair(key,container));
+                
+                
             }
+            
         }
         //itObj->second.push_back(obj);
     }

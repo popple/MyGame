@@ -13,7 +13,7 @@
     "skelton": [
       {
         "name": "SpineBoy",
-        "cacheNumber": 10,
+        "cacheNumber": 0,
         "resource": "spineboy"
       }
     ],
@@ -34,7 +34,7 @@
     "image": [
       {
         "name": "cloud",
-        "cacheNumber": 10,
+        "cacheNumber": 1,
         "spriteFrame": "14327330_13.png"
       }
     ]
@@ -44,7 +44,7 @@
       "width": 113,
       "height": 251,
       "name": "SpineBoy",
-      "isGround": true,
+      "isGround": false,
       "anchorX": ".5",
       "anchorY": "0",
       "logic": {

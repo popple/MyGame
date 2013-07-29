@@ -43,6 +43,10 @@ protected:
     int remDis;
     CCRect screenRect;
     CCRect objectRect;
+    //判断角色上下方向;
+    bool roleDirect;
+    //判断物件是否远离角色
+    bool direct;
 public:
     
     PPEngine()
@@ -62,7 +66,7 @@ public:
     {
         
         this->container=layer;
-        
+        personX=personY=0;
         CCFileUtils*ft=CCFileUtils::sharedFileUtils();
         //
         //const char*  s=ft->fullPathForFilename("test.txt").c_str();
@@ -260,6 +264,14 @@ public:
     void update(roleX x,roleY y,float &radius,bool &bingo,GameObj* cobj)
     {
         bingo=false;
+        if(y-personY>0)
+        {
+            roleDirect=true;
+        }
+        else
+        {
+            roleDirect=false;
+        }
         personX=x;
         personY=y;
         
@@ -290,15 +302,16 @@ public:
             float ty=powf((t1.y-t2.y),2);
             int dis=abs(int(ceil(sqrt(tx+ty))));
             
-            
+            //如果目标正在远离角色，且大于一定范围则释放对象。
+            direct=dis-role->getInstance() >0;
             //CCSize scz=role->getContentSize();
-            if(dis-role->getInstance() >0&&dis>(screenSize.width+role->width))
+            if(dis>1000)
             {
                 role->setIdle(true);
                 
                 //role->setVisible(false);
                 
-                //CCLog("物体被消灭");
+                CCLog("物体被释放");
             }
             role->setInstance(dis);
             
@@ -330,7 +343,7 @@ private:
     
     void procces(bool init=false)
     {
-                
+        CCLog("role direct%b",roleDirect);
         int a,b;
         int n,len=m_mapData->items.size();
         //PPitem item=m_mapData->items;
@@ -351,7 +364,7 @@ private:
             
             //取得最大屏幕覆盖区域
             int saveX=ceil((screenSize.width/2+item.layout.width)/w);
-            int saveY=ceil((screenSize.height/2+item.layout.height)/h);
+            int saveY=ceil((screenSize.height*.7+item.layout.height)/h);
             
             int startX=px-saveX;
             int startY=py-saveY;
@@ -386,12 +399,20 @@ private:
                         getPosition(a,startY,px,py,item);
     
                     }
-
+                    
                 }
                 else
                 {
-                    a=rand()%(stopX-startX)+startX;
-                    getPosition(a,stopY,px,py,item);
+                    if(roleDirect)
+                    {
+                        a=rand()%(stopX-startX)+startX;
+                        getPosition(a,stopY,px,py,item);
+                    }
+                    else
+                    {
+                        a=rand()%(stopX-startX)+startX;
+                        getPosition(a,startY,px,py,item);
+                    }
                     //                //取上方横条
                     //                for(a=startX;a<=stopX;a++)
                     //                {
@@ -408,8 +429,8 @@ private:
                     //                    //CCLog("%d___%d____%s_____坐标扫瞄",a,stopY,name.c_str());
                     //                }
                     //取下方横条
-                    a=rand()%(stopX-startX)+startX;
-                    getPosition(a,startY,px,py,item);
+                    
+                    
                     //                for(a=startX;a<=stopX;a++)
                     //                {
                     //                    getPosition(a,startY,&item);
