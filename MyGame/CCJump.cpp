@@ -56,7 +56,7 @@ void CCJump::step(float dt)
     }
     else
     {
-        m_elapsed += dt;
+        m_elapsed += dt*10;
     }
     this->update(m_elapsed);
      

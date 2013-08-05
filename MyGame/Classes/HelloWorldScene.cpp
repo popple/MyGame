@@ -79,7 +79,7 @@ void HelloWorld::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     _nowPoint=pTouch->getLocation();
     float tpx=_nowPoint.x-_lastPoint.x;
     float tpy=_nowPoint.y-_lastPoint.y;
-    float dis=ccpDistance(_lastPoint,_nowPoint)*10;
+    float dis=ccpDistance(_lastPoint,_nowPoint);
     int angle=int(atan2f(tpy, tpx)*180/3.14);
     //反作用力
     if(tpy<0)dis=-dis;
@@ -91,10 +91,7 @@ void HelloWorld::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     CCJump* jp=(CCJump*)mRole->getActionByTag(1000);
     jp->initWithParam(abs(angle),dis,.98f,mRole->getPositionY());
     jp->setAllowRot(0);
-    if(tm)tm->release();
-    tm=CCTimer::timerWithTarget(this, schedule_selector(HelloWorld::timeOut));
-    tm->setInterval(.6f);
-    tm->retain();
+    
 }
 void HelloWorld::timeOut(float d)
 {
@@ -139,9 +136,7 @@ bool HelloWorld::init()
     mRole->retain();
    // mRole->setType;
     mRole->setPosition(ccp(0,0));
-    CCFollow *follow=CCFollow::create(mRole);
-    this->runAction(follow);
-    
+       
     
     
     this->addChild(mRole);
@@ -164,7 +159,7 @@ bool HelloWorld::init()
     
     
     
-    CCJump* jp=CCJump::create(30, 100, .98f);
+    CCJump* jp=CCJump::create(30, 20, .98f);
     jp->startWithTarget(mRole);
     jp->setTag(1000);
     mRole->runAction(jp);
@@ -176,15 +171,11 @@ bool HelloWorld::init()
 
 void HelloWorld::update(float dt)
 {
-   // CCLog("%s,%f",mRole->states[0]->animation->name,mRole->states[0]->animation->duration);
-//    if(mRole->getPositionY()<=0)
-//    {
-//        CCJump* tm= (CCJump*)mRole->getActionByTag(1000);
-//        tm->initWithParam(30, 20);
-//    }
-    //mRole->setPositionX(sObject->x+mRole->getPositionX());
-    //mRole->setPositionY(sObject->y);
-   
+    
+    
+    this->setPosition(CCPointMake(-mRole->getPositionX()+engine->camOffsetX,-mRole->getPositionY()+engine->camOffsetY));
+
+    
     engine->update(mRole->getPositionX(), mRole->getPositionY(), _angle,_bingo,_collistionObj);
     if(_bingo)
     {

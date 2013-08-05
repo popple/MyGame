@@ -60,6 +60,16 @@ GameObj::GameObj(CCDictionary* data):mSpriteData(NULL),mSkeletonRole(NULL),mSpri
                 
     }
 }
+CCRect GameObj::getRect()
+{
+    //return Objectview->boundingBox();
+    
+    CCRect rect=Objectview->boundingBox();
+    CCPoint p=Objectview->getAnchorPoint();
+    rect.origin.x-=p.x*rect.size.width;
+    rect.origin.y+=p.y*rect.size.height;
+    return rect;
+}
 bool GameObj::init()
 {
     switch (mType)

@@ -1,8 +1,8 @@
 {
   "name": "新地图",
   "descript": "这是新大陆",
-  "width": 0,
-  "height": 0,
+  "camOffsetX": ".5",
+  "camOffsetY": ".3",
   "textures": [
     {
       "path": "items.plist",

@@ -280,6 +280,7 @@
 		B1C271A817649122003E3DEF /* spine-cocos2dx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1C2719317649122003E3DEF /* spine-cocos2dx.cpp */; };
 		B1C271C1176491FC003E3DEF /* ExampleLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1C271BF176491FC003E3DEF /* ExampleLayer.cpp */; };
 		B1EDE65717815A9600B1202C /* CCJump.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1EDE65617815A9600B1202C /* CCJump.cpp */; };
+		B1F3B28317A76B0C005745F7 /* ExampleSpine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1F3B28117A76B0C005745F7 /* ExampleSpine.cpp */; };
 		CD054802176C0F100041655E /* newMap.json in Resources */ = {isa = PBXBuildFile; fileRef = CD054801176C0F100041655E /* newMap.json */; };
 		CD706B971764F70D0099F009 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD706B961764F70D0099F009 /* Default-Portrait@2x~ipad.png */; };
 		CD706B991764F7330099F009 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CD706B981764F7330099F009 /* Default-Landscape@2x~ipad.png */; };
@@ -860,6 +861,8 @@
 		B1EA95DA178FFC44002092BF /* MyGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGame.h; sourceTree = "<group>"; };
 		B1EDE65517815A2B00B1202C /* CCJump.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCJump.h; sourceTree = "<group>"; };
 		B1EDE65617815A9600B1202C /* CCJump.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCJump.cpp; sourceTree = "<group>"; };
+		B1F3B28117A76B0C005745F7 /* ExampleSpine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ExampleSpine.cpp; path = Classes/ExampleSpine.cpp; sourceTree = "<group>"; };
+		B1F3B28217A76B0C005745F7 /* ExampleSpine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExampleSpine.h; path = Classes/ExampleSpine.h; sourceTree = "<group>"; };
 		CD054801176C0F100041655E /* newMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = newMap.json; path = Resources/newMap.json; sourceTree = "<group>"; };
 		CD706B961764F70D0099F009 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		CD706B981764F7330099F009 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
@@ -1868,6 +1871,8 @@
 		B1C270631764719E003E3DEF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B1F3B28117A76B0C005745F7 /* ExampleSpine.cpp */,
+				B1F3B28217A76B0C005745F7 /* ExampleSpine.h */,
 				B196C7DF177A8F49008A4318 /* HelloWorldScene副本.txt */,
 				B196C7E0177A8F49008A4318 /* HelloWorldScene副本.rtf */,
 				B1AC71E81769D35A00914006 /* calc_expr.cpp */,
@@ -2391,6 +2396,7 @@
 				B196C7E1177A8F49008A4318 /* HelloWorldScene副本.txt in Sources */,
 				B1EDE65717815A9600B1202C /* CCJump.cpp in Sources */,
 				B195B92C17844BDC006DD2F9 /* GameObj.cpp in Sources */,
+				B1F3B28317A76B0C005745F7 /* ExampleSpine.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

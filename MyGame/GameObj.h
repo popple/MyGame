@@ -44,6 +44,7 @@ public:
     
     
     bool getIdle();
+    CCRect getRect();
     float getInstance();
     void setInstance(float value);
     

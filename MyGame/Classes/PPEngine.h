@@ -41,14 +41,16 @@ protected:
     CCSize screenSize;
     CCLayer *container;
     int remDis;
-    CCRect screenRect;
+    
     CCRect objectRect;
     //判断角色上下方向;
     bool roleDirect;
     //判断物件是否远离角色
     bool direct;
+    CCRect rect;
 public:
-    
+    CCRect screenRect;
+    float camOffsetX,camOffsetY;
     PPEngine()
     {
     };
@@ -92,8 +94,12 @@ public:
         
         m_mapData->name=root["name"].asString();
         m_mapData->desctript=root["descript"].asString();
-        m_mapData->width=root["width"].asInt();
-        m_mapData->height=root["height"].asInt();
+       
+        camOffsetX=atof(root["camOffsetX"].asString().c_str());
+        camOffsetY=atof(root["camOffsetY"].asString().c_str());
+        
+        camOffsetX=camOffsetX*screenRect.size.width;
+        camOffsetY=camOffsetY*screenRect.size.height;
         //m_mapData->items=new vector<PPitem>;
         JsonCPP::Value views=root["views"];
         JsonCPP::Value items=root["items"];
@@ -107,6 +113,7 @@ public:
         
         procces(true);
     }
+    
     void getTextures(JsonCPP::Value value)
     {
         int step;
@@ -182,10 +189,6 @@ public:
                 
                 pool->addGameObject(skelton.getKey(), obj);
             }
-           
-            
-            
-            
         }
         size=roleviews.size();
         for(step=0;step<size;step++)
@@ -263,6 +266,10 @@ public:
     
     void update(roleX x,roleY y,float &radius,bool &bingo,GameObj* cobj)
     {
+        rect.origin.x=x;
+        rect.origin.y=y;
+        rect.size.width=screenSize.width;
+        rect.size.height=screenSize.height;
         bingo=false;
         if(y-personY>0)
         {
@@ -413,29 +420,9 @@ private:
                         a=rand()%(stopX-startX)+startX;
                         getPosition(a,startY,px,py,item);
                     }
-                    //                //取上方横条
-                    //                for(a=startX;a<=stopX;a++)
-                    //                {
-                    //                    getPosition(a,stopY,&item);
-                    //                    //CCLog("%d___%d____%s_____坐标扫瞄",a,stopY,name.c_str());
-                    //
-                    //                }
-                    //取右边竖条
+
                     a=rand()%(stopY-startY)+startY;
                     getPosition(stopX,a,px,py,item);
-                    //                for(a=startY;a<stopY;a++)
-                    //                {
-                    //                    getPosition(stopX,a,&item);
-                    //                    //CCLog("%d___%d____%s_____坐标扫瞄",a,stopY,name.c_str());
-                    //                }
-                    //取下方横条
-                    
-                    
-                    //                for(a=startX;a<=stopX;a++)
-                    //                {
-                    //                    getPosition(a,startY,&item);
-                    //                    
-                    //                }
 
                 }
             }
