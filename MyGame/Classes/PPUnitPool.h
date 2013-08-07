@@ -48,23 +48,26 @@ public:
         
         //清除字典中已经死去的对象--------------.
        
-        GameObj*rv;
-        
-        
-
-        //CCLog("%f__%d",m/total,m);
+      
         it=(&m_map)->begin();
-        while(it!=(&m_map)->end())
+
+
+        for(;it!=(&m_map)->end();)
         {
-            rv=it->second;
-            if(rv->getIdle())
+            if((it->second)->getIdle())
+                
             {
-                (&m_map)->erase(it);
-                CCLog("删除对象");
+                //满足删除条件，删除当前结点，并指向下面一个结点
+                (&m_map)->erase(it++);
             }
-            it++;
+            else
+            {
+                //条件不满足，指向下面一个结点
+                it++;
+            }
         }
-        
+        //CCLog("%f__%d",m/total,m);
+                
         //寻找对象池中处于闲散状态的对象，并初始化输出。。
         map<TypeKey,vector<GameObj*> >::iterator itObj;
         itObj=objectMap.find(typeKey);

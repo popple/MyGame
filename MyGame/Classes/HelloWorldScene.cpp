@@ -89,8 +89,10 @@ void HelloWorld::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     mRole->setAnimation("fly",false);
     //mRole->timeScale=.5f;
     CCJump* jp=(CCJump*)mRole->getActionByTag(1000);
-    jp->initWithParam(abs(angle),dis,.98f,mRole->getPositionY());
-    jp->setAllowRot(0);
+    jp->power=dis;
+    jp->angle=angle;
+    jp->jump();
+    
     
 }
 void HelloWorld::timeOut(float d)
@@ -98,7 +100,7 @@ void HelloWorld::timeOut(float d)
     CCJump* jp=(CCJump*)mRole->getActionByTag(1000);
     if(jp)
     {
-        jp->setAllowRot(1);
+       
         tm->release();
         tm=NULL;
     }
@@ -159,12 +161,14 @@ bool HelloWorld::init()
     
     
     
-    CCJump* jp=CCJump::create(30, 20, .98f);
+    CCJump* jp=CCJump::create(.98f);
     jp->startWithTarget(mRole);
     jp->setTag(1000);
     mRole->runAction(jp);
     
- 
+    jp->angle=30;
+    jp->power=20;
+    jp->jump();
     //makeAction();
     return true;
 };
@@ -176,12 +180,14 @@ void HelloWorld::update(float dt)
     this->setPosition(CCPointMake(-mRole->getPositionX()+engine->camOffsetX,-mRole->getPositionY()+engine->camOffsetY));
 
     
-    engine->update(mRole->getPositionX(), mRole->getPositionY(), _angle,_bingo,_collistionObj);
-    if(_bingo)
+    engine->update(mRole->getPositionX(), mRole->getPositionY());
+    if(engine->re.isCollision)
     {
-        //CCJump *jp=(CCJump*)mRole->getActionByTag(1000);
-       // jp->setPower(_collistionObj->power);
-        
+        CCJump *jp=(CCJump*)mRole->getActionByTag(1000);
+        if(jp->power<0)jp->power=-jp->power;
+        jp->angle= engine->re.radius;
+        jp->jump();
+       // jp->power*=engine->re.target->power;
         //_collistionObj->Objectview->setActionManager(<#cocos2d::CCActionManager *actionManager#>)
     }
     

@@ -13,44 +13,39 @@ USING_NS_CC;
 class CC_DLL CCJump : public CCActionInterval
 {
 public:
+    float g;
+    float power;
+    int enableRotation;
+    float angle;
     /** initializes the action */
-    bool initWithParam(float angle, float power,float g=.98f,float yPosition=0,float decrease=.9f);
+    bool initWithParam(float g);
     
-    virtual CCObject* copyWithZone(CCZone* pZone);
+    
     virtual void startWithTarget(CCNode *pTarget);
     virtual void update(float time);
-    virtual CCActionInterval* reverse(void);
+    
     virtual bool isDone();
     virtual void step(float dt);
     void setListener(CCJumpListener* listener);
-    void setDecrease(float d);
-    void setAngle(float d);
-    void setPowerChange(float d);
-    void setPower(float d);
-    void setGravity(float d);
-    void reset();
-    void setAllowRot(int d);
-public:
+
+    
+    
+    void jump();
     /** creates the action */
-    static CCJump* create(float angle, float power,float g=.98f,float yPosition=0,float decrease=.9f);
-protected:
-    float mAngle;
-    float mPower;
-    float mG;
-    float mXPower;
-    float mYPower;
-    float mOrginY;
-    float mDecrease;
-    bool mChanged;
-    float mRotate;
-    float mRemT;
-    float deltaT;
-    CCJumpListener* mListener;
-    int allowRot;
-    float remX,rotate;
-    CCRotateBy* rotBy;
+    static CCJump* create(float g=.98f);
+
+
+    
 private:
+    float _xPower,_yPower;
     float _times;
     float _totalTime;
+    float _remYPosition;
+    float _remXPosition;
+    float _floorPosY;
+    float _remAngle;
+    bool _start;
+    int _direct;
+    CCJumpListener* _listener;
 };
 #endif

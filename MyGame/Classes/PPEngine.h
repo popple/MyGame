@@ -47,8 +47,9 @@ protected:
     bool roleDirect;
     //判断物件是否远离角色
     bool direct;
-    CCRect rect;
+    
 public:
+    Result re;
     CCRect screenRect;
     float camOffsetX,camOffsetY;
     PPEngine()
@@ -59,6 +60,8 @@ public:
     bool init()
     {
         screenSize=CCDirector::sharedDirector()->getWinSizeInPixels();
+        //screenRect.origin=CCPointMake(0, 0);
+        screenRect.size=screenSize;
         m_mapData=new PPMap;
         pool=PPUnitPool::create();
         pool->retain();
@@ -98,8 +101,8 @@ public:
         camOffsetX=atof(root["camOffsetX"].asString().c_str());
         camOffsetY=atof(root["camOffsetY"].asString().c_str());
         
-        camOffsetX=camOffsetX*screenRect.size.width;
-        camOffsetY=camOffsetY*screenRect.size.height;
+        camOffsetX=camOffsetX*screenSize.width;
+        camOffsetY=camOffsetY*screenSize.height;
         //m_mapData->items=new vector<PPitem>;
         JsonCPP::Value views=root["views"];
         JsonCPP::Value items=root["items"];
@@ -264,13 +267,13 @@ public:
         return view;
     }
     
-    void update(roleX x,roleY y,float &radius,bool &bingo,GameObj* cobj)
+    void update(roleX x,roleY y)
     {
-        rect.origin.x=x;
-        rect.origin.y=y;
-        rect.size.width=screenSize.width;
-        rect.size.height=screenSize.height;
-        bingo=false;
+        
+        screenRect.origin.x=x-camOffsetX;
+        screenRect.origin.y=y+camOffsetY;
+        
+        re.isCollision =false;
         if(y-personY>0)
         {
             roleDirect=true;
@@ -282,13 +285,9 @@ public:
         personX=x;
         personY=y;
         
-        screenRect.origin.x=x-CCDirector::sharedDirector()->getWinSize().width/2;
-        screenRect.origin.y=y+CCDirector::sharedDirector()->getWinSize().height/2;
-        screenRect.size=CCDirector::sharedDirector()->getWinSize();
-        //CCLog("开始装载地图");
+                //CCLog("开始装载地图");
         
-        CCObject* obj;
-        CCNode* object;
+       
         GameObj* role;
         map<string, GameObj*>&objContainer=pool->getMap();
         
@@ -312,13 +311,16 @@ public:
             //如果目标正在远离角色，且大于一定范围则释放对象。
             direct=dis-role->getInstance() >0;
             //CCSize scz=role->getContentSize();
-            if(dis>1000)
+            
+            bool hasInRect=screenRect.intersectsRect(role->getRect());
+            
+            if(direct&&dis>1000)
             {
                 role->setIdle(true);
                 
                 //role->setVisible(false);
                 
-                CCLog("物体被释放");
+               // CCLog("物体被释放");
             }
             role->setInstance(dis);
             
@@ -328,20 +330,25 @@ public:
             if(dis<role->collision&&role->isInteractive==true)
             {
                 //命中目标
-                bingo=true;
-                cobj=role;
-                radius=(x-role->getPositionX())/role->collision*90*3.14/180;
+                re.isCollision=true;
+                re.target=role;
+                
+                float scale=(role->Objectview->getPositionX()-x)/role->collision;
+                if(scale<0)scale=-scale;
+                float radius=scale*90;
                 if(radius<0)radius=-radius;
+                
+                re.radius=radius;
                 CCLog("碰撞角度%f___%d",radius,role->getTag());
                 role->play("idle", true);
-                //role->setVisible(false);
-               // CCLog("物体被命中");
+                role->isInteractive=false;
             }
            //-----------------从这里继续开始....
             it++;
         }
        // procces(true);
         procces();
+        
     };
     CREATE_FUNC(PPEngine);
 protected:
@@ -350,7 +357,7 @@ private:
     
     void procces(bool init=false)
     {
-        CCLog("role direct%b",roleDirect);
+        //CCLog("role direct%b",roleDirect);
         int a,b;
         int n,len=m_mapData->items.size();
         //PPitem item=m_mapData->items;

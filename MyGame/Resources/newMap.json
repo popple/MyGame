@@ -49,7 +49,7 @@
       "anchorY": "0",
       "logic": {
         "collision": 100,
-        "power": "0.8",
+        "power": ".8",
         "isInteractive": true
       },
       "layout": {

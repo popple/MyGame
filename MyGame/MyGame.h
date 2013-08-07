@@ -8,12 +8,18 @@
 
 #ifndef MyGame_MyGame_h
 #define MyGame_MyGame_h
-
+class GameObj;
 enum EViewType
 {
     IMAGE=0,
     SKELTON,
     ROLEVIEW
+};
+struct Result
+{
+    bool isCollision;
+    float radius;
+    GameObj* target;
 };
 struct TypeKey
 {

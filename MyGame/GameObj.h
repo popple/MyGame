@@ -41,7 +41,7 @@ public:
     int getType();
     void setType(EViewType value);
     void setIdle(bool value);
-    
+    bool delRole(GameObj*rv);
     
     bool getIdle();
     CCRect getRect();
@@ -62,6 +62,7 @@ protected:
     bool mIdle;
     
     bool mInteractive;
+    
     EViewType mType;
 private:
     float _instance;
