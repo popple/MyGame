@@ -91,6 +91,7 @@ void HelloWorld::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     CCJump* jp=(CCJump*)mRole->getActionByTag(1000);
     jp->power=dis;
     jp->angle=angle;
+    jp->enableRotation=0;
     jp->jump();
     
     
@@ -132,6 +133,8 @@ bool HelloWorld::init()
     
     
     mRole->setAnimation("idle",true);
+    
+    mRole->setMix("fly", "rotation",.5f);
     //mRole->set
     mRole->timeScale=1.5f;
     mRole->setTag(1000);
@@ -156,7 +159,8 @@ bool HelloWorld::init()
     
     this->schedule(schedule_selector(HelloWorld::update), 60/1000);
     
-       
+    
+    //mRole->schedule(schedule_selector(HelloWorld::watchRole), 60/1000);
     //CCDirector::sharedDirector()->getScheduler()->setTimeScale(.2f);
     
     
@@ -175,7 +179,18 @@ bool HelloWorld::init()
 
 void HelloWorld::update(float dt)
 {
-    
+    float t=mRole->states[0]->time;
+    float s=mRole->states[0]->animation->duration;
+    string name=mRole->states[0]->animation->name;
+    if(t>=s&&strcmp(name.c_str(), "fly")==0)
+    {
+        CCLog("动作播放完毕%s",name.c_str());
+        CCJump*jp=(CCJump*)mRole->getActionByTag(1000);
+        mRole->setAnimation("rotation",false);
+        jp->enableRotation=1;
+        //_listener->onPlayEvent(mSkeletonRole, name);
+    }
+
     
     this->setPosition(CCPointMake(-mRole->getPositionX()+engine->camOffsetX,-mRole->getPositionY()+engine->camOffsetY));
 
@@ -187,8 +202,9 @@ void HelloWorld::update(float dt)
         if(jp->power<0)jp->power=-jp->power;
         jp->angle= engine->re.radius;
         jp->jump();
+        (engine->re.target)->play("jump",true);
        // jp->power*=engine->re.target->power;
-        //_collistionObj->Objectview->setActionManager(<#cocos2d::CCActionManager *actionManager#>)
+        //_collistionObj->Objectview->setActionManager(cocos2d::CCActionManager *actionManager)
     }
     
 };

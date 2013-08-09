@@ -45,7 +45,7 @@ public:
     void check(CCNode*sender,void*data);
 	void update(float dt);
     void timeOut(float d);
-    
+    void watchRole(float d);
     HelloWorld();
     ~HelloWorld();
     

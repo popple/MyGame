@@ -2,7 +2,7 @@
   "name": "新地图",
   "descript": "这是新大陆",
   "camOffsetX": ".5",
-  "camOffsetY": ".3",
+  "camOffsetY": ".5",
   "textures": [
     {
       "path": "items.plist",
@@ -78,6 +78,29 @@
         "condition": "1=1",
         "width": "359",
         "height": "146",
+        "depth": "2",
+        "verticleZ": "1"
+      }
+    }
+  ],
+  "initItems": [
+    {
+      "width": 113,
+      "height": 251,
+      "name": "SpineBoy",
+      "isGround": true,
+      "anchorX": ".5",
+      "anchorY": "0",
+      "logic": {
+        "collision": 100,
+        "power": ".8",
+        "isInteractive": true
+      },
+      "layout": {
+        "rule": "x1==0&&x0%5==0",
+        "condition": "1=1",
+        "width": "113",
+        "height": "251",
         "depth": "2",
         "verticleZ": "1"
       }

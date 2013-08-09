@@ -14,6 +14,7 @@
 #include "RoleView.h"
 #include "spine-cocos2dx.h"
 #include "MyGame.h"
+#include "AnimationEventListener.h"
 USING_NS_CC;
 using namespace spine;
 using namespace std;
@@ -43,26 +44,31 @@ public:
     void setIdle(bool value);
     bool delRole(GameObj*rv);
     
+    
     bool getIdle();
     CCRect getRect();
     float getInstance();
     void setInstance(float value);
     
-    
-    
+    void setLabel(string value);
+    virtual void update(float d);
+    void addEventListener(AnimationEventListener* listener);
     bool init();
 protected:
     CCSprite* mSprite;
     CCRoleView* mRole;
     CCSkeletonAnimation* mSkeletonRole;
     
+    AnimationEventListener* _listener;
+    
+    CCScheduler*sc;
     CCSpriteFrame* mSpriteData;
     CCDictionary* mRoleViewData;
     string mSkeltonName;
     bool mIdle;
     
     bool mInteractive;
-    
+    CCLabelTTF* label;
     EViewType mType;
 private:
     float _instance;

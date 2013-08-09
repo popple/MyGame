@@ -47,6 +47,7 @@ bool CCJump::initWithParam(float g)
 {
     _times=0;
     _totalTime=0;
+    enableRotation=0;
     this->g=g;
     CCActionInterval::initWithDuration(10);
     return true;
@@ -85,7 +86,7 @@ void CCJump::update(float t)
     float ty=_yPower*t-g*t*t/2+_remYPosition;
     float tx=_xPower*.8*t+_remXPosition;
     
-    //m_pTarget->setRotation(t*3*enableRotation+_remAngle);
+    m_pTarget->setRotation(t*(90-angle)*abs(power)*.008*enableRotation+_remAngle);
     m_pTarget->setPosition(tx, ty);
     if(m_pTarget->getPositionY()<=_floorPosY&&_start)
     {

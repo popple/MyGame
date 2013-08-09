@@ -134,6 +134,7 @@ struct PPMap
     
     PPViews views;
     vector<PPitem> items;
+    vector<PPitem> initItems;
     vector<PPitem>  background;
 };
 

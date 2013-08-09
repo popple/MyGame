@@ -106,15 +106,16 @@ public:
         //m_mapData->items=new vector<PPitem>;
         JsonCPP::Value views=root["views"];
         JsonCPP::Value items=root["items"];
+        JsonCPP::Value initItems=root["initItems"];
         JsonCPP::Value backgrounds=root["background"];
         JsonCPP::Value textures=root["textures"];
         
         getTextures(textures);
         m_mapData->views=getViews(views);
         m_mapData->items=getItems(items);
+        m_mapData->initItems=getItems(initItems);
         
-        
-        procces(true);
+        preProcces();
     }
     
     void getTextures(JsonCPP::Value value)
@@ -312,15 +313,15 @@ public:
             direct=dis-role->getInstance() >0;
             //CCSize scz=role->getContentSize();
             
-            bool hasInRect=screenRect.intersectsRect(role->getRect());
+           // bool hasInRect=screenRect.intersectsRect(role->getRect());
             
             if(direct&&dis>1000)
             {
                 role->setIdle(true);
-                
+                role->Objectview->setVisible(false);
                 //role->setVisible(false);
                 
-               // CCLog("物体被释放");
+                //CCLog("物体被释放");
             }
             role->setInstance(dis);
             
@@ -339,8 +340,8 @@ public:
                 if(radius<0)radius=-radius;
                 
                 re.radius=radius;
-                CCLog("碰撞角度%f___%d",radius,role->getTag());
-                role->play("idle", true);
+                //CCLog("碰撞角度%f___%d",radius,role->getTag());
+                
                 role->isInteractive=false;
             }
            //-----------------从这里继续开始....
@@ -348,18 +349,87 @@ public:
         }
        // procces(true);
         procces();
-        
+       // CCLog("回合结束...");
     };
     CREATE_FUNC(PPEngine);
 protected:
     PPUnitPool* pool;
 private:
     
-    void procces(bool init=false)
+    void procces()
+    {
+        //CCLog("role direct%b",roleDirect);
+        int a;
+        int n,len=m_mapData->items.size();
+        //PPitem item=m_mapData->items;
+        
+        //map<string, PPViewProto>::iterator it;
+        for(n=0;n<len;n++)
+        {
+            PPitem &item=m_mapData->items[n];
+            
+            int w=item.width;
+            int h=item.height;
+            
+            //        string type=layer.type;
+            //        string name=layer.name;
+            //取得目标所在坐标映射空间
+            int px=int(personX/w);
+            int py=int(personY/h);
+            
+            //取得最大屏幕覆盖区域
+            int saveX=ceil((screenSize.width/2+item.layout.width)/w);
+            
+            int saveBottomY=ceil((camOffsetY+item.layout.height)/h);
+            int saveUpY=ceil((screenSize.height-camOffsetY+item.layout.height)/h);
+            
+            int startX=px-saveX;
+            int startY=py-saveBottomY;
+            
+            int stopX=px+saveX;
+            int stopY=py+saveUpY;
+
+            
+            if(item.isGround)
+            {
+                for(a=startY;a<stopY;a++)
+                {
+                    getPosition(stopX,a,px,py,item);
+                    //CCLog("%d___%d____%s_____坐标扫瞄",a,stopY,name.c_str());
+                }
+                for(a=startX;a<=stopX;a++)
+                {
+                    getPosition(a,startY,px,py,item);
+                    
+                }
+                
+            }
+            else
+            {
+                if(roleDirect)
+                {
+                    a=rand()%(stopX-startX)+startX;
+                    getPosition(a,stopY,px,py,item);
+                }
+                else
+                {
+                    a=rand()%(stopX-startX)+startX;
+                    getPosition(a,startY,px,py,item);
+                }
+                
+                a=rand()%(stopY-startY)+startY;
+                getPosition(stopX,a,px,py,item);
+                
+            }
+        }
+    };
+    
+    
+    void preProcces()
     {
         //CCLog("role direct%b",roleDirect);
         int a,b;
-        int n,len=m_mapData->items.size();
+        int n,len=m_mapData->initItems.size();
         //PPitem item=m_mapData->items;
         
         //map<string, PPViewProto>::iterator it;
@@ -385,63 +455,25 @@ private:
             
             int stopX=px+saveX;
             int stopY=py+saveY;
-
-            
-           
-            if(init)
+            for (a=startX; a<=stopX;a++)
             {
-                for (a=startX; a<=stopX;a++)
+                for(b=startY;b<=stopY;b++)
                 {
-                    for(b=startY;b<=stopY;b++)
-                    {
-                        getPosition(a,b,px,py,item);
-                        //CCLOG("%d__%d",a,b);
-                    }
-                }
-            }
-            else 
-            {
-                if(item.isGround)
-                {
-                    for(a=startY;a<stopY;a++)
-                    {
-                        getPosition(stopX,a,px,py,item);
-                        //CCLog("%d___%d____%s_____坐标扫瞄",a,stopY,name.c_str());
-                    }
-                    for(a=startX;a<=stopX;a++)
-                    {
-                        getPosition(a,startY,px,py,item);
-    
-                    }
-                    
-                }
-                else
-                {
-                    if(roleDirect)
-                    {
-                        a=rand()%(stopX-startX)+startX;
-                        getPosition(a,stopY,px,py,item);
-                    }
-                    else
-                    {
-                        a=rand()%(stopX-startX)+startX;
-                        getPosition(a,startY,px,py,item);
-                    }
-
-                    a=rand()%(stopY-startY)+startY;
-                    getPosition(stopX,a,px,py,item);
-
+                    getPosition(a,b,px,py,item);
+                    //CCLOG("%d__%d",a,b);
                 }
             }
         }
     };
+    
+    
     void getPosition(int x,int y,int bx,int by,PPitem& item)
     {
 
         Token result;
 
         
-        string key=CCString::createWithFormat("%d_%d_%d_%d",x,y,bx,by)->getCString();
+        string key=CCString::createWithFormat("%d_%d_%d_%d",x,y,item.width,item.height)->getCString();
         
       
        
@@ -455,11 +487,14 @@ private:
                 {
                     container->addChild(obj->Objectview);
                 }
-               
+                obj->Objectview->setVisible(true);
                 obj->Objectview->setPosition(ccp(x*item.width, y*item.height));
                 obj->collision=item.logic.collision;
                 obj->isInteractive=item.logic.isInteractive;
                 obj->power=item.logic.power;
+                obj->play("idle", true);
+                obj->setLabel(key);
+              //  CCLog("%s is born..",key.c_str());
             }
             
                        

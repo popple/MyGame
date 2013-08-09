@@ -289,6 +289,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B13E2F4E17B4E64E000EE006 /* AnimationEventListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationEventListener.h; sourceTree = "<group>"; };
 		B19091A6177458490046DE38 /* lizi1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = lizi1.plist; path = Resources/lizi1.plist; sourceTree = "<group>"; };
 		B19091A8177474210046DE38 /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = white.png; path = Resources/white.png; sourceTree = "<group>"; };
 		B195B92A17844516006DD2F9 /* GameObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameObj.h; sourceTree = "<group>"; };
@@ -1900,6 +1901,7 @@
 				B195B92A17844516006DD2F9 /* GameObj.h */,
 				B195B92B17844BDC006DD2F9 /* GameObj.cpp */,
 				B1EA95DA178FFC44002092BF /* MyGame.h */,
+				B13E2F4E17B4E64E000EE006 /* AnimationEventListener.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";

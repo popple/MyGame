@@ -108,12 +108,34 @@ bool GameObj::init()
             width=mSkeletonRole->getContentSize().width;
             height=mSkeletonRole->getContentSize().height;
             
+            
+            
+            
             Objectview=mSkeletonRole;
             break;
         }
     }
     Objectview->retain();
+    label=CCLabelTTF::create();
+    Objectview->addChild(label);
+    
+    sc= CCDirector::sharedDirector()->getScheduler();
+    //sc->schedule(schedule_selector(GameObj::update), 60/1000);
     return true;
+}
+void GameObj::update(float d)
+{
+    if(mType==SKELTON)
+    {
+        float t=mSkeletonRole->states[0]->time;
+        float d=mSkeletonRole->states[0]->animation->duration;
+        string name=mSkeletonRole->states[0]->animation->name;
+        if(t>=d)
+        {
+            //CCLog("动作播放完毕%s",name.c_str());
+           // _listener->onPlayEvent(mSkeletonRole, name);
+        }
+    }
 }
 GameObj::GameObj(string fname):mSpriteData(NULL),mSkeletonRole(NULL),mSprite(NULL),mIdle(true)
 {
@@ -125,6 +147,12 @@ GameObj::GameObj(string fname):mSpriteData(NULL),mSkeletonRole(NULL),mSprite(NUL
        
 }
 
+
+
+void GameObj::addEventListener(AnimationEventListener*listener)
+{
+    _listener=listener;
+}
 GameObj* GameObj::create(CCSpriteFrame* frame)
 {
     CCAssert(frame!=NULL, "无效的CCSpriteFrame");
@@ -160,7 +188,10 @@ GameObj* GameObj::create(string fname)
     return NULL;
 
 }
-
+void GameObj::setLabel(string value)
+{
+    label->setString(value.c_str());
+}
 void GameObj::setIdle(bool value)
 {
     mIdle=value;
@@ -168,7 +199,13 @@ void GameObj::setIdle(bool value)
 }
 void GameObj::play(string name,bool repeat)
 {
-    
+    if(mType==SKELTON)
+    {
+        mSkeletonRole->setAnimation(name.c_str(), repeat);
+        
+       // sc->unscheduleAllForTarget(this);
+       // sc->scheduleSelector(schedule_selector(GameObj::update), this, .5, false);
+    }
 }
 void GameObj::gotoAndStop(int frame)
 {

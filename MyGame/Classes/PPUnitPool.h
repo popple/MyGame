@@ -42,6 +42,7 @@ public:
         it=(&m_map)->find(key);
         if(it!=(&m_map)->end())
         {
+            //CCLog("请求key:%s存在",key.c_str());
             return NULL;
         }
         
@@ -85,7 +86,7 @@ public:
                 (&m_map)->insert(make_pair(key,tmp));
                 
                 tmp->setIdle(false);
-                
+                //CCLog("返回key%s",key.c_str());
                 return tmp;
             }
             //CCLog("%s",typeKey.name.c_str());
