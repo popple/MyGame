@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B18E136F17B8FF93008BF041 /* MovieEndAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B18E136E17B8FF92008BF041 /* MovieEndAction.cpp */; };
 		B19091A71774584A0046DE38 /* lizi1.plist in Resources */ = {isa = PBXBuildFile; fileRef = B19091A6177458490046DE38 /* lizi1.plist */; };
 		B19091A9177474220046DE38 /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = B19091A8177474210046DE38 /* white.png */; };
 		B195B92C17844BDC006DD2F9 /* GameObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B195B92B17844BDC006DD2F9 /* GameObj.cpp */; };
@@ -290,6 +291,8 @@
 
 /* Begin PBXFileReference section */
 		B13E2F4E17B4E64E000EE006 /* AnimationEventListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationEventListener.h; sourceTree = "<group>"; };
+		B18E136D17B8D24F008BF041 /* MovieEndAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieEndAction.h; sourceTree = "<group>"; };
+		B18E136E17B8FF92008BF041 /* MovieEndAction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MovieEndAction.cpp; sourceTree = "<group>"; };
 		B19091A6177458490046DE38 /* lizi1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = lizi1.plist; path = Resources/lizi1.plist; sourceTree = "<group>"; };
 		B19091A8177474210046DE38 /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = white.png; path = Resources/white.png; sourceTree = "<group>"; };
 		B195B92A17844516006DD2F9 /* GameObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameObj.h; sourceTree = "<group>"; };
@@ -1902,6 +1905,8 @@
 				B195B92B17844BDC006DD2F9 /* GameObj.cpp */,
 				B1EA95DA178FFC44002092BF /* MyGame.h */,
 				B13E2F4E17B4E64E000EE006 /* AnimationEventListener.h */,
+				B18E136D17B8D24F008BF041 /* MovieEndAction.h */,
+				B18E136E17B8FF92008BF041 /* MovieEndAction.cpp */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -2399,6 +2404,7 @@
 				B1EDE65717815A9600B1202C /* CCJump.cpp in Sources */,
 				B195B92C17844BDC006DD2F9 /* GameObj.cpp in Sources */,
 				B1F3B28317A76B0C005745F7 /* ExampleSpine.cpp in Sources */,
+				B18E136F17B8FF93008BF041 /* MovieEndAction.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,6 +18,7 @@ USING_NS_CC;
 #include "SpringObject.h"
 #include "CCJump.h"
 #include "CCSkeletonAnimation.h"
+#include "MovieEndAction.h"
 using namespace spine;
 
 
@@ -79,7 +80,7 @@ void HelloWorld::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     _nowPoint=pTouch->getLocation();
     float tpx=_nowPoint.x-_lastPoint.x;
     float tpy=_nowPoint.y-_lastPoint.y;
-    float dis=ccpDistance(_lastPoint,_nowPoint);
+    float dis=ccpDistance(_lastPoint,_nowPoint)*.5;
     int angle=int(atan2f(tpy, tpx)*180/3.14);
     //反作用力
     if(tpy<0)dis=-dis;
@@ -134,7 +135,9 @@ bool HelloWorld::init()
     
     mRole->setAnimation("idle",true);
     
-    mRole->setMix("fly", "rotation",.5f);
+    mRole->setMix("idle", "fly",.1f);
+    mRole->setMix("fly", "rotation",.1f);
+    mRole->setMix("rotation", "fly",.1f);
     //mRole->set
     mRole->timeScale=1.5f;
     mRole->setTag(1000);
@@ -159,7 +162,7 @@ bool HelloWorld::init()
     
     this->schedule(schedule_selector(HelloWorld::update), 60/1000);
     
-    
+    //this->runAction(CCSequence::create(MovieEndAction::create("idle"),CCCallFuncN::create(mRole, SEL_CallFuncN(HelloWorld::movieEnd) )));
     //mRole->schedule(schedule_selector(HelloWorld::watchRole), 60/1000);
     //CCDirector::sharedDirector()->getScheduler()->setTimeScale(.2f);
     
@@ -202,8 +205,8 @@ void HelloWorld::update(float dt)
         if(jp->power<0)jp->power=-jp->power;
         jp->angle= engine->re.radius;
         jp->jump();
-        (engine->re.target)->play("jump",true);
-       // jp->power*=engine->re.target->power;
+        (engine->re.target)->play("jump",false);
+        jp->power*=engine->re.target->power;
         //_collistionObj->Objectview->setActionManager(cocos2d::CCActionManager *actionManager)
     }
     

@@ -37,7 +37,7 @@ void CCJump::step(float dt)
     }
     else
     {
-        m_elapsed += dt*10;
+        m_elapsed += dt*20;
     }
     this->update(m_elapsed);
      
@@ -66,7 +66,7 @@ void CCJump::jump()
     float jd=angle*3.14/180;
     _xPower=abs(power)*cos(jd);
     _yPower=abs(power*sin(jd))*_direct;
-    power*=.8;
+    power*=.95;
 }
 
 void CCJump::startWithTarget(CCNode *pTarget)

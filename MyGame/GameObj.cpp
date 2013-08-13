@@ -109,8 +109,8 @@ bool GameObj::init()
             height=mSkeletonRole->getContentSize().height;
             
             
-            
-            
+            mSkeletonRole->setMix("jump","idle", .5f);
+            mSkeletonRole->setMix("idle","jump", .5f);
             Objectview=mSkeletonRole;
             break;
         }
@@ -201,6 +201,7 @@ void GameObj::play(string name,bool repeat)
 {
     if(mType==SKELTON)
     {
+        
         mSkeletonRole->setAnimation(name.c_str(), repeat);
         
        // sc->unscheduleAllForTarget(this);
