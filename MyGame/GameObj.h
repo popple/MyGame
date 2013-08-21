@@ -52,14 +52,14 @@ public:
     
     void setLabel(string value);
     virtual void update(float d);
-    void addEventListener(AnimationEventListener* listener);
+    void addEventListener(CCObject* target,SEL_CallFuncN handle);
     bool init();
 protected:
     CCSprite* mSprite;
     CCRoleView* mRole;
     CCSkeletonAnimation* mSkeletonRole;
     
-    AnimationEventListener* _listener;
+    SEL_CallFuncN  _listener;
     
     CCScheduler*sc;
     CCSpriteFrame* mSpriteData;
@@ -72,6 +72,7 @@ protected:
     EViewType mType;
 private:
     float _instance;
+    CCObject*_target;
 };
 
 #endif

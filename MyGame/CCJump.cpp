@@ -82,6 +82,9 @@ bool CCJump::isDone()
 void CCJump::update(float t)
 {
    // CCLog("%f",t);
+    
+    
+    
 
     float ty=_yPower*t-g*t*t/2+_remYPosition;
     float tx=_xPower*.8*t+_remXPosition;

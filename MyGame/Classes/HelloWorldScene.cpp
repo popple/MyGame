@@ -179,7 +179,10 @@ bool HelloWorld::init()
     //makeAction();
     return true;
 };
-
+void HelloWorld::onMovieEnd(cocos2d::CCNode *target)
+{
+    CCLog("get");
+}
 void HelloWorld::update(float dt)
 {
     float t=mRole->states[0]->time;
@@ -206,8 +209,10 @@ void HelloWorld::update(float dt)
         jp->angle= engine->re.radius;
         jp->jump();
         (engine->re.target)->play("jump",false);
+        engine->re.target->addEventListener(this,callfuncN_selector(HelloWorld::onMovieEnd));
         jp->power*=engine->re.target->power;
         //_collistionObj->Objectview->setActionManager(cocos2d::CCActionManager *actionManager)
+        //CCCallFuncN::create(this,ca)
     }
     
 };

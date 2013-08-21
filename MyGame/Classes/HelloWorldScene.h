@@ -49,6 +49,7 @@ public:
     HelloWorld();
     ~HelloWorld();
     
+    void onMovieEnd(CCNode* target);
     void belongScene(CCScene* scene);
     // implement the "static node()" method manually
     CREATE_FUNC(HelloWorld);

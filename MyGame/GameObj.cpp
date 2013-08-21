@@ -130,10 +130,12 @@ void GameObj::update(float d)
         float t=mSkeletonRole->states[0]->time;
         float d=mSkeletonRole->states[0]->animation->duration;
         string name=mSkeletonRole->states[0]->animation->name;
-        if(t>=d)
+        if(t>=d&&_target&&_listener)
         {
             //CCLog("动作播放完毕%s",name.c_str());
            // _listener->onPlayEvent(mSkeletonRole, name);
+            (_target->*_listener)(this);
+            sc->unscheduleAllForTarget(this);
         }
     }
 }
@@ -149,9 +151,12 @@ GameObj::GameObj(string fname):mSpriteData(NULL),mSkeletonRole(NULL),mSprite(NUL
 
 
 
-void GameObj::addEventListener(AnimationEventListener*listener)
+void GameObj::addEventListener(CCObject *target,SEL_CallFuncN listener)
 {
+    _target=target;
     _listener=listener;
+    sc->scheduleSelector(schedule_selector(GameObj::update), this, .5, false);
+    //*_listener(this);
 }
 GameObj* GameObj::create(CCSpriteFrame* frame)
 {
@@ -205,7 +210,7 @@ void GameObj::play(string name,bool repeat)
         mSkeletonRole->setAnimation(name.c_str(), repeat);
         
        // sc->unscheduleAllForTarget(this);
-       // sc->scheduleSelector(schedule_selector(GameObj::update), this, .5, false);
+       
     }
 }
 void GameObj::gotoAndStop(int frame)

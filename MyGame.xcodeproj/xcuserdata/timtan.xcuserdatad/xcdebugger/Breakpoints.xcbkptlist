@@ -576,11 +576,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/GameObj.cpp"
-         timestampString = "397750071.805729"
+         timestampString = "398761443.881113"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "172"
-         endingLineNumber = "172"
+         startingLineNumber = "177"
+         endingLineNumber = "177"
          landmarkName = "GameObj::create(CCDictionary*data)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -589,11 +589,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/GameObj.cpp"
-         timestampString = "397750071.805729"
+         timestampString = "398761443.881113"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "173"
-         endingLineNumber = "173"
+         startingLineNumber = "178"
+         endingLineNumber = "178"
          landmarkName = "GameObj::create(CCDictionary*data)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -628,11 +628,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/GameObj.cpp"
-         timestampString = "397750071.805729"
+         timestampString = "398761443.881113"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "160"
-         endingLineNumber = "160"
+         startingLineNumber = "165"
+         endingLineNumber = "165"
          landmarkName = "GameObj::create(CCSpriteFrame* frame)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -810,11 +810,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/GameObj.cpp"
-         timestampString = "397750071.805729"
+         timestampString = "398761443.881113"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "184"
-         endingLineNumber = "184"
+         startingLineNumber = "189"
+         endingLineNumber = "189"
          landmarkName = "GameObj::create(string fname)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -823,11 +823,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/GameObj.cpp"
-         timestampString = "397750071.805729"
+         timestampString = "398761443.881113"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "185"
-         endingLineNumber = "185"
+         startingLineNumber = "190"
+         endingLineNumber = "190"
          landmarkName = "GameObj::create(string fname)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1081,11 +1081,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/Classes/HelloWorldScene.cpp"
-         timestampString = "398086714.315275"
+         timestampString = "398760376.512034"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "199"
-         endingLineNumber = "199"
+         startingLineNumber = "202"
+         endingLineNumber = "202"
          landmarkName = "HelloWorld::update(float dt)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1146,11 +1146,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/Classes/HelloWorldScene.cpp"
-         timestampString = "398086714.315275"
+         timestampString = "398760376.512034"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "204"
-         endingLineNumber = "204"
+         startingLineNumber = "207"
+         endingLineNumber = "207"
          landmarkName = "HelloWorld::update(float dt)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1172,11 +1172,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/Classes/HelloWorldScene.cpp"
-         timestampString = "398086714.315275"
+         timestampString = "398760376.512034"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "201"
-         endingLineNumber = "201"
+         startingLineNumber = "204"
+         endingLineNumber = "204"
          landmarkName = "HelloWorld::update(float dt)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1185,11 +1185,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/CCJump.cpp"
-         timestampString = "397750071.805729"
+         timestampString = "398760376.512034"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "86"
-         endingLineNumber = "86"
+         startingLineNumber = "89"
+         endingLineNumber = "89"
          landmarkName = "CCJump::update(float t)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1224,11 +1224,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/CCJump.cpp"
-         timestampString = "397750071.805729"
+         timestampString = "398760376.512034"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "87"
-         endingLineNumber = "87"
+         startingLineNumber = "90"
+         endingLineNumber = "90"
          landmarkName = "CCJump::update(float t)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1237,11 +1237,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/CCJump.cpp"
-         timestampString = "397750071.805729"
+         timestampString = "398760376.512034"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "95"
-         endingLineNumber = "95"
+         startingLineNumber = "98"
+         endingLineNumber = "98"
          landmarkName = "CCJump::update(float t)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1263,11 +1263,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/CCJump.cpp"
-         timestampString = "397750071.805729"
+         timestampString = "398760376.512034"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "90"
-         endingLineNumber = "90"
+         startingLineNumber = "93"
+         endingLineNumber = "93"
          landmarkName = "CCJump::update(float t)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1276,11 +1276,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/Classes/HelloWorldScene.cpp"
-         timestampString = "398086714.315275"
+         timestampString = "398760376.512034"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "206"
-         endingLineNumber = "206"
+         startingLineNumber = "209"
+         endingLineNumber = "209"
          landmarkName = "HelloWorld::update(float dt)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1289,11 +1289,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/Classes/HelloWorldScene.cpp"
-         timestampString = "398086714.315275"
+         timestampString = "398760376.512034"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "211"
-         endingLineNumber = "211"
+         startingLineNumber = "216"
+         endingLineNumber = "216"
          landmarkName = "HelloWorld::update(float dt)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1302,11 +1302,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/Classes/HelloWorldScene.cpp"
-         timestampString = "398086714.315275"
+         timestampString = "398760376.512034"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "207"
-         endingLineNumber = "207"
+         startingLineNumber = "210"
+         endingLineNumber = "210"
          landmarkName = "HelloWorld::update(float dt)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1354,12 +1354,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/GameObj.cpp"
-         timestampString = "397750071.805729"
+         timestampString = "398761443.881113"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "154"
-         endingLineNumber = "154"
-         landmarkName = "GameObj::addEventListener(AnimationEventListener*listener)"
+         startingLineNumber = "157"
+         endingLineNumber = "157"
+         landmarkName = "GameObj::addEventListener(CCObject *target,SEL_CallFuncN listener)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -1393,12 +1393,64 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MyGame/GameObj.cpp"
-         timestampString = "398086396.918587"
+         timestampString = "398761443.881113"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "205"
-         endingLineNumber = "205"
+         startingLineNumber = "210"
+         endingLineNumber = "210"
          landmarkName = "GameObj::play(string name,bool repeat)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "MyGame/Classes/HelloWorldScene.cpp"
+         timestampString = "398743808.770112"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "212"
+         endingLineNumber = "212"
+         landmarkName = "HelloWorld::update(float dt)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "MyGame/GameObj.cpp"
+         timestampString = "398761443.881113"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "159"
+         endingLineNumber = "159"
+         landmarkName = "GameObj::addEventListener(CCObject *target,SEL_CallFuncN listener)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "MyGame/GameObj.cpp"
+         timestampString = "398761443.881113"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "137"
+         endingLineNumber = "137"
+         landmarkName = "GameObj::update(float d)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "MyGame/Classes/HelloWorldScene.cpp"
+         timestampString = "398761187.576393"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "213"
+         endingLineNumber = "213"
+         landmarkName = "HelloWorld::update(float dt)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
