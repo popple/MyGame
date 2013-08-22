@@ -138,6 +138,9 @@ bool HelloWorld::init()
     mRole->setMix("idle", "fly",.1f);
     mRole->setMix("fly", "rotation",.1f);
     mRole->setMix("rotation", "fly",.1f);
+    
+    mRole->setMix("idle", "beHit",.1f);
+     mRole->setMix("beHit", "idle",.1f);
     //mRole->set
     mRole->timeScale=1.5f;
     mRole->setTag(1000);
@@ -182,6 +185,14 @@ bool HelloWorld::init()
 void HelloWorld::onMovieEnd(cocos2d::CCNode *target)
 {
     CCLog("get");
+    CCSkeletonAnimation *mov= (CCSkeletonAnimation*)((GameObj*)target)->Objectview;
+    string name=mov->states[0]->animation->name;
+    
+    if(strcmp(name.c_str(), "beHit")==0)
+    {
+        mov->setAnimation("idle", true);
+    }
+    target->unscheduleAllSelectors();
 }
 void HelloWorld::update(float dt)
 {
@@ -208,7 +219,7 @@ void HelloWorld::update(float dt)
         if(jp->power<0)jp->power=-jp->power;
         jp->angle= engine->re.radius;
         jp->jump();
-        (engine->re.target)->play("jump",false);
+        (engine->re.target)->play("beHit",false);
         engine->re.target->addEventListener(this,callfuncN_selector(HelloWorld::onMovieEnd));
         jp->power*=engine->re.target->power;
         //_collistionObj->Objectview->setActionManager(cocos2d::CCActionManager *actionManager)

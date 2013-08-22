@@ -111,6 +111,11 @@ bool GameObj::init()
             
             mSkeletonRole->setMix("jump","idle", .5f);
             mSkeletonRole->setMix("idle","jump", .5f);
+            
+            mSkeletonRole->setMix("idle","beHit", .1f);
+            mSkeletonRole->setMix("beHit","idle", .5f);
+            
+            mSkeletonRole->setScaleX(-1);
             Objectview=mSkeletonRole;
             break;
         }
@@ -135,7 +140,7 @@ void GameObj::update(float d)
             //CCLog("动作播放完毕%s",name.c_str());
            // _listener->onPlayEvent(mSkeletonRole, name);
             (_target->*_listener)(this);
-            sc->unscheduleAllForTarget(this);
+           
         }
     }
 }
@@ -155,6 +160,7 @@ void GameObj::addEventListener(CCObject *target,SEL_CallFuncN listener)
 {
     _target=target;
     _listener=listener;
+    sc->unscheduleAllForTarget(this);
     sc->scheduleSelector(schedule_selector(GameObj::update), this, .5, false);
     //*_listener(this);
 }

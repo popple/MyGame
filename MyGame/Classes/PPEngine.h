@@ -392,7 +392,7 @@ private:
             
             if(item.isGround)
             {
-                for(a=startY;a<stopY;a++)
+                for(a=startY;a<=stopY;a++)
                 {
                     getPosition(stopX,a,px,py,item);
                     //CCLog("%d___%d____%s_____坐标扫瞄",a,stopY,name.c_str());
@@ -490,6 +490,7 @@ private:
                 obj->Objectview->setVisible(true);
                 obj->Objectview->setPosition(ccp(x*item.width, y*item.height));
                 obj->collision=item.logic.collision;
+               
                 obj->isInteractive=item.logic.isInteractive;
                 obj->power=item.logic.power;
                 obj->play("idle", true);
