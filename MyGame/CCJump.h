@@ -46,6 +46,8 @@ private:
     float _remAngle;
     bool _start;
     int _direct;
+    
+    float _et;
     CCJumpListener* _listener;
 };
 #endif

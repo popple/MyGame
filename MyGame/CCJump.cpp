@@ -29,7 +29,7 @@ void CCJump::step(float dt)
     _totalTime+=dt;
     
     dt=_totalTime/_times;
-    
+    _et=dt;
     if (m_bFirstTick)
     {
         m_bFirstTick = false;
@@ -60,6 +60,7 @@ void CCJump::jump()
     
     _start=false;
     m_bFirstTick=true;
+    
     _remYPosition=m_pTarget->getPositionY();
     _remXPosition=m_pTarget->getPositionX();
     _remAngle=m_pTarget->getRotation();
@@ -89,10 +90,13 @@ void CCJump::update(float t)
     float ty=_yPower*t-g*t*t/2+_remYPosition;
     float tx=_xPower*.8*t+_remXPosition;
     
-    m_pTarget->setRotation(t*(90-angle)*abs(power)*.008*enableRotation+_remAngle);
+    
+    int ta=_et*(90-angle)*abs(power)*.1*enableRotation;
+    m_pTarget->setRotation(ta+m_pTarget->getRotation());
     m_pTarget->setPosition(tx, ty);
     if(m_pTarget->getPositionY()<=_floorPosY&&_start)
     {
+        if(power<.1)m_pTarget->setPositionY(_floorPosY);
        // m_pTarget->setPositionY(_remYPosition);
         power=abs(power);
         jump();

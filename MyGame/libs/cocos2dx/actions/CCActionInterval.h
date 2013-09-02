@@ -764,6 +764,8 @@ public:
     virtual void startWithTarget(CCNode *pTarget);
     virtual void stop(void);
     virtual void update(float time);
+    
+    
 
     /** This is the target that the action will be forced to run with */
     CC_SYNTHESIZE_RETAIN(CCNode*, m_pForcedTarget, ForcedTarget);

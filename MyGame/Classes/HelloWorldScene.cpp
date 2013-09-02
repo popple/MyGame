@@ -126,6 +126,8 @@ void HelloWorld::ccTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
+    
+    
     engine=PPEngine::create();
     engine->retain();
     engine->initWithMapFile("newMap.json",this);
@@ -167,10 +169,19 @@ bool HelloWorld::init()
     
     //this->runAction(CCSequence::create(MovieEndAction::create("idle"),CCCallFuncN::create(mRole, SEL_CallFuncN(HelloWorld::movieEnd) )));
     //mRole->schedule(schedule_selector(HelloWorld::watchRole), 60/1000);
-    //CCDirector::sharedDirector()->getScheduler()->setTimeScale(.2f);
+    //
+        
+    
+   // CCSprite * sp=CCSprite::create("Icon.png", CCRectMake(0, 0, 200, 200));
+    //sp->setContentSize(CCSizeMake(600,600));
+    
+    //mRole->addChild(sp);
+    //GL_NEAREST, GL_NEAREST, GL_REPEAT, GL_REPEAT
     
     
-    
+    //test=UVSprite::create("Icon.png");
+    //test->setContentSize(CCSizeMake(400,200));
+    //this->addChild(test);
     CCJump* jp=CCJump::create(.98f);
     jp->startWithTarget(mRole);
     jp->setTag(1000);
@@ -180,11 +191,16 @@ bool HelloWorld::init()
     jp->power=20;
     jp->jump();
     //makeAction();
+    CCDirector::sharedDirector()->getScheduler()->setTimeScale(.1);
+    
+    tm=CCTimer::timerWithTarget(this, schedule_selector(HelloWorld::delay),.1);
+    tm->retain();
+    slowy=false;
     return true;
 };
 void HelloWorld::onMovieEnd(cocos2d::CCNode *target)
 {
-    CCLog("get");
+    CCLog("get"); 
     CCSkeletonAnimation *mov= (CCSkeletonAnimation*)((GameObj*)target)->Objectview;
     string name=mov->states[0]->animation->name;
     
@@ -194,14 +210,24 @@ void HelloWorld::onMovieEnd(cocos2d::CCNode *target)
     }
     target->unscheduleAllSelectors();
 }
+void HelloWorld::delay()
+{
+   //CCDirector::sharedDirector()->getScheduler()->setTimeScale(1);
+    CCLog("huanyuan");
+    //tm->release();
+    slowy=false;
+}
 void HelloWorld::update(float dt)
 {
+   
+    
+    //test->setTextureCoords(CCRectMake(rand()*100, rand()*100, 20, 290));
     float t=mRole->states[0]->time;
     float s=mRole->states[0]->animation->duration;
     string name=mRole->states[0]->animation->name;
     if(t>=s&&strcmp(name.c_str(), "fly")==0)
     {
-        CCLog("动作播放完毕%s",name.c_str());
+       // CCLog("动作播放完毕%s",name.c_str());
         CCJump*jp=(CCJump*)mRole->getActionByTag(1000);
         mRole->setAnimation("rotation",false);
         jp->enableRotation=1;
@@ -222,9 +248,17 @@ void HelloWorld::update(float dt)
         (engine->re.target)->play("beHit",false);
         engine->re.target->addEventListener(this,callfuncN_selector(HelloWorld::onMovieEnd));
         jp->power*=engine->re.target->power;
+        
+        
+      //  CCDirector::sharedDirector()->getScheduler()->setTimeScale(.01);
+        
+        //tm->retain();
+        slowy=true;
         //_collistionObj->Objectview->setActionManager(cocos2d::CCActionManager *actionManager)
         //CCCallFuncN::create(this,ca)
+        CCLog("kaishi减速");
     }
-    
+    if(slowy)
+    tm->update(dt);
 };
 

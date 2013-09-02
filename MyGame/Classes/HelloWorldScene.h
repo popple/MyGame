@@ -9,6 +9,7 @@
 #include "spine-cocos2dx.h"
 #include "SpringObject.h"
 #include "GameObj.h"
+#include "UVSprite.h"
 typedef int motionType;
 
 class HelloWorld : public cocos2d::CCLayer,CCJumpListener
@@ -49,6 +50,7 @@ public:
     HelloWorld();
     ~HelloWorld();
     
+    void delay();
     void onMovieEnd(CCNode* target);
     void belongScene(CCScene* scene);
     // implement the "static node()" method manually
@@ -59,6 +61,8 @@ protected:
     int mPower;
     int angle;
     float speed;
+    
+    UVSprite * test;
     CCSkeletonAnimation * mRole;
     //天空层
     CCLayerColor *mSky;
@@ -66,7 +70,7 @@ protected:
     CCParallaxNode* mBackGround;
     //引擎
     PPEngine* engine;
-    
+    bool slowy;
     SpringObject* sObject;
     
     
