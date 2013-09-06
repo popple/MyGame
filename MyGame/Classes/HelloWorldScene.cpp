@@ -19,6 +19,7 @@ USING_NS_CC;
 #include "CCJump.h"
 #include "CCSkeletonAnimation.h"
 #include "MovieEndAction.h"
+#include "ccUVAction.h"
 using namespace spine;
 
 
@@ -188,14 +189,24 @@ bool HelloWorld::init()
     mRole->runAction(jp);
     
     jp->angle=30;
-    jp->power=20;
-    jp->jump();
+    jp->power=0;
+    //jp->jump();
     //makeAction();
-    CCDirector::sharedDirector()->getScheduler()->setTimeScale(.1);
+   // CCDirector::sharedDirector()->getScheduler()->setTimeScale(.01);
     
-    tm=CCTimer::timerWithTarget(this, schedule_selector(HelloWorld::delay),.1);
-    tm->retain();
-    slowy=false;
+    //tm=CCTimer::timerWithTarget(this, schedule_selector(HelloWorld::delay),.01);
+    //tm->retain();
+   // slowy=false;
+    
+    CCSprite*tt=CCSprite::create("Blood.png");
+    tt->setAnchorPoint(CCPointMake(0, 0));
+    ccTexParams pm={GL_LINEAR, GL_LINEAR, GL_REPEAT,GL_REPEAT};
+    tt->getTexture()->setTexParameters(&pm);
+    tt->setTextureRect(engine->screenRect);
+    ccUVAction* uva=ccUVAction::create(400,400);
+    tt->runAction(uva);
+    
+    mSky->addChild(tt);
     return true;
 };
 void HelloWorld::onMovieEnd(cocos2d::CCNode *target)
@@ -212,10 +223,14 @@ void HelloWorld::onMovieEnd(cocos2d::CCNode *target)
 }
 void HelloWorld::delay()
 {
-   //CCDirector::sharedDirector()->getScheduler()->setTimeScale(1);
+   CCDirector::sharedDirector()->getScheduler()->setTimeScale(1);
+    CCJump*jp=(CCJump*)mRole->getActionByTag(1000);
+    jp->reset();
     CCLog("huanyuan");
     //tm->release();
     slowy=false;
+    tm->release();
+    tm=NULL;
 }
 void HelloWorld::update(float dt)
 {
@@ -248,17 +263,21 @@ void HelloWorld::update(float dt)
         (engine->re.target)->play("beHit",false);
         engine->re.target->addEventListener(this,callfuncN_selector(HelloWorld::onMovieEnd));
         jp->power*=engine->re.target->power;
+        jp->reset();
+        CCDirector::sharedDirector()->getScheduler()->setTimeScale(.1);
         
-        
-      //  CCDirector::sharedDirector()->getScheduler()->setTimeScale(.01);
-        
-        //tm->retain();
+        if(tm)tm->release();
+        tm=CCTimer::timerWithTarget(this, schedule_selector(HelloWorld::delay),.2);
+        tm->retain();
         slowy=true;
         //_collistionObj->Objectview->setActionManager(cocos2d::CCActionManager *actionManager)
         //CCCallFuncN::create(this,ca)
         CCLog("kaishi减速");
+        
     }
-    if(slowy)
+    if(tm)
     tm->update(dt);
+    
+    
 };
 

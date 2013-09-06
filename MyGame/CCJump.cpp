@@ -37,11 +37,16 @@ void CCJump::step(float dt)
     }
     else
     {
-        m_elapsed += dt*20;
+        m_elapsed += dt*10;
     }
     this->update(m_elapsed);
      
     //m_elapsed += dt;
+}
+void CCJump::reset()
+{
+    _times=0;
+    _totalTime=0;
 }
 bool CCJump::initWithParam(float g)
 {
@@ -91,7 +96,7 @@ void CCJump::update(float t)
     float tx=_xPower*.8*t+_remXPosition;
     
     
-    int ta=_et*(90-angle)*abs(power)*.1*enableRotation;
+    int ta=_et*(90-angle)*abs(power)*.05*enableRotation;
     m_pTarget->setRotation(ta+m_pTarget->getRotation());
     m_pTarget->setPosition(tx, ty);
     if(m_pTarget->getPositionY()<=_floorPosY&&_start)

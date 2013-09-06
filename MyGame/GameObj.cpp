@@ -121,8 +121,7 @@ bool GameObj::init()
         }
     }
     Objectview->retain();
-    label=CCLabelTTF::create();
-    Objectview->addChild(label);
+   
     
     sc= CCDirector::sharedDirector()->getScheduler();
     //sc->schedule(schedule_selector(GameObj::update), 60/1000);
@@ -201,7 +200,7 @@ GameObj* GameObj::create(string fname)
 }
 void GameObj::setLabel(string value)
 {
-    label->setString(value.c_str());
+    //label->setString(value.c_str());
 }
 void GameObj::setIdle(bool value)
 {

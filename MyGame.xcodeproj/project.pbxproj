@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B113E21517D714F100B0215C /* Blood.png in Resources */ = {isa = PBXBuildFile; fileRef = B113E21417D714F100B0215C /* Blood.png */; };
 		B11D129E17CB753300F0FC22 /* UVSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B11D129D17CB753300F0FC22 /* UVSprite.cpp */; };
 		B18E136F17B8FF93008BF041 /* MovieEndAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B18E136E17B8FF92008BF041 /* MovieEndAction.cpp */; };
 		B19091A71774584A0046DE38 /* lizi1.plist in Resources */ = {isa = PBXBuildFile; fileRef = B19091A6177458490046DE38 /* lizi1.plist */; };
@@ -14,6 +15,7 @@
 		B195B92C17844BDC006DD2F9 /* GameObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B195B92B17844BDC006DD2F9 /* GameObj.cpp */; };
 		B196C7E1177A8F49008A4318 /* HelloWorldScene副本.txt in Sources */ = {isa = PBXBuildFile; fileRef = B196C7DF177A8F49008A4318 /* HelloWorldScene副本.txt */; };
 		B1AC71EB1769D35B00914006 /* calc_expr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1AC71E81769D35A00914006 /* calc_expr.cpp */; };
+		B1B13B8D17D5BB0500673987 /* ccUVAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1B13B8C17D5BB0500673987 /* ccUVAction.cpp */; };
 		B1C26CF21764719A003E3DEF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C26CF11764719A003E3DEF /* QuartzCore.framework */; };
 		B1C26CF41764719A003E3DEF /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C26CF31764719A003E3DEF /* OpenGLES.framework */; };
 		B1C26CF61764719A003E3DEF /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C26CF51764719A003E3DEF /* OpenAL.framework */; };
@@ -291,6 +293,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B113E21417D714F100B0215C /* Blood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Blood.png; path = Resources/Blood.png; sourceTree = "<group>"; };
 		B11D129C17CB74FE00F0FC22 /* UVSprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UVSprite.h; sourceTree = "<group>"; };
 		B11D129D17CB753300F0FC22 /* UVSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UVSprite.cpp; sourceTree = "<group>"; };
 		B13E2F4E17B4E64E000EE006 /* AnimationEventListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationEventListener.h; sourceTree = "<group>"; };
@@ -305,6 +308,8 @@
 		B196C7E2177ADAFB008A4318 /* SpringObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpringObject.h; sourceTree = "<group>"; };
 		B1AC71E81769D35A00914006 /* calc_expr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = calc_expr.cpp; path = Classes/calc_expr.cpp; sourceTree = "<group>"; };
 		B1AC71E91769D35A00914006 /* calc_expr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = calc_expr.h; path = Classes/calc_expr.h; sourceTree = "<group>"; };
+		B1B13B8B17D5B9B800673987 /* ccUVAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ccUVAction.h; sourceTree = "<group>"; };
+		B1B13B8C17D5BB0500673987 /* ccUVAction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ccUVAction.cpp; sourceTree = "<group>"; };
 		B1C26CEE1764719A003E3DEF /* MyGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1C26CF11764719A003E3DEF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B1C26CF31764719A003E3DEF /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -949,6 +954,7 @@
 		B1C26D021764719A003E3DEF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B113E21417D714F100B0215C /* Blood.png */,
 				B19091A8177474210046DE38 /* white.png */,
 				B19091A6177458490046DE38 /* lizi1.plist */,
 				CD054801176C0F100041655E /* newMap.json */,
@@ -1912,6 +1918,8 @@
 				B18E136E17B8FF92008BF041 /* MovieEndAction.cpp */,
 				B11D129C17CB74FE00F0FC22 /* UVSprite.h */,
 				B11D129D17CB753300F0FC22 /* UVSprite.cpp */,
+				B1B13B8B17D5B9B800673987 /* ccUVAction.h */,
+				B1B13B8C17D5BB0500673987 /* ccUVAction.cpp */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -2166,6 +2174,7 @@
 				B1C270C717647290003E3DEF /* goblins.png in Resources */,
 				B1C270C817647290003E3DEF /* spineboy.atlas in Resources */,
 				B1C270C917647290003E3DEF /* spineboy.png in Resources */,
+				B113E21517D714F100B0215C /* Blood.png in Resources */,
 				B1C270CA17647290003E3DEF /* items.plist in Resources */,
 				B1C270CB17647290003E3DEF /* items.png in Resources */,
 				B1C270CC17647290003E3DEF /* lizi.plist in Resources */,
@@ -2366,6 +2375,7 @@
 				B1C26F951764719D003E3DEF /* CCInvocation.cpp in Sources */,
 				B1C26F981764719D003E3DEF /* CCScale9Sprite.cpp in Sources */,
 				B1C26F9C1764719D003E3DEF /* CCEditBox.cpp in Sources */,
+				B1B13B8D17D5BB0500673987 /* ccUVAction.cpp in Sources */,
 				B1C26FA11764719D003E3DEF /* CCEditBoxImplIOS.mm in Sources */,
 				B1C26FA41764719D003E3DEF /* CCEditBoxImplMac.mm in Sources */,
 				B1C26FA61764719D003E3DEF /* CCEditBoxImplWin.cpp in Sources */,

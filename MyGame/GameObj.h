@@ -68,7 +68,7 @@ protected:
     bool mIdle;
     
     bool mInteractive;
-    CCLabelTTF* label;
+    
     EViewType mType;
 private:
     float _instance;

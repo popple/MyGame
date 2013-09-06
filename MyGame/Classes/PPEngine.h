@@ -435,7 +435,7 @@ private:
         //map<string, PPViewProto>::iterator it;
         for(n=0;n<len;n++)
         {
-            PPitem &item=m_mapData->items[n];
+            PPitem &item=m_mapData->initItems[n];
             
             int w=item.width;
             int h=item.height;

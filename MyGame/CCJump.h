@@ -24,6 +24,7 @@ public:
     virtual void startWithTarget(CCNode *pTarget);
     virtual void update(float time);
     
+    virtual void reset();
     virtual bool isDone();
     virtual void step(float dt);
     void setListener(CCJumpListener* listener);
@@ -32,7 +33,7 @@ public:
     
     void jump();
     /** creates the action */
-    static CCJump* create(float g=.98f);
+    static CCJump* create(float g=2.0f);
 
 
     
