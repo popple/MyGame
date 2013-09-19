@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		B113E21517D714F100B0215C /* Blood.png in Resources */ = {isa = PBXBuildFile; fileRef = B113E21417D714F100B0215C /* Blood.png */; };
 		B11D129E17CB753300F0FC22 /* UVSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B11D129D17CB753300F0FC22 /* UVSprite.cpp */; };
+		B11F590617E69D8100622088 /* MainScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B11F590517E69D8100622088 /* MainScene.cpp */; };
+		B18D168217E3569D005EE1AF /* MainScene.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = B18D167317E3569D005EE1AF /* MainScene.ccbi */; };
+		B18D16C717E36485005EE1AF /* ccbResources in Resources */ = {isa = PBXBuildFile; fileRef = B18D16C617E36485005EE1AF /* ccbResources */; };
 		B18E136F17B8FF93008BF041 /* MovieEndAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B18E136E17B8FF92008BF041 /* MovieEndAction.cpp */; };
 		B19091A71774584A0046DE38 /* lizi1.plist in Resources */ = {isa = PBXBuildFile; fileRef = B19091A6177458490046DE38 /* lizi1.plist */; };
 		B19091A9177474220046DE38 /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = B19091A8177474210046DE38 /* white.png */; };
@@ -296,7 +299,12 @@
 		B113E21417D714F100B0215C /* Blood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Blood.png; path = Resources/Blood.png; sourceTree = "<group>"; };
 		B11D129C17CB74FE00F0FC22 /* UVSprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UVSprite.h; sourceTree = "<group>"; };
 		B11D129D17CB753300F0FC22 /* UVSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UVSprite.cpp; sourceTree = "<group>"; };
+		B11F590417E69BF300622088 /* MainScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainScene.h; sourceTree = "<group>"; };
+		B11F590517E69D8100622088 /* MainScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainScene.cpp; sourceTree = "<group>"; };
+		B11F590817E6AEBD00622088 /* MainSceneLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainSceneLoader.h; sourceTree = "<group>"; };
 		B13E2F4E17B4E64E000EE006 /* AnimationEventListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationEventListener.h; sourceTree = "<group>"; };
+		B18D167317E3569D005EE1AF /* MainScene.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; name = MainScene.ccbi; path = Resources/MainScene.ccbi; sourceTree = "<group>"; };
+		B18D16C617E36485005EE1AF /* ccbResources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ccbResources; path = Resources/ccbResources; sourceTree = "<group>"; };
 		B18E136D17B8D24F008BF041 /* MovieEndAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieEndAction.h; sourceTree = "<group>"; };
 		B18E136E17B8FF92008BF041 /* MovieEndAction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MovieEndAction.cpp; sourceTree = "<group>"; };
 		B19091A6177458490046DE38 /* lizi1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = lizi1.plist; path = Resources/lizi1.plist; sourceTree = "<group>"; };
@@ -954,6 +962,8 @@
 		B1C26D021764719A003E3DEF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B18D16C617E36485005EE1AF /* ccbResources */,
+				B18D167317E3569D005EE1AF /* MainScene.ccbi */,
 				B113E21417D714F100B0215C /* Blood.png */,
 				B19091A8177474210046DE38 /* white.png */,
 				B19091A6177458490046DE38 /* lizi1.plist */,
@@ -1920,6 +1930,9 @@
 				B11D129D17CB753300F0FC22 /* UVSprite.cpp */,
 				B1B13B8B17D5B9B800673987 /* ccUVAction.h */,
 				B1B13B8C17D5BB0500673987 /* ccUVAction.cpp */,
+				B11F590417E69BF300622088 /* MainScene.h */,
+				B11F590517E69D8100622088 /* MainScene.cpp */,
+				B11F590817E6AEBD00622088 /* MainSceneLoader.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -2191,6 +2204,8 @@
 				CD054802176C0F100041655E /* newMap.json in Resources */,
 				B19091A71774584A0046DE38 /* lizi1.plist in Resources */,
 				B19091A9177474220046DE38 /* white.png in Resources */,
+				B18D168217E3569D005EE1AF /* MainScene.ccbi in Resources */,
+				B18D16C717E36485005EE1AF /* ccbResources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2421,6 +2436,7 @@
 				B1F3B28317A76B0C005745F7 /* ExampleSpine.cpp in Sources */,
 				B18E136F17B8FF93008BF041 /* MovieEndAction.cpp in Sources */,
 				B11D129E17CB753300F0FC22 /* UVSprite.cpp in Sources */,
+				B11F590617E69D8100622088 /* MainScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2508,6 +2524,7 @@
 					"\"$(PROJECT_NAME)/libs/cocos2dx/platform/ios\"",
 				);
 				INFOPLIST_FILE = MyGame/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/MyGame/libs/cocos2dx/platform/third_party/ios/libraries\"",
@@ -2542,6 +2559,7 @@
 					"\"$(PROJECT_NAME)/libs/cocos2dx/platform/ios\"",
 				);
 				INFOPLIST_FILE = MyGame/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/MyGame/libs/cocos2dx/platform/third_party/ios/libraries\"",

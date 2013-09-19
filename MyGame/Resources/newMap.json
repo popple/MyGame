@@ -44,7 +44,7 @@
       "width": 113,
       "height": 251,
       "name": "SpineBoy",
-      "isGround": false,
+      "isGround": true,
       "anchorX": ".5",
       "anchorY": "0",
       "logic": {

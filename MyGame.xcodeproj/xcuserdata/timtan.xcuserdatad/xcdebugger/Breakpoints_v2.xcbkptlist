@@ -1346,9 +1346,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "AppDelegate::applicationDidFinishLaunching()"
-            landmarkType = "5">
+            endingLineNumber = "30">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2150,7 +2148,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyGame/Classes/PPEngine.h"
@@ -2163,13 +2161,13 @@
             landmarkType = "5">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "PPEngine::procces()"
                   moduleName = "MyGame"
                   urlString = "file://localhost/Users/timtan/Documents/Project/MyGame/MyGame/Classes/PPEngine.h"
-                  timestampString = "400173271.368624"
+                  timestampString = "401025368.971318"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "395"
@@ -2177,13 +2175,13 @@
                   offsetFromSymbolStart = "382">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "PPEngine::procces()"
                   moduleName = "MyGame"
                   urlString = "file://localhost/Users/timtan/Documents/Project/MyGame/MyGame/Classes/PPEngine.h"
-                  timestampString = "400173271.368873"
+                  timestampString = "401025368.971623"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "395"

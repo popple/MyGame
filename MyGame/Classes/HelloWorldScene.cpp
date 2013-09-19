@@ -203,7 +203,7 @@ bool HelloWorld::init()
     ccTexParams pm={GL_LINEAR, GL_LINEAR, GL_REPEAT,GL_REPEAT};
     tt->getTexture()->setTexParameters(&pm);
     tt->setTextureRect(engine->screenRect);
-    ccUVAction* uva=ccUVAction::create(400,400);
+    ccUVAction* uva=ccUVAction::create(100,100);
     tt->runAction(uva);
     
     mSky->addChild(tt);
