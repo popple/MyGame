@@ -11,7 +11,7 @@
 #include "cocos2d.h"
 #include "string.h"
 #include "PPMapData.h"
-#include "CCInteractiveObj.h"
+
 #include "CCSkeletonAnimation.h"
 #include "MyGame.h"
 #include "GameObj.h"

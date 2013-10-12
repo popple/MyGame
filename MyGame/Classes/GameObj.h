@@ -14,7 +14,7 @@
 #include "RoleView.h"
 #include "spine-cocos2dx.h"
 #include "MyGame.h"
-#include "AnimationEventListener.h"
+
 USING_NS_CC;
 using namespace spine;
 using namespace std;

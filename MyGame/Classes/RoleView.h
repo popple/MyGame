@@ -1,7 +1,7 @@
 #ifndef __ROLEVIEW_SCENE_H__
 #define __ROLEVIEW_SCENE_H__
 #include "cocos2d.h"
-#include "CCInteractiveObj.h"
+
 USING_NS_CC;
 
 class CCRoleView:public CCSprite,public CCTargetedTouchDelegate

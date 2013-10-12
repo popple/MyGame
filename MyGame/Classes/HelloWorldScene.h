@@ -7,9 +7,9 @@
 #include <spine/spine-cocos2dx.h>
 #include "SimpleAudioEngine.h"
 #include "spine-cocos2dx.h"
-#include "SpringObject.h"
+
 #include "GameObj.h"
-#include "UVSprite.h"
+
 typedef int motionType;
 
 class HelloWorld : public cocos2d::CCLayer,CCJumpListener
@@ -62,7 +62,7 @@ protected:
     int angle;
     float speed;
     
-    UVSprite * test;
+    
     CCSkeletonAnimation * mRole;
     //天空层
     CCLayerColor *mSky;
@@ -71,7 +71,7 @@ protected:
     //引擎
     PPEngine* engine;
     bool slowy;
-    SpringObject* sObject;
+    
     
     
 };

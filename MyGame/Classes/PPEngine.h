@@ -23,7 +23,7 @@ typedef float roleY;
 #include "spine-cocos2dx.h"
 #include "NewMap.h"
 #include "calc_expr.h"
-#include "CCInteractiveObj.h"
+
 #include "GameObj.h"
 #include "string"
 using namespace spine;

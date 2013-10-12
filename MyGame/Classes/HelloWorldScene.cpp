@@ -13,9 +13,9 @@ USING_NS_CC;
 #include "reader.h"
 #include "writer.h"
 #include "global.h"
-#include "Trigger.h"
+
 #include "spine-cocos2dx.h"
-#include "SpringObject.h"
+
 #include "CCJump.h"
 #include "CCSkeletonAnimation.h"
 #include "MovieEndAction.h"
